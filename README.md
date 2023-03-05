@@ -31,6 +31,8 @@
 ## 設計書
 - [実装機能リスト](https://docs.google.com/spreadsheets/d/1Hqj5gu3cER2exgT3MdBLEbdmL4sO3viEGYzALYYr_EI/edit#gid=1091086188)
 
+ - [WBSシート・詳細設計・テーブル定義書](https://docs.google.com/spreadsheets/d/1koMMwk9A9e62ST7AvDkM6w-UXElqzhNh7WNqUrSOtJA/edit#gid=1901655167)
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
