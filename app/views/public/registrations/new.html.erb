@@ -1,0 +1,51 @@
+<div class="public-registrations">
+  <div class="container">
+    <div class="row">
+      <h2>Sign up</h2>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+
+      <div class="row">
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, size: 25, class: "textlines-radius" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true,  size: 25, autocomplete: "email", class: "textlines-radius" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", size: 25, class: "textlines-radius" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", size: 25, class: "textlines-radius" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="actions">
+          <%= f.submit "Sign up", class: "btn btn-success" %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= render "public/shared/links" %>
+
+  </div>
+</div>
