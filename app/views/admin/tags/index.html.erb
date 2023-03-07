@@ -26,13 +26,18 @@
                     <thead>
                         <tr>
                             <th>タグ名</th>
+                            <th>投稿登録数</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                     <% @tags.each do |tags| %>
                         <tr>
-                            <td><%= tags.tag_name %></td>
+                            <%= form_with model: [:admin, tags], method: :patch do |t| %>
+                                <td><%= t.text_field :tag_name %></td>
+                                <td align="center"><%= PostTag.where(tag_id: tag.id).count %></td>
+                                <td><%= t.submit '変更を保存', class: 'btn btn-success' %></td>
+                            <% end %>
                         </tr>
                     <% end %>
                     </tbody>
