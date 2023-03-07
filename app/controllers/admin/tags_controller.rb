@@ -14,7 +14,14 @@ class Admin::TagsController < ApplicationController
             render :index
         end
     end
-    
+
+    def update
+        @tag = Tag.find(params[:id])
+        @tag.update(tag_params)
+        redirect_to admin_tags_path
+    end
+
+
     private
 
     def tag_params
