@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
+    resources :posts, only: [:index, :show, :destroy]
+    resources :tags, only: [:create, :index, :update, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

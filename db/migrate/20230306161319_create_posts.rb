@@ -2,7 +2,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
   def change
     create_table :posts do |t|
 
-      t.integer :user_id,    null: false
+      t.references :user,    foreign_key: true
       t.string :color_one,   null: false
       t.string :color_two,   null: false
       t.string :color_three, null: false
