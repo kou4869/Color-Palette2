@@ -1,0 +1,45 @@
+<div class="admin-tag">
+    <div class="container">
+        <div class="row">
+            <div class="col-5 col-sm-5 offset-sm-1">
+                <h4><strong>タグ一覧・追加・編集</strong></h4>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-5 col-sm-5  offset-sm-1">
+                <tadle class="table table-borderless">
+                <%= form_with model: [:admin, @tag] do |tag| %>
+                    <tr>
+                        <p>
+                            <strong><%= tag.label :"タグ名" %></strong>
+                            <%= tag.text_field :tag_name, :placeholder => "タグ名" %>
+                            <%= tag.submit "新規登録", class: "btn btn-success" %>
+                        </p>
+                    </tr>
+                <% end %>
+                </tadle>
+            </div>
+
+            <div class="col-5 col-sm-5 offset-sm-1">
+                <table class="table text-secondary">
+                    <thead>
+                        <tr>
+                            <th>タグ名</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @tags.each do |tags| %>
+                        <tr>
+                            <td><%= tags.tag_name %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</div>
