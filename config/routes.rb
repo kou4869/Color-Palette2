@@ -9,6 +9,15 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     resources :posts
+    
+    # ↓ ユーザーに関するページのルーティング
+    get "users/my_page" => "users#show"
+    get "users/my_post" => "users#index"
+    get "users/information/edit" => "users#edit"
+    patch "users/information" => "users#update"
+    get "users/like" => "users#like"  # ユーザがブックマークした投稿の一覧
+    get "users/quit" => "users#quit"  # ユーザーの退会確認画面
+
   end
 
 

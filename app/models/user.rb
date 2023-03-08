@@ -6,6 +6,14 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
+  # ↓ ActiveStorageでプロフィール画像を保存できるように設定
+  has_one_attached :profile_image
+
+  # ↓ プロフィール画像の設定
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : 'sample-author1.png'
+  end
+
 
 
   with_options presence: true do
