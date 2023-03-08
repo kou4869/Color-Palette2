@@ -1,0 +1,24 @@
+<table class="table">
+    <tr>
+        <tb>
+            <%= image_tag user.get_profile_image, size:'100x100' %><br>
+            <%= link_to "プロフィール編集", users_information_edit_path, class: "btn btn-sm btn-success py-1" %>
+        </tb>
+    </tr>
+    <tr>
+        <tb><b>name</b></tb>
+        <td><%= user.name %></td>
+    </tr>
+    <tr>
+        <td>
+            <b>introduction</b><br>
+            <%= user.introduction %>
+        </td>
+    </tr>
+    <tr>
+        <td class="link"><%= link_to "ブックマーク", users_like_path %></td>
+    </tr>
+    <tr>
+        <td class="link"><%= link_to "自分の作品", users_my_post_path %></td>
+    </tr>
+</table>
