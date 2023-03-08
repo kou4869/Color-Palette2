@@ -1,34 +1,46 @@
 <div class="user_edit">
-    <%= render 'layouts/public_header' %>
     <div class="container-fluid px-5">
 
         <div class="row">
-        <%= form_with model: @user, url: users_information_path, method: :patch do |user| %>
-            <div class="col-md-6">
-                <h2>User info</h2>
-                <div class="form-group">
-                    <%= user.label :name %>
-                    <%= user.text_field :name, class: "form-control", placeholder: "ニックネームを入力してください" %>
-                </div>
+            <div class="col-md-5 offset-md-1 pb-4">
+                <h2><strong>User info</strong></h2>
+            </div>
+        </div>
 
-                <div class="form-group">
-                    <%= user.label :introduction %>
-                    <%= user.text_area :introduction, class: "form-control",  placeholder: "自己紹介を入力してください" %>
+        <%= form_with model: @user, url: users_information_path, method: :patch do |user| %>
+        <div class="row">
+            <div class="col-md-5 offset-md-1">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="form-group">
+                            <%= user.label :name %>
+                            <%= user.text_field :name, class: "form-control", placeholder: "ニックネームを入力してください" %>
+                        </div>
+        
+                        <div class="form-group">
+                            <%= user.label :introduction %>
+                            <%= user.text_area :introduction, class: "form-control",  placeholder: "自己紹介を入力してください" %>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="col-md-6">
+
+            <div class="col-md-5 offset-md-1">
                 <div class="form-group">
                     <%= user.label :image %>
                     <%= user.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
                 </div>
-                <div class="form-group">
+
+　　            <div id="update_profile_image"></div>
+
+
+                <div class="form-group pt-2">
                     <%= user.submit class: 'btn btn-secondary' %>
                 </div>
             </div>
-            
-        <% end %>
         </div>
+        <% end %>
+        
     </div>
 </div>
 

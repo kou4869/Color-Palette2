@@ -1,24 +1,35 @@
-<table class="table">
-    <tr>
-        <tb>
-            <%= image_tag user.get_profile_image, size:'100x100' %><br>
-            <%= link_to "プロフィール編集", users_information_edit_path, class: "btn btn-sm btn-success py-1" %>
-        </tb>
-    </tr>
-    <tr>
-        <tb><b>name</b></tb>
-        <td><%= user.name %></td>
-    </tr>
-    <tr>
-        <td>
-            <b>introduction</b><br>
-            <%= user.introduction %>
-        </td>
-    </tr>
-    <tr>
-        <td class="link"><%= link_to "ブックマーク", users_like_path %></td>
-    </tr>
-    <tr>
-        <td class="link"><%= link_to "自分の作品", users_my_post_path %></td>
-    </tr>
-</table>
+<div class="row">
+    <div class="col-8 py-1">
+        <div class="pt-2">
+            <%= image_tag user.get_profile_image, size:'120x120' %>
+        </div>
+        <div class="pull-right py-1">
+            <%= link_to users_information_edit_path, class: "btn btn-sm btn-success"  do %>
+                プロフィール<br>編集
+            <% end %>
+        </div>
+    </div>
+    
+    <div class="col-8">   
+        <table class="table">
+            <tr>
+                <td>
+                    <b>name</b><br>
+                    <%= user.name %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>introduction</b><br>
+                    <%= user.introduction %>
+                </td>
+            </tr>
+            <tr>
+                <td class="link"><%= link_to "ブックマーク", users_like_path %></td>
+            </tr>
+            <tr>
+                <td class="link"><%= link_to "自分の作品", users_my_post_path %></td>
+            </tr>
+        </table>
+    </div>
+</div>

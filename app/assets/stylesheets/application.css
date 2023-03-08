@@ -20,14 +20,22 @@
     box-sizing: border-box;
  }
 
-
-.sidebar {
-    background: lightcyan;
-    border: solid;
-    border: 15px solid rgba(255,255,255,0);
-    height: 100vh;
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
 }
 
-.public-header {
+main {
+  flex: 1;
+}
+
+
+.header {
     background: lightyellow;
+}
+
+.footer {
+    background: lightcyan;
+    height: 80px;
 }
