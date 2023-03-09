@@ -20,7 +20,6 @@ require("channels")
 require('./preview')  // 追記
 
 
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
