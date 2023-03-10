@@ -1,3 +1,42 @@
 // Place all the styles related to the public/posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.big_diamond {
+  display: flex;
+  flex-wrap: wrap;
+  width: 280px;
+  height: 280px;
+  transform: rotate(45deg);
+  margin-top: 60px;
+  margin-left: 80px;
+}
+
+.square {
+  width: 48%;
+  height: 48%;
+  background-color: aqua;
+  margin: 2px;
+  position: relative;
+}
+
+.text_box {
+  width: 150px;
+  transform: rotate(-45deg);
+  text-align: center;
+  position: absolute;
+}
+
+.text-color-y {
+  font-size: 20px;
+  padding-top: 24px;
+  padding-right: 52px;
+}
+
+.text-color-x {
+  font-size: 20px;
+  padding-top: 27px;
+  padding-right: 53px;
+}
+
