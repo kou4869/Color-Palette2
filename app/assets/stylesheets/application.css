@@ -35,11 +35,12 @@ main {
 
 header {
   background: lightyellow;
+  height: 120px;
 }
 
 footer {
   background: lightcyan;
-  height: 50px;
+  height: 45px;
 }
 
 .logo-image {

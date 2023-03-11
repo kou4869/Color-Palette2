@@ -15,7 +15,7 @@ class Public::PostsController < ApplicationController
         end
         @post.user_id = current_user.id
         if @post.save
-            redirect_to post_path(@post)
+            redirect_to post_path(@post, data: {"turbolinks"=>false})
         else
             render :new
         end

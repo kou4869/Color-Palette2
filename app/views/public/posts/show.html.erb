@@ -1,0 +1,50 @@
+<div class="posts-show">
+  <div class="container-fluid px-5">
+    <div class="row">
+      <div class="col-12 col-md-2 pt-3">
+        <h2>User info</h2>
+        <%= render 'public/users/public_sidebar', user: current_user %>
+      </div>
+
+      <div class="col-12 col-md-10 show-title">
+        <h1 class="pt-3"><strong>【色彩詳細】</strong></h1>
+        <div class="row">
+
+          <div class="col-12 col-md-5">
+
+
+            <div class="big_diamond">
+              <div class="square" style="background-color: <%= @post.color1 %>">
+                <div class="text_box">
+                  <p class="text-color">color 1</p>
+                </div>
+              </div>
+              <div class="square" style="background-color: <%= @post.color2 %>">
+                <div class="text_box">
+                  <p class="text-color">color 2</p>
+                </div>
+              </div>
+              <div class="square" style="background-color: <%= @post.color4 %>">
+                <div class="text_box">
+                  <p class="text-color">color 4</p>
+                </div>
+              </div>
+              <div class="square" style="background-color: <%= @post.color3 %>">
+                <div class="text_box">
+                  <p class="text-color">color 3</p>
+                </div>
+              </div>  
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
