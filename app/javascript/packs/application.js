@@ -15,14 +15,12 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
-import '@fortawesome/fontawesome-free/js/all'
+import '@fortawesome/fontawesome-free/js/all';
+import "../src/preview"
 
+window.$ = window.jQuery = require('jquery');  //【$】が記述で使用できないので、それが使用できるようにする記述
+import "../src/color"
 
-require("@rails/ujs").start()
-// require("turbolinks").start()  // コメントアウト
-require("@rails/activestorage").start()
-require("channels")
-require('./preview')  // 追記
 
 Rails.start()
 Turbolinks.start()

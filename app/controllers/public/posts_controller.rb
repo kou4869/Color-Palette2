@@ -7,7 +7,12 @@ class Public::PostsController < ApplicationController
     end
 
     def create
-        @post = Post.new(post_parame)
+        @post = Post.new(post_params)
+        if @post.tags.length > 5
+            flash.now[:alert] = "タグは１～５個まで設定できます。"
+            render :new
+            return
+        end
         @post.user_id = current_user.id
         if @post.save
             redirect_to post_path(@post)
@@ -22,6 +27,7 @@ class Public::PostsController < ApplicationController
 
     def index
         @posts = Post.page(params[:page]).per(8)
+        @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
     end
 
     def edit
@@ -36,7 +42,7 @@ class Public::PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:color_one, :color_two, :color_three, :color_four, :post_introduction)
+        params.require(:post).permit(:color1, :color2, :color3, :color4, :post_introduction, {tag_ids: []})
     end
 
 

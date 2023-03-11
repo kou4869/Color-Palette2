@@ -33,8 +33,13 @@ main {
 }
 
 
-.header {
+header {
   background: lightyellow;
+}
+
+footer {
+  background: lightcyan;
+  height: 50px;
 }
 
 .logo-image {
@@ -64,11 +69,6 @@ main {
 
 .icon5 {
   color: #ff8c00;
-}
-
-.footer {
-  background: lightcyan;
-  height: 80px;
 }
 
 .admin-login {

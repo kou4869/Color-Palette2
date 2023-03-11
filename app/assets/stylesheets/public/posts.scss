@@ -2,21 +2,41 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.posts-new {
+  background: url('post_new.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; 
+}
 
 .big_diamond {
   display: flex;
   flex-wrap: wrap;
-  width: 280px;
-  height: 280px;
+  width: 250px;
+  height: 250px;
   transform: rotate(45deg);
-  margin-top: 60px;
-  margin-left: 80px;
+  margin: 50px auto;
+  padding: 15px, 0;
+
 }
+
+
+@media screen and (min-width: 768px) {
+  .big_diamond {
+    display: flex;
+    flex-wrap: wrap;
+    width: 280px;
+    height: 280px;
+    transform: rotate(45deg);
+    margin-top: 60px;
+    margin-left: 60px;
+  }
+}
+
 
 .square {
   width: 48%;
   height: 48%;
-  background-color: aqua;
   margin: 2px;
   position: relative;
 }
@@ -28,15 +48,34 @@
   position: absolute;
 }
 
-.text-color-y {
+.text-color {
   font-size: 20px;
-  padding-top: 24px;
-  padding-right: 52px;
+  color: #f0f8ff;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #808080; /* webkitのベンダープレフィックス */
+  text-stroke: 1px #808080;  
+  padding-top: 35px;
+  padding-right: 45px;
 }
 
-.text-color-x {
-  font-size: 20px;
-  padding-top: 27px;
-  padding-right: 53px;
+.check_box {
+  background-color: #fff8dc;
+  box-shadow: 0px 3px 6px 0px #9E9E9E;
+  padding: 10px; 
 }
+
+.tag_check {
+  font-size: 12px;
+  
+  span {
+    color: #ff4500;
+  }
+}
+
+.check_item {
+  font-size: 15px;
+  padding-right: 2px;
+}
+
+
 

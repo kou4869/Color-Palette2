@@ -1,4 +1,4 @@
-<header class="border-bottom header px-5 mb-5">
+<header class="border-bottom px-5 mb-1">
 
     <nav class="navbar navbar-expand-lg navbar-light">
 
@@ -20,7 +20,7 @@
                 <% end %>
             <li>
             <li>
-                <%= link_to new_post_path, class: 'nav-link text-dark' do %>
+                <%= link_to new_post_path, class: 'nav-link text-dark', data: {"turbolinks"=>false} do %>
                     <i class="fas fa-paint-brush"></i> 新規配色登録
                 <% end %>
             <li>
@@ -63,7 +63,7 @@
 
             <% end %>
         </div>
-        
+
     </nav>
 
 </header>
