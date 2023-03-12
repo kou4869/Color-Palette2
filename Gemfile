@@ -53,3 +53,4 @@ end
 gem 'tzinfo-data'
 gem 'devise'
 gem 'kaminari'
+gem 'rails-i18n', '~> 6.0'

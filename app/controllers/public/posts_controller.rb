@@ -24,7 +24,8 @@ class Public::PostsController < ApplicationController
     def show
         @post = Post.find(params[:id])
         @comment = Comment.new
-        @comments = @post.comments.order(created_at: :desc) # コメント一覧表示で使用する全コメントデータ新着順で表示
+        @comment_reply = Comment.new
+        @comments = @post.comments.where(parent_id: nil).order(created_at: :desc) # コメント一覧表示で使用する全コメントデータ新着順で表示
     end
 
     def index

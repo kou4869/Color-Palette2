@@ -9,7 +9,7 @@
 
         <%= form_with model: @user, url: users_information_path, method: :patch do |user| %>
         <div class="row">
-            <div class="col-md-5 offset-md-1">
+            <div class="col-12 col-md-5 offset-0 offset-md-1">
                 <div class="row">
                     <div class="col-10">
                         <div class="form-group">
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="col-md-5 offset-md-1">
+            <div class="col-12 col-md-5 offset-0 offset-md-1">
                 <div class="form-group">
                     <%= user.label :image %>
                     <%= user.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>

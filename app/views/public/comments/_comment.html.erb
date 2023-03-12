@@ -1,12 +1,12 @@
-<h5> コメント一覧（#{comments.count}件)</h5>
+<h5><b> コメント一覧(<%= comments.count %>件)</b></h5>
 <hr>
-<%= render 'layouts/flash_messages' %>
+<%#= render 'layouts/flash_messages' %>
 <% comments.first(2).each do |comment| %>
-  <%= render 'comments/hide_comments', comment: comment %>
+  <%= render partial: 'public/comments/hide_comments', locals: {comment: comment, comment_reply: comment_reply} %>
 <% end %>
-# コメントが3件以上の場合、残りのコメントをプルダウンで表示するボタンの作成 -----
-<% comments.offset(2).any? %>
-  <div class="text-right">
+
+<% if comments.offset(2).any? %>
+  <div class="text-right mb-3">
     <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       もっと見る
     </button>
@@ -14,7 +14,7 @@
 
   <div class="collapse" id="collapseExample">
     <% comments.where(parent_id: nil).offset(2).each do |comment| %>
-      <%= render 'public/comments/hide_comments', comment: comment %>
+      <%= render partial: 'public/comments/hide_comments', locals: {comment: comment, comment_reply: comment_reply} %>
     <% end %>
   </div>
 <% end %>
