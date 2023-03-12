@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    resources :posts
+    resources :posts do
+      resources :comments, only: [:create, :destroy]
+    end
     
     # ↓ ユーザーに関するページのルーティング
     get "users/my_page" => "users#show"
