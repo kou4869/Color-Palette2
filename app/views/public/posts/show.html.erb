@@ -6,34 +6,79 @@
         <%= render 'public/users/public_sidebar', user: current_user %>
       </div>
 
-      <div class="col-12 col-md-10 show-title">
-        <h1 class="pt-3"><strong>【色彩詳細】</strong></h1>
-        <div class="row">
+      <div class="col-12 col-md-10">
+        <div class="row pt-4">
 
-          <div class="col-12 col-md-5">
+          <div class="col-12 col-md-5 mb-5">
+            <div class="row">
+              <div class="show_big_diamond">
+                <div class="square" style="background-color: <%= @post.color1 %>">
+                  <div class="text_box">
+                    <p class="text-color">color 1</p>
+                  </div>
+                </div>
+                <div class="square" style="background-color: <%= @post.color2 %>">
+                  <div class="text_box">
+                    <p class="text-color">color 2</p>
+                  </div>
+                </div>
+                <div class="square" style="background-color: <%= @post.color4 %>">
+                  <div class="text_box">
+                    <p class="text-color">color 4</p>
+                  </div>
+                </div>
+                <div class="square" style="background-color: <%= @post.color3 %>">
+                  <div class="text_box">
+                    <p class="text-color">color 3</p>
+                  </div>
+                </div>  
+              </div>
+            </div>
+
+            <div class="row mt-5">
+              <table class="table">
+                <thead class="border-none">
+                  <tr>
+                    <td>
+                      <div class="color-ball" style="background-color: <%= @post.color1 %>"></div>
+                    </td>
+                    <td>
+                      <div class="color-ball" style="background-color: <%= @post.color2 %>"></div>
+                    </td>
+                    <td>
+                      <div class="color-ball" style="background-color: <%= @post.color3 %>"></div>
+                    </td>
+                    <td>
+                      <div class="color-ball" style="background-color: <%= @post.color4 %>"></div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="color-code"><%= @post.color1 %></td>
+                    <td class="color-code"><%= @post.color2 %></td>
+                    <td class="color-code"><%= @post.color3 %></td>
+                    <td class="color-code"><%= @post.color4 %></td>
+                  </tr>
+                </tbody>
+              </table>
+          
+              <div class="tag-item">
+              <% @post.tags.each do |tag| %>
+                <div class="btn btn-outline-info">
+                  <%= tag.tag_name %>
+                </div>
+              <% end %>
+              </div>
+            </div>
+
+          </div>
 
 
-            <div class="big_diamond">
-              <div class="square" style="background-color: <%= @post.color1 %>">
-                <div class="text_box">
-                  <p class="text-color">color 1</p>
-                </div>
-              </div>
-              <div class="square" style="background-color: <%= @post.color2 %>">
-                <div class="text_box">
-                  <p class="text-color">color 2</p>
-                </div>
-              </div>
-              <div class="square" style="background-color: <%= @post.color4 %>">
-                <div class="text_box">
-                  <p class="text-color">color 4</p>
-                </div>
-              </div>
-              <div class="square" style="background-color: <%= @post.color3 %>">
-                <div class="text_box">
-                  <p class="text-color">color 3</p>
-                </div>
-              </div>  
+          <div class="col-12 col-md-7">
+            <div class="row  show-title">
+              <h1 class="pt-3"><strong>【色彩詳細】</strong></h1>
+            
             </div>
           </div>
 

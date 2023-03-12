@@ -9,6 +9,11 @@
   background-size: cover; 
 }
 
+.border-none {
+  td {
+    border-top: none !important;
+  }
+}
 
 .big_diamond {
   display: flex;
@@ -92,7 +97,45 @@
 }
 
 
+.show_big_diamond {
+  display: flex;
+  flex-wrap: wrap;
+  width: 280px;
+  height: 280px;
+  transform: rotate(45deg);
+  margin: 50px auto;
+
+
+}
+
+@media screen and (min-width: 768px) {
+  .show_big_diamond {
+    display: flex;
+    flex-wrap: wrap;
+    width: 280px;
+    height: 280px;
+    transform: rotate(45deg);
+    margin-left: 100px;
+  }
+}
+
+
+
 .show-title {
   text-align: center;
 }
 
+.color-ball {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+
+.tag-item {
+  margin: 0 auto;
+}
+
+.color-code {
+  text-align: center;
+}
