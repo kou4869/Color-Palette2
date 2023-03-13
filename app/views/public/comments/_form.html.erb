@@ -1,5 +1,5 @@
 
-<%= form_with model: [post, comment], local: false do |f| %>
+<%= form_with model: [post, comment], local: true do |f| %>
   <div class="form-group">
     <b><%= f.label "コメントを投稿する" %></b>
     <%= f.text_area :comment, size: '3x3', autocomplete: 'off', placeholder: "コメントを入力してください", class: 'form-control' %>

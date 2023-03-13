@@ -60,12 +60,12 @@
                 <%= f.text_area :post_introduction, class: "form-control",  rows: "5", placeholder: "(未記入も可能)配色のポイントや紹介などをご記入ください" %>
               </div>
 
-              <% if flash[:alert] %>
+              <% if flash[:my_alert] %>
                 <div class="alerts">
-                  <div class="alert alert-danger" role="alert"><%= flash[:alert] .present? %></div>
+                  <div class="alert alert-danger" role="alert"><%= flash[:my_alert] %></div>
                 </div>
               <% end %>
-              
+
               <div class="check_box my-3">
                 <p class="tag_check">
                   <span><b>【必須項目】</b></span><br>
@@ -77,7 +77,7 @@
                   <% end %>
                 </div>
               </div>
-              
+
               <div class="post_btn mb-5 pt-2">
                 <%= f.submit "新規投稿", class: 'btn btn-primary' %>
               </div>

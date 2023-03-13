@@ -8,14 +8,14 @@ class Public::PostsController < ApplicationController
 
     def create
         @post = Post.new(post_params)
-        if @post.tags.length > 5
-            flash.now[:alert] = "タグは１～５個まで設定できます。"
+        if (1..5).exclude?(@post.tags.length)
+            flash.now[:my_alert] = "タグは１～５個まで設定できます。"
             render :new
             return
         end
         @post.user_id = current_user.id
         if @post.save
-            redirect_to post_path(@post, data: {"turbolinks"=>false})
+            redirect_to post_path(@post)
         else
             render :new
         end
