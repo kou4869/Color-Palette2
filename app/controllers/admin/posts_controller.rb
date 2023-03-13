@@ -1,11 +1,12 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
 
-    def index
+  def index
 
-    end
+  end
 
-    def show
+  def show
 
-    end
+  end
 
 end

@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <h4 class="my-3">
+      コメント一覧
+    </h4>
+  </div>
+
+  <table class="table table-hover">
+    <thead class="table-active text-center">
+      <tr>
+        <th>コメント投稿日時</th>
+        <th>コメントされた配色</th>
+        <th>コメント本文</th>
+        <th>コメントユーザーid/name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tdoby>
+    <% @comments.each do |comment| %>
+      <tr class="light-text text-center">
+        <td class="align-middle">
+          <%= comment.created_at.strftime('%Y年/%m月/%d日 %H:%M:%S') %>
+        </td>
+        <td>
+          <div class="comment_big_diamond">
+            <div class="comment_square" style="background-color: <%= comment.post.color1 %>"></div>
+            <div class="comment_square" style="background-color: <%= comment.post.color2 %>"></div>
+            <div class="comment_square" style="background-color: <%= comment.post.color4 %>"></div>
+            <div class="comment_square" style="background-color: <%= comment.post.color3 %>"></div>
+          </div>
+        </td>
+        <td class="align-middle">
+          <%= link_to comment.comment, admin_post_path(comment.post_id) %>
+        </td>
+        <td class="align-middle">
+          <%= link_to admin_user_path(comment.user_id) do %>
+            <%= comment.user_id %>/
+            <%= comment.user.name %>
+          <% end %>
+        </td>
+        <td class="align-middle">
+          <%= link_to "Delete", comment, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+    </tdoby>
+  </table>
+
+</div>

@@ -1,3 +1,21 @@
 // Place all the styles related to the admin/posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+
+.comment_big_diamond {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50px;
+  height: 50px;
+  transform: rotate(45deg);
+  margin: 10px auto;
+}
+
+.comment_square {
+  width: 46%;
+  height: 46%;
+  margin: 1px;
+  position: relative;
+}

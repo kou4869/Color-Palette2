@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
+    resources :users, only: [:destroy]
     resources :posts do
       resources :comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     
     # ↓ ユーザーに関するページのルーティング
@@ -30,10 +32,12 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :posts, only: [:index, :show, :destroy]
     resources :tags, only: [:create, :index, :update, :destroy]
-    resources :users, only: [:index, :update, :destroy]
-    resources :comments, only: [:index, :update, :destroy]
+    resources :users, only: [:show, :index, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :comments, only: [:destroy]
+    end
+    get "comments" => "comments#index"  #管理側のコメント一覧ページ
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
