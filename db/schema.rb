@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2023_03_13_075816) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
+    t.float "star", null: false
     t.integer "user_id"
     t.integer "post_id"
     t.integer "parent_id"

@@ -2,9 +2,22 @@
 <%= form_with model: [post, comment], local: true do |f| %>
   <div class="form-group">
     <b><%= f.label "コメントを投稿する" %></b>
+    <div class="mb-2 ml-2" id="comment_raty"></div>
     <%= f.text_area :comment, size: '3x3', autocomplete: 'off', placeholder: "コメントを入力してください", class: 'form-control' %>
   </div>
   <div class="text-right mb-2">
     <%= f.submit "コメントする", class: 'btn btn-warning text-white' %>
   </div>
 <% end %>
+
+
+<script>
+var elem = document.getElementById('comment_raty');
+var opt = {  
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: "comment[star]"
+  };
+  raty(elem,opt);
+</script>

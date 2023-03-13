@@ -1,14 +1,15 @@
 <div class="card mb-3">
-  
+
   <div class="card-body">
     <%= link_to root_path(comment.user.id) do %>
       <%= image_tag comment.user.get_profile_image, width: 72 %>
     <% end %>
     <%= link_to "#{comment.user.name}さん", root_path(comment.user.id), class: 'link pl-1' %>
     <div class="card-text mt-4">
+      <div id="show_raty"></div>
       <%= simple_format(comment.comment) %>
     </div>
-    
+
     <% Comment.where(post_id: comment.post_id, parent_id: comment.id).order(created_at: :desc).each do |reply| %>
       <div class="card ml-4 mb-3">
         <div class="card-body">
@@ -26,15 +27,15 @@
         </div>
       </div>
     <% end %>
-    
-    <%= form_with model: comment_reply, url: post_comments_path(comment.post_id), method: :post, local: false do |f| %>
+
+    <%= form_with model: comment_reply, url: post_comments_path(comment.post_id), method: :post, local: true do |f| %>
       <%= f.hidden_field :parent_id, value: comment.id %>
       <b><%= f.label :comment, 'Reply' %></b>
       <%= f.text_area :comment, rows: 2, class: 'form-control' %>
       <%= f.submit 'Comment Reply', class: 'mt-3 btn btn-sm btn-primary' %>
     <% end %>
   </div>
-  
+
   <div class="card-footer text-right">
     <small class="text-black-50">
       <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
@@ -47,5 +48,19 @@
       %>
     <% end %>
   </div>
-  
+
 </div>
+
+
+<script>
+var showRateElement = document.getElementById('show_raty');
+var showOpt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: "comment[star]"
+    score: "<%= comment.star %>",
+    readOnly: true
+  };
+  raty(showRateElement,showOpt);
+</script>

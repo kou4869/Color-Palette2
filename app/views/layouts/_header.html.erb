@@ -33,6 +33,11 @@
         <% elsif admin_signed_in? %>
 
         <li>
+          <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-users"></i> ユーザー一覧
+          <% end %>
+        </li>
+        <li>
           <%= link_to admin_posts_path, class: 'nav-link text-dark' do %>
             <i class="fas fa-palette"></i> 投稿一覧
           <% end %>
