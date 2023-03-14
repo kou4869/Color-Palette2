@@ -1,29 +1,41 @@
 <div class="pt-3">
-    <%= image_tag user.get_profile_image, width: 120 %>
+  <%= image_tag user.get_profile_image, width: 120 %>
 </div>
+<%if user_id = current_user.id %>
 <div class="pull-right py-1">
-    <%= link_to users_information_edit_path, class: "btn btn-sm btn-success"  do %>
-        プロフィール<br>編集
-    <% end %>
+  <%= link_to user_information_edit_path(user), class: "btn btn-sm btn-success"  do %>
+    プロフィール<br>編集
+  <% end %>
 </div>
+<% end %>
 
 <table class="table">
-    <tr>
-        <td>
-            <b>name</b><br>
-            <%= user.name %>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <b>introduction</b><br>
-            <%= user.introduction %>
-        </td>
-    </tr>
-    <tr>
-        <td class="link"><%= link_to "ブックマーク", users_like_path %></td>
-    </tr>
-    <tr>
-        <td class="link"><%= link_to "自分の作品", users_my_post_path %></td>
-    </tr>
+  <tr>
+    <td>
+      <b>name</b><br>
+      <%= user.name %>
+      </td>
+  </tr>
+  <tr>
+    <td>
+      <b>introduction</b><br>
+      <%= user.introduction %>
+    </td>
+  </tr>
+  <%if user_id = current_user.id %>
+  <tr>
+    <td class="link">
+      <%= link_to user_like_path(user) do %>
+        <i class="fas fa-book-reader"></i> ブックマーク <i class="fas fa-book-reader"></i>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="link">
+      <%= link_to user_my_page_path(user) do %>
+        <i class="fas fa-pen-nib"></i> 投稿作品 <i class="fas fa-pen-nib"></i>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
 </table>

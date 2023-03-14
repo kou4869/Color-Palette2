@@ -8,19 +8,19 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    resources :users, only: [:destroy]
+    resources :users, only: [:destroy] do
+      get "my_page" => "users#index"
+      get "information/edit" => "users#edit"
+      patch "information" => "users#update"
+      get "like"  # ユーザがブックマークした投稿の一覧
+      get "quit"  # ユーザーの退会確認画面
+    end
     resources :posts do
       resources :comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
     
-    # ↓ ユーザーに関するページのルーティング
-    get "users/my_page" => "users#show"
-    get "users/my_post" => "users#index"
-    get "users/information/edit" => "users#edit"
-    patch "users/information" => "users#update"
-    get "users/like" => "users#like"  # ユーザがブックマークした投稿の一覧
-    get "users/quit" => "users#quit"  # ユーザーの退会確認画面
+
 
   end
 

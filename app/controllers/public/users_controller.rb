@@ -1,21 +1,22 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
-  def show
-    @user = current_user
-  end
-
   def index
+    @user = User.find(params[:id])
+    @post = @user.posts
   end
 
   def like
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
   end
 
   def quit
   end
 
   def edit
-      @user = current_user
+    @user = current_user
   end
 
   def update
