@@ -147,3 +147,35 @@
 .favorite {
   font-size: 30px;
 }
+
+.active_text {
+  font-size: 25px;
+}
+
+
+.index_big_diamond {
+  display: flex;
+  flex-wrap: wrap;
+  width: 120px;
+  height: 120px;
+  transform: rotate(45deg);
+  margin: 20px auto;
+}
+
+@media screen and (min-width: 768px) {
+  .show_big_diamond {
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+    height: 150px;
+    transform: rotate(45deg);
+    margin-left: 100px;
+  }
+}
+
+.index_square {
+  width: 48%;
+  height: 48%;
+  margin: 1px;
+  position: relative;
+}

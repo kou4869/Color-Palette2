@@ -2,12 +2,12 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   def index
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     @post = @user.posts
   end
 
   def like
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
   end
@@ -22,7 +22,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to users_my_page_path, notice: "プロフィールを更新しました"
+      redirect_to user_my_page_path, notice: "プロフィールを更新しました"
     else
       render :edit
     end    

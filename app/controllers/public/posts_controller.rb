@@ -23,6 +23,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_stay_avarage = @post.avarage_stay
     @user = @post.user
     @comment = Comment.new
     @comment_reply = Comment.new

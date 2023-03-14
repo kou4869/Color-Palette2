@@ -41,17 +41,28 @@
 
           <div class="col-12 col-md-7">
             <div class="row pt-5">
-              <div class="mb-5 ml-4">
+              <div class="col-5 col-md-5">
                 <% if @post.user == current_user %>
-                  <span><%= link_to "Edit", edit_post_path(@post),class: "btn btn-success btn-lg" %></span>
-                  <span class="pl-2"><%= link_to 'Destroy', post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger btn-lg"%></span>
+                  <span>
+                    <%= link_to edit_post_path(@post),class: "btn btn-success btn-lg" do %>
+                      <i class="fas fa-edit"></i> Eidt
+                    <% end %>
+                    </span>
+                  <span class="pl-2">
+                    <%= link_to post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-lg" do %>
+                      <i class="fas fa-trash-alt"></i> Destroy 
+                    <% end %>
+                  </span>
                 <% end %>
+              </div>
+              <div class="col-7 col-md-7">
                 <span class="favorite pl-5" id="favorite_buttons_<%= @post.id %>">
                   <%= render "public/favorites/favorite", post: @post %>
-                </spaan>
+                </span>
               </div>
-              
-              
+            </div>
+
+            <div class="row mt-3">
               <table class="table">
                 <thead class="border-none">
                   <tr>
@@ -95,19 +106,43 @@
                 <%= @post.post_introduction %>
               </div>
             </div>
+            
+            <div class="row mt-4 ml-4">
+              <% if @post.comments.where(parent_id: nil).count.zero? %>
+              <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
+                <p class="active_text"><b>レビューがまだありません</b></p>
+              <% else %>
+                <p class="active_text"><b>レビュー平均：</b> 
+                  <span id="active_raty"></span>
+                </p>
+              <% end %>
+            </div>
 
         </div>
       </div>
     </div>
   </div>
-    
+
   <div class="row mt-5">
     <div class="offset-0 offset-md-2 col-12 col-md-10">
       <%= render partial: 'public/comments/comment',locals: {post: @post, comments: @comments, comment_reply: @comment_reply} %>
-      <% if user_signed_in? %>
+      <% if user_signed_in? && !Comment.where(post_id: @post.id, user_id: current_user.id, parent_id: nil).exists? %>
         <%= render 'public/comments/form', post: @post, comment: @comment %>
       <% end %>
     </div>
   </div>
-    
+
 </div>
+
+<script>
+var showRateElement = document.getElementById('active_raty');  //このビュー(部分テンプレートは除外)で表示する星は平均点のみなので、idの指定は無し
+var showOpt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: "comment[star]",
+    score: "<%= @post.avarage_stay %>",  //モデルで定義した『avarage_stay』を利用。
+    readOnly: true
+  };
+  raty(showRateElement,showOpt);
+</script>

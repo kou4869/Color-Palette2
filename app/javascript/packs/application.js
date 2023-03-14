@@ -16,12 +16,10 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import '@fortawesome/fontawesome-free/js/all';
-import "../src/preview"
 
-window.$ = window.jQuery = require('jquery');  //【$】が記述で使用できないので、それが使用できるようにする記述
-import "../src/color";
+
 import Raty from "../src/raty.js"  
-window.raty = function(elem,opt){  //
+window.raty = function(elem,opt){ 
     var raty =  new Raty(elem,opt)
     raty.init();
     return raty;

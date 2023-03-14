@@ -1,0 +1,73 @@
+<div class="card mb-2 ml-5" style="width: 20rem;">
+  <div class="card-body">
+
+    <div class="index_big_diamond">
+      <div class="index_square" style="background-color: <%= post.color1 %>"></div>
+      <div class="index_square" style="background-color: <%= post.color2 %>"></div>
+      <div class="index_square" style="background-color: <%= post.color4 %>"></div>
+      <div class="index_square" style="background-color: <%= post.color3 %>"></div>
+    </div>
+
+    <table>
+      <tr class="index_text">
+        <% if post.comments.where(parent_id: nil).count.zero? %>
+        <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
+          <p class="pt-3"><b>レビューが<br>
+                まだありません</b></p>
+        <% else %>
+          <p class="pt-3"><b>レビュー平均：</b>
+          <span id="index_active_raty_<%= post.id %>"></span>
+        </p>
+        <% end %>
+      </tr>
+      <tr class="index_text">
+        <p>製作者 :
+          <%= link_to user_my_page_path(post.user.id) do %>
+            <%= post.user.name %>さん
+          <% end %>
+        </p>
+      </tr>
+      <tr>
+        <td class="pt-2 pl-2">
+          <span class="favorite pl-5" id="favorite_buttons_<%= post.id %>">
+            <%= render "public/favorites/favorite", post: post %>
+          </span>
+        </td>
+        <% if post.user == current_user %>
+        <td class="pt-3 pl-3">
+          <span>
+            <%= link_to edit_post_path(post),class: "btn btn-success btn-sm" do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+          </span>
+          <span class="pl-2">
+            <%= link_to post_path(post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-sm" do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </span>
+        </td>
+      </tr>
+      <% end %>
+
+    </table>
+
+  </div>
+</div>
+
+
+
+
+
+<script>
+var indexRateElement = document.getElementById('index_active_raty_<%= post.id %>');
+//index_active_raty_<%#= post.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためpost.idを指定する
+var indexOpt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: "comment[star]",
+    score: "<%= post.avarage_stay %>",  //モデルで定義した『avarage_stay』を利用。
+    readOnly: true
+  };
+  raty(indexRateElement,indexOpt);
+</script>
