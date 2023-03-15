@@ -32,7 +32,6 @@ main {
   flex: 1;
 }
 
-
 header {
   background: lightyellow;
 }
@@ -75,4 +74,13 @@ footer {
   background-color: whitesmoke;
   box-shadow: 0px 3px 6px 0px #9E9E9E;
   padding: 10px; 
+}
+
+//「jScroll」使用のスロールのため固定
+.user_info {
+  position: fixed;
+}
+
+.index_title {
+  position: fixed;
 }

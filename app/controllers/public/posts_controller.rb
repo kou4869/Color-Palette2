@@ -34,6 +34,14 @@ class Public::PostsController < ApplicationController
     @user = current_user
     @posts = Post.page(params[:page]).per(8)
 
+    #タグ検索用の記述
+    if params[:tag_id].present? 
+      @posts = Tag.find(params[:tag_id]).posts
+    else
+      @posts = Post.all
+    end
+
+    #並び替え用の記述
     if params[:latest]
       @posts = Post.latest
     elsif params[:old]
