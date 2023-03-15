@@ -33,7 +33,14 @@ class Public::PostsController < ApplicationController
   def index
     @user = current_user
     @posts = Post.page(params[:page]).per(8)
-    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+
+    if params[:latest]
+      @posts = Post.latest
+    elsif params[:old]
+      @posts = Post.old
+    else
+      @posts = Post.all
+    end
   end
 
   def edit

@@ -7,6 +7,13 @@
       </div>
 
       <div class="col-11 col-md-10 offset-1 offset-md-0">
+        <div class="index-text pl-3">
+          <h2>配色一覧</h2>
+          <h5>
+          <%= link_to "昇順", posts_path(latest: "true") %>
+          | <%= link_to "降順", posts_path(old: "true") %>
+          </h5>
+        </div>
         <div class="row">
           <div class="card-deck">
             <% @posts.each do |post| %>
@@ -17,7 +24,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>
