@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+// newページ
 .posts-new {
   background: url('post_new.png');
   background-repeat: no-repeat;
@@ -38,7 +39,6 @@
   }
 }
 
-
 .square {
   width: 48%;
   height: 48%;
@@ -52,7 +52,6 @@
   text-align: center;
   position: absolute;
 }
-
 
 .text-color {
   font-size: 20px;
@@ -76,7 +75,6 @@
   }
 }
 
-
 .check_box {
   background-color: #fff8dc;
   box-shadow: 0px 3px 6px 0px #9E9E9E;
@@ -97,6 +95,7 @@
 }
 
 
+//showページ
 .show_big_diamond {
   display: flex;
   flex-wrap: wrap;
@@ -104,8 +103,6 @@
   height: 280px;
   transform: rotate(45deg);
   margin: 50px auto;
-
-
 }
 
 @media screen and (min-width: 768px) {
@@ -153,6 +150,7 @@
 }
 
 
+//indexページ
 .index_big_diamond {
   display: flex;
   flex-wrap: wrap;
@@ -160,16 +158,37 @@
   height: 120px;
   transform: rotate(45deg);
   margin: 20px auto;
+
+  position: relative;
+  /*リンクの形状*/
+  outline: none;
 }
 
-@media screen and (min-width: 768px) {
-  .show_big_diamond {
-    display: flex;
-    flex-wrap: wrap;
-    width: 150px;
-    height: 150px;
-    transform: rotate(45deg);
-    margin-left: 100px;
+.index_big_diamond:hover::before {
+  content: '';
+  //*絶対配置で波形の位置を決める
+  position: absolute;
+  left:30%;
+  top:0;
+  //*波形の形状
+  border: 1px solid #333;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  //*はじめは不透明
+  opacity:1;
+  //*アニメーションの設定
+  animation:1s circleanime2 forwards;
+}
+
+//*波形が広がるアニメーション
+@keyframes circleanime2{
+  0%{
+    transform: scale(0);
+  }
+  100%{
+    transform:scale(2);
+    opacity: 0;
   }
 }
 

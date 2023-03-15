@@ -1,12 +1,14 @@
-<div class="card mb-2 ml-5" style="width: 20rem;">
+<div class="card mb-2" style="width: 17rem;">
   <div class="card-body">
 
-    <div class="index_big_diamond">
-      <div class="index_square" style="background-color: <%= post.color1 %>"></div>
-      <div class="index_square" style="background-color: <%= post.color2 %>"></div>
-      <div class="index_square" style="background-color: <%= post.color4 %>"></div>
-      <div class="index_square" style="background-color: <%= post.color3 %>"></div>
-    </div>
+    <%= link_to post_path(post) do %>
+      <div class="index_big_diamond">
+        <div class="index_square" style="background-color: <%= post.color1 %>"></div>
+        <div class="index_square" style="background-color: <%= post.color2 %>"></div>
+        <div class="index_square" style="background-color: <%= post.color4 %>"></div>
+        <div class="index_square" style="background-color: <%= post.color3 %>"></div>
+      </div>
+    <% end %>
 
     <table>
       <tr class="index_text">
@@ -28,7 +30,7 @@
         </p>
       </tr>
       <tr>
-        <td class="pt-2 pl-2">
+        <td class="pt-2">
           <span class="favorite pl-5" id="favorite_buttons_<%= post.id %>">
             <%= render "public/favorites/favorite", post: post %>
           </span>
@@ -36,7 +38,7 @@
         <% if post.user == current_user %>
         <td class="pt-3 pl-3">
           <span>
-            <%= link_to edit_post_path(post),class: "btn btn-success btn-sm" do %>
+            <%= link_to edit_post_path(post),class: "btn btn-outline-success btn-sm" do %>
               <i class="fas fa-edit"></i>
             <% end %>
           </span>

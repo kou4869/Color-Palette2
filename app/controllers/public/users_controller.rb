@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @post = @user.posts
+    @posts = @user.posts
   end
 
   def like
