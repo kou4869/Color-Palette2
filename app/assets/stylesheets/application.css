@@ -76,11 +76,41 @@ footer {
   padding: 10px; 
 }
 
-//「jScroll」使用のスロールのため固定
+/*「jScroll」使用のスロールのため固定*/
 .user_info {
   position: fixed;
 }
 
 .index_title {
   position: fixed;
+}
+
+/*トップへ戻るボタンの設定（DMM WEBCAMP MEDIAから拝借）*/
+#page_top{
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  background: #e25407;
+  opacity: 0.6;
+  border-radius: 50%;
+}
+
+/* Font Awesome */
+#page_top::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f106';
+  font-size: 50px;
+  color: #ffffff;
+  position: absolute;
+  width: 30px;
+  height: 60px;
+  top: -5px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
 }

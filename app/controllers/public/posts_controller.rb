@@ -32,23 +32,26 @@ class Public::PostsController < ApplicationController
 
   def index
     @user = current_user
-    @posts = Post.page(params[:page]).per(8)
 
     #タグ検索用の記述
-    if params[:tag_id].present? 
-      @posts = Tag.find(params[:tag_id]).posts
+    if params[:tag_id].present?
+      tag = Tag.find(params[:tag_id])
+      @posts = tag.posts
+      @tag_name = tag.tag_name
     else
       @posts = Post.all
     end
 
     #並び替え用の記述
     if params[:latest]
-      @posts = Post.latest
+      @posts = @posts.latest
     elsif params[:old]
-      @posts = Post.old
+      @posts = @posts.old
     else
-      @posts = Post.all
+      @posts = @posts.all
     end
+    
+    @posts = @posts.page(params[:page]).per(8)
   end
 
   def edit
