@@ -81,10 +81,6 @@ footer {
   position: fixed;
 }
 
-.index_title {
-  position: fixed;
-}
-
 /*トップへ戻るボタンの設定（DMM WEBCAMP MEDIAから拝借）*/
 #page_top{
   width: 100px;

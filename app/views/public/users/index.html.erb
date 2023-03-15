@@ -7,13 +7,17 @@
       </div>
 
       <div class="col-11 col-md-10 offset-1 offset-md-0">
-        <div class="row index_title">
+        <div class="row">
           <h3 class="pl-3"><%= @user.name %>さんの投稿一覧</h3>
-        </div>
+          <h6 class="col">
+            <%= link_to "新しい順", user_my_page_path(latest: "true") %>
+            | <%= link_to "古い順", user_my_page_path(old: "true") %>
+          </h6>
+          </div>
         <div class="row">
           <div class="card-deck mt-3">
             <% @posts.each do |post| %>
-            <div class="col-12 col-md-3 offset-1 offset-md-0">
+              <div class="col-12 col-md-<% if @posts.length < 4 %><%= 12 / @posts.length %><% else %>3<% end %> offset-1 offset-md-0">
               <%= render 'public/posts/index', post: post %>
             </div>
             <% end %>
