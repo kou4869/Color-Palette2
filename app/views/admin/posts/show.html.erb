@@ -1,0 +1,136 @@
+<div class="admin_posts-show">
+  <div class="container">
+    <div class="row pt-4 pb-3">
+      <h1><strong>
+        【
+        <%= link_to admin_user_path(@post.user.id) do %>
+          <%= @post.user.name %>さん
+        <% end %>
+        の色彩詳細】
+      </strong></h1>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col-12 col-md-5 mb-5">
+        <div class="show_big_diamond">
+          <div class="square" style="background-color: <%= @post.color1 %>">
+            <div class="text_box">
+              <p class="text-color">color 1</p>
+            </div>
+          </div>
+          <div class="square" style="background-color: <%= @post.color2 %>">
+            <div class="text_box">
+              <p class="text-color">color 2</p>
+            </div>
+          </div>
+          <div class="square" style="background-color: <%= @post.color4 %>">
+            <div class="text_box">
+              <p class="text-color">color 4</p>
+            </div>
+          </div>
+          <div class="square" style="background-color: <%= @post.color3 %>">
+            <div class="text_box">
+              <p class="text-color">color 3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-7">
+        <div class="row pt-5">
+          <div class="col-5 col-md-5">
+            <span class="pl-2">
+              <%= link_to post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-lg" do %>
+                <i class="fas fa-trash-alt"></i> Destroy 
+              <% end %>
+            </span>
+          </div>
+
+          <div class="col-7 col-md-7">
+            <span class="favorite", style="color: #ff8c00">
+              <i class="fas fa-book-reader" aria-hidden="true"></i>
+              <%= @post.favorites.count %>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <table class="table">
+            <thead class="border-none">
+              <tr>
+                <td>
+                  <div class="color-ball" style="background-color: <%= @post.color1 %>"></div>
+                </td>
+                <td>
+                  <div class="color-ball" style="background-color: <%= @post.color2 %>"></div>
+                </td>
+                <td>
+                  <div class="color-ball" style="background-color: <%= @post.color3 %>"></div>
+                </td>
+                <td>
+                  <div class="color-ball" style="background-color: <%= @post.color4 %>"></div>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="color-code"><%= @post.color1 %></td>
+                <td class="color-code"><%= @post.color2 %></td>
+                <td class="color-code"><%= @post.color3 %></td>
+                <td class="color-code"><%= @post.color4 %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row">
+          <div class="tag-item">
+          <% @post.tags.each do |tag| %>
+            <%= link_to admin_posts_path(tag_id: tag.id), class: "btn btn-outline-info" do %>
+              <%= tag.tag_name %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+
+        <div class="row mt-4 ml-4">
+          <div class="post_introduction">
+            <p class="color-text"><b>配色紹介</b></p>
+            <%= @post.post_introduction %>
+          </div>
+        </div>
+            
+        <div class="row mt-4 ml-4">
+          <% if @post.comments.where(parent_id: nil).count.zero? %>
+          <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
+            <p class="active_text"><b>レビューがありません</b></p>
+          <% else %>
+            <p class="active_text"><b>レビュー平均：</b> 
+              <span id="admin_active_raty"></span>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="offset-0 offset-md-2 col-12 col-md-10">
+        <%= render partial: 'admin/comments/comment',locals: {post: @post, comments: @comments, comment_reply: @comment_reply} %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+var adminshowRateElement = document.getElementById('admin_active_raty');  //このビュー(部分テンプレートは除外)で表示する星は平均点のみなので、idの指定は無し
+var adminshowOpt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: "comment[star]",
+    score: "<%= @post.avarage_stay %>",  //モデルで定義した『avarage_stay』を利用。
+    readOnly: true
+  };
+  raty(adminshowRateElement,adminshowOpt);
+</script>

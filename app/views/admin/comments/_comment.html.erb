@@ -1,0 +1,6 @@
+<h5><b> コメント一覧(<%= post.comments.count %>件)</b></h5>
+<hr>
+<%#= render 'layouts/flash_messages' %>
+<% post.comments.each do |comment| %>
+  <%= render partial: 'admin/comments/hide_comments', locals: {comment: comment, comment_reply: comment_reply} %>
+<% end %>

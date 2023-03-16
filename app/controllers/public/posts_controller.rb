@@ -51,7 +51,7 @@ class Public::PostsController < ApplicationController
       @posts = @posts.all
     end
     
-    @posts = @posts.page(params[:page]).per(8)
+    @posts = @posts.page(params[:page]).per(4)
   end
 
   def edit

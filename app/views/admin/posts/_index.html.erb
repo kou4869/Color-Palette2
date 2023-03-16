@@ -1,7 +1,7 @@
 <div class="card mb-2" style="width: 17rem;">
   <div class="card-body">
 
-    <%= link_to post_path(post) do %>
+    <%= link_to admin_post_path(post) do %>
       <div class="index_big_diamond">
         <div class="index_square" style="background-color: <%= post.color1 %>"></div>
         <div class="index_square" style="background-color: <%= post.color2 %>"></div>
@@ -15,16 +15,16 @@
         <% if post.comments.where(parent_id: nil).count.zero? %>
         <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
           <p class="pt-3"><b>レビューが<br>
-                まだありません</b></p>
+                ありません</b></p>
         <% else %>
           <p class="pt-3"><b>評価：</b>
-          <span id="index_active_raty_<%= post.id %>"></span>
+          <span id="admin_index_active_raty_<%= post.id %>"></span>
         </p>
         <% end %>
       </tr>
       <tr class="index_text">
         <p>製作者 :
-          <%= link_to user_my_page_path(post.user.id) do %>
+          <%= link_to admin_user_path(post.user.id) do %>
             <%= post.user.name %>さん
           <% end %>
         </p>
@@ -32,33 +32,34 @@
       <tr>
         <div class="tag-item">
         <% post.tags.each do |tag| %>
-          <%= link_to posts_path(tag_id: tag.id), class: "btn btn-outline-info btn-sm" do %>
+          <%= link_to admin_posts_path(tag_id: tag.id), class: "btn btn-outline-info btn-sm" do %>
             <%= tag.tag_name %>
           <% end %>
         <% end %>
         </div>
       </tr>
       <tr>
-        <td class="pt-2">
-          <span class="favorite pl-5" id="favorite_buttons_<%= post.id %>">
-            <%= render "public/favorites/favorite", post: post %>
+        <td class="pt-2 pl-4">
+          <span class="favorite", style="color: #ff8c00">
+            <i class="fas fa-book-reader" aria-hidden="true"></i>
+            <%= post.favorites.count %>
           </span>
         </td>
-        <% if post.user == current_user %>
-        <td class="pt-3 pl-3">
-          <span>
-            <%= link_to edit_post_path(post),class: "btn btn-outline-success btn-sm" do %>
-              <i class="fas fa-edit"></i>
-            <% end %>
+        <td class="pt-2 pl-3">
+          <span class="comments", style="color: #a9a9a9">
+            <i class="fas fa-comments"></i>
+            <%= post.comments.count %>
           </span>
-          <span class="pl-2">
-            <%= link_to post_path(post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-sm" do %>
+        </td>
+        <td class="pt-2 pl-3">
+          <span>
+            <%= link_to admin_post_path(post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-sm" do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
           </span>
         </td>
       </tr>
-      <% end %>
+
 
     </table>
 
@@ -70,9 +71,9 @@
 
 
 <script>
-var indexRateElement = document.getElementById('index_active_raty_<%= post.id %>');
-//index_active_raty_<%#= post.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためpost.idを指定する
-var indexOpt = {
+var adminindexRateElement = document.getElementById('admin_index_active_raty_<%= post.id %>');
+//adminindex_active_raty_<%#= post.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためpost.idを指定する
+var adminindexOpt = {
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
@@ -80,5 +81,5 @@ var indexOpt = {
     score: "<%= post.avarage_stay %>",  //モデルで定義した『avarage_stay』を利用。
     readOnly: true
   };
-  raty(indexRateElement,indexOpt);
+  raty(adminindexRateElement,adminindexOpt);
 </script>

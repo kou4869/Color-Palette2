@@ -10,9 +10,15 @@
         <div class="row pt-4">
 
           <div class="col-12 col-md-5 mb-5">
-            <h1><strong>【色彩詳細】</strong></h1>
-            <div class="row pt-3">
+            <h1><strong>
+              【
+              <%= link_to user_my_page_path(@post.user.id) do %>
+                <%= @post.user.name %>さん
+              <% end %>
+              の色彩詳細】
+            </strong></h1>
 
+            <div class="row pt-3">
               <div class="show_big_diamond">
                 <div class="square" style="background-color: <%= @post.color1 %>">
                   <div class="text_box">
@@ -35,8 +41,8 @@
                   </div>
                 </div>
               </div>
-
             </div>
+            
           </div>
 
           <div class="col-12 col-md-7">
@@ -89,15 +95,16 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
 
+            <div class="row">
               <div class="tag-item">
               <% @post.tags.each do |tag| %>
-                <div class="btn btn-outline-info">
+                <%= link_to posts_path(tag_id: tag.id), class: "btn btn-outline-info" do %>
                   <%= tag.tag_name %>
-                </div>
+                <% end %>
               <% end %>
               </div>
-
             </div>
 
             <div class="row mt-4 ml-4">
@@ -117,21 +124,22 @@
                 </p>
               <% end %>
             </div>
+          </div>
 
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-5">
-    <div class="offset-0 offset-md-2 col-12 col-md-10">
-      <%= render partial: 'public/comments/comment',locals: {post: @post, comments: @comments, comment_reply: @comment_reply} %>
-      <% if user_signed_in? && !Comment.where(post_id: @post.id, user_id: current_user.id, parent_id: nil).exists? %>
-        <%= render 'public/comments/form', post: @post, comment: @comment %>
-      <% end %>
+    <div class="row mt-5">
+      <div class="offset-0 offset-md-2 col-12 col-md-10">
+        <%= render partial: 'public/comments/comment',locals: {post: @post, comments: @comments, comment_reply: @comment_reply} %>
+        <% if user_signed_in? && !Comment.where(post_id: @post.id, user_id: current_user.id, parent_id: nil).exists? %>
+          <%= render 'public/comments/form', post: @post, comment: @comment %>
+        <% end %>
+      </div>
     </div>
-  </div>
 
+  </div>
 </div>
 
 <script>

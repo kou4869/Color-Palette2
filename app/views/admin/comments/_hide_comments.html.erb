@@ -1,0 +1,74 @@
+<div class="card mb-3">
+
+  <div class="card-body">
+    <%= link_to admin_user_path(comment.user.id) do %>
+      <%= image_tag comment.user.get_profile_image, width: 72 %>
+    <% end %>
+      <%= link_to admin_user_path(comment.user.id), class: "pl-1" do %>
+        <%= comment.user.name %>さん
+      <% end %>
+    <div class="card-text mt-4">
+      <div id="admin_show_raty_<%= comment.id %>"></div>
+      <%= simple_format(comment.comment) %>
+    </div>
+
+    <% Comment.where(post_id: comment.post_id, parent_id: comment.id).order(created_at: :desc).each do |reply| %>
+      <div class="card ml-4 mb-3">
+        <div class="card-body">
+          <%= simple_format(reply.comment) %>
+          <hr>
+          <%= link_to admin_user_path(reply.user.id) do %>
+            <%= image_tag reply.user.get_profile_image, width: 36 %>
+          <% end %>
+          <small>
+            <%= link_to admin_user_path(reply.user.id), class: "pl-1" do %>
+              <%= reply.user.name %>さん
+            <% end %>
+          </small>
+          <small class="pl-3">
+            <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          </small>
+        </div>
+
+        <div class="card-footer text-right">
+          <small class="text-black-50">
+            <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          </small>
+          <%= link_to '削除する', post_comment_path(comment.post_id, comment.id),
+                                  method: :delete,
+                                  remote: true,
+                                  class: 'btn btn-sm btn-outline-secondary ml-2'
+          %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="card-footer text-right">
+    <small class="text-black-50">
+      <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+    </small>
+    <%= link_to '削除する', post_comment_path(comment.post_id, comment.id),
+                            method: :delete,
+                            remote: true,
+                            class: 'btn btn-sm btn-outline-secondary ml-2'
+    %>
+  </div>
+
+</div>
+
+
+<script>
+var adminshowRateElement = document.getElementById('admin_show_raty_<%= comment.id %>');
+//admin_show_raty_<%#= comment.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためcomment.idを指定する
+var adminshowOpt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: "comment[star]",
+    score: "<%= comment.star %>",
+    readOnly: true
+  };
+  raty(adminshowRateElement,adminshowOpt);
+</script>

@@ -3,10 +3,20 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def index
     @users = User.page(params[:page]).per(8).order(created_at: "DESC")
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user)
+    else
+      render :show
+    end    
   end
 
   def destroy

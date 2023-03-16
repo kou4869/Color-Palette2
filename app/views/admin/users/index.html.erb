@@ -1,33 +1,36 @@
-<div class="container">
-  <div class="row">
-    <h4 class="my-3">
-      ユーザー一覧
-    </h4>
-  </div>
-
-  <table class="table text-secondary">
-    <thead class="table-active text-center">
-      <tr>
-        <th>ユーザーid</th>
-        <th>name</th>
-        <th>メールアドレス</th>
-        <th>登録日時</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @users.each do |user| %>
-      <tr class="light-text text-center">
-        <td class="align-middle"><%= user.id %></td>
-        <td class="align-middle"><%= link_to user.name, admin_user_path(user) %></td>
-        <td class="align-middle"><%= user.email %></td>
-        <td class="align-middle"><%= user.created_at.strftime('%Y年/%m月/%d日') %></td>
-        <td class="align-middle">
-          <%= link_to "退会", user, method: :delete, data: { confirm: '本当に退会処理を行いますか？' }, class: "btn btn-danger" %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+<div class="admin_user_index">
+  <div class="container">
   
+    <div class="row">
+      <h4 class="my-3">
+        ユーザー一覧
+      </h4>
+    </div>
+
+    <table class="table text-secondary">
+      <thead class="table-active text-center">
+        <tr>
+          <th>ユーザーid</th>
+          <th>name</th>
+          <th>メールアドレス</th>
+          <th>登録日時</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+        <tr class="light-text text-center">
+          <td class="align-middle"><%= user.id %></td>
+          <td class="align-middle"><%= link_to user.name, admin_user_path(user) %></td>
+          <td class="align-middle"><%= user.email %></td>
+          <td class="align-middle"><%= user.created_at.strftime('%Y年/%m月/%d日') %></td>
+          <td class="align-middle">
+            <%= link_to "退会", user, method: :delete, data: { confirm: '本当に退会処理を行いますか？' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    
+  </div>
 </div>

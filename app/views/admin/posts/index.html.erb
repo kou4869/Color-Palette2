@@ -1,1 +1,46 @@
-test
+<div class= "admin_posts_index">
+  <div class ="container mt-3">
+    <div class="row index-text pl-3">
+      <% if @tag_name.present? %>
+        <h2><%= @tag_name %>の配色一覧</h2>
+      <% else %>
+        <h2>配色一覧</h2>
+      <% end %>
+      <h6 class="col">
+        <%= link_to "新着順", admin_posts_path(latest: "true") %>
+        | <%= link_to "古い順", admin_posts_path(old: "true") %>
+      </h6>
+      <%= link_to admin_posts_path do %>
+        <span id="page_top"></span>
+      <% end %>
+    </div>
+
+    <div class="row">
+        <%= render 'admin/posts/tag_searche', posts:@posts %>
+    </div>
+    <div class="row">
+      <div class="card-deck scroll-list jscroll">
+        <% @posts.each do |post| %>
+          <%# ↓ レイアウトが崩れてしまうため投稿の個数が4個より少ない場合は12÷その個数をしてcol-mdの値を出すようにする %>
+          <div class="col-12 col-md-<% if @posts.length < 4 %><%= 12 / @posts.length %><% else %>3<% end %> offset-1 offset-md-0">
+            <%= render 'admin/posts/index', post: post %>
+          </div>
+        <% end %>
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<script>
+  var jscrollOption = {
+    loadingHtml: '読み込み中・・・', //記事読み込み中の表示
+    autoTrigger: true, // 自動で読み込むか否か、trueで自動、falseでボタンクリックとなる。
+    padding: 20, // 指定したコンテンツの下かた何pxで読み込むかを指定(autoTrigger: trueの場合のみ)
+    contentSelector: '.jscroll' // 読み込む範囲の指定
+  };
+  $('.jscroll').jscroll(jscrollOption);
+</script>

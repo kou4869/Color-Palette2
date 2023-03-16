@@ -4,8 +4,8 @@
     <%= link_to user_my_page_path(comment.user.id) do %>
       <%= image_tag comment.user.get_profile_image, width: 72 %>
     <% end %>
-      <%= link_to user_my_page_path(comment.user.id), class: 'link pl-1' do %>
-         <%= comment.user.name %>さん
+      <%= link_to user_my_page_path(comment.user.id), class: "pl-1" do %>
+        <%= comment.user.name %>さん
       <% end %>
     <div class="card-text mt-4">
       <div id="show_raty_<%= comment.id %>"></div>
@@ -21,7 +21,7 @@
             <%= image_tag reply.user.get_profile_image, width: 36 %>
           <% end %>
           <small>
-            <%= link_to user_my_page_path(reply.user.id), class: 'link pl-1' do %>
+            <%= link_to user_my_page_path(reply.user.id), class: "pl-1" do %>
               <%= reply.user.name %>さん
             <% end %>
           </small>

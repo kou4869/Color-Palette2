@@ -10,7 +10,7 @@
         <div class="row">
           <h3 class="pl-3"><%= @user.name %>さんの投稿一覧</h3>
           <h6 class="col">
-            <%= link_to "新しい順", user_my_page_path(latest: "true") %>
+            <%= link_to "新着順", user_my_page_path(latest: "true") %>
             | <%= link_to "古い順", user_my_page_path(old: "true") %>
           </h6>
           </div>
