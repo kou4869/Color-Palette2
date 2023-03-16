@@ -89,9 +89,15 @@ footer {
 
 
 
+
 /*「jScroll」使用のスロールのため固定*/
 .user_info {
   position: fixed;
+}
+
+/*無限スクロールのためのkaminariのページングのリンクを非表示*/
+.pagination {
+  visibility: hidden;
 }
 
 /*トップへ戻るボタンの設定（DMM WEBCAMP MEDIAから拝借）*/
@@ -104,13 +110,14 @@ footer {
   background: #e25407;
   opacity: 0.6;
   border-radius: 50%;
+  z-index: 1;
 }
 
 /* Font Awesome */
 #page_top::before {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
-  content: '\f106';
+  content: '\f0d8';
   font-size: 50px;
   color: #ffffff;
   position: absolute;
@@ -122,6 +129,7 @@ footer {
   left: 0;
   margin: auto;
   text-align: center;
+  z-index: 1;
 }
 
 

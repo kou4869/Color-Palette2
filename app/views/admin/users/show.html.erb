@@ -25,6 +25,7 @@
 
           <div class="form-group text-center pt-2">
             <%= user.submit class: 'btn btn-secondary' %>
+            <%= link_to "退会", admin_user_path(@user), method: :delete, data: { confirm: '本当に退会処理を行いますか？' }, class: "btn btn-danger" %>
           </div>
         <% end %>
       </div>

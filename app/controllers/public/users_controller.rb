@@ -3,13 +3,38 @@ class Public::UsersController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts
+    
+    if params[:tag_id].present?
+      tag = Tag.find(params[:tag_id])
+      @posts = tag.posts
+      @tag_name = tag.tag_name
+    else
+      @posts = @user.posts
+    end
+    
+      #並び替えとタグ検索を同時に行うための記述
+    @posts = @posts.where(tags: params[:tag]) if params[:tag].present?
+    case params[:sort]
+    when "latest"
+      @posts = @posts.order(created_at: :desc)
+    when "oldest"
+      @posts = @posts.order(created_at: :asc)
+    when "avarage_stay"
+      @posts = @posts.order(avarage_stay: :desc)
+    end
+    
+    #@posts = @posts.page(params[:page]).per(8)
   end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
 
   def like
     @user = User.find(params[:user_id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    @favorite_posts = Post.where(favorites).page(params[:page]).per(4)
   end
 
   def quit

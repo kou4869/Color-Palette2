@@ -16,10 +16,9 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import '@fortawesome/fontawesome-free/js/all';
+import 'jscroll';
 
 // トップに戻るボタン用の追記
-//【$】が記述で使用できないので、それが使用できるようにする記述
-window.$ = window.jQuery = require('jquery');  
 import "../src/sample.js"
 
 // raty用の追記

@@ -24,5 +24,6 @@ class Post < ApplicationRecord
   #投稿の並び替え
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(create_at: :asc)}
+  scope :avarage_stay, -> {order(avarage_stay: :desc)}
 
 end

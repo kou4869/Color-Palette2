@@ -9,11 +9,14 @@
       <div class="col-11 col-md-10 offset-1 offset-md-0">
         <div class="row">
           <h3 class="pl-3"><%= @user.name %>さんの投稿一覧</h3>
-          <h6 class="col">
-            <%= link_to "新着順", user_my_page_path(latest: "true") %>
-            | <%= link_to "古い順", user_my_page_path(old: "true") %>
-          </h6>
+        </div>
+        
+        <div claas="row">
+          <div class="searche pl-5">
+            <%= render 'public/users/users_searche', posts: @posts, user: @user %>
           </div>
+        </div>
+        
         <div class="row">
           <div class="card-deck mt-3">
             <% @posts.each do |post| %>

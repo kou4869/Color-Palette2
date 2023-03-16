@@ -9,13 +9,17 @@
       <div class="col-11 col-md-10 offset-1 offset-md-0">
         <div class="row index-text pl-3">
           <h2><%= @user.name %>さんのブックマーク</h2>
-          <h6 class="col">
-            <%= link_to "新しい順", user_like_path(latest: "true") %>
-            | <%= link_to "古い順", user_like_path(old: "true") %>
-          </h6>
-          <%= link_to user_like_path(@user) do %>
-            <span id="page_top"></span>
-          <% end %>
+        </div>
+        
+        <div claas="row">
+          <div class="searche pl-5">
+            <%= render 'public/posts/tag_searche', posts:@posts %>
+          </div>
+        </div>
+        
+        <%= link_to user_like_path(@user) do %>
+          <span id="page_top"></span>
+        <% end %>
         </div>
 
         <div class="row">
