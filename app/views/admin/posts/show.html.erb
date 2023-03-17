@@ -37,10 +37,10 @@
       </div>
 
       <div class="col-12 col-md-7">
-        <div class="row pt-5">
+        <div class="row pt-2">
           <div class="col-5 col-md-5">
             <span class="pl-2">
-              <%= link_to post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-lg" do %>
+              <%= link_to admin_post_path(@post.id), method: :delete, data: { confirm: '本当に削除ますか？' }, class: "btn btn-outline-danger btn-lg" do %>
                 <i class="fas fa-trash-alt"></i> Destroy 
               <% end %>
             </span>
@@ -94,9 +94,17 @@
         </div>
 
         <div class="row mt-4 ml-4">
-          <div class="post_introduction">
-            <p class="color-text"><b>配色紹介</b></p>
-            <%= @post.post_introduction %>
+          <div class="col post_introduction ">
+            <%= form_with model: @post, url: admin_post_path, method: :patch do |post| %>
+              <div class="form-group">
+                <h4><b><%= post.label :"配色紹介" %></b></h4>
+                <p>不適切な紹介説明があった場合、書き込みを削除してください。</p>
+                <%= post.text_area :post_introduction, class: "form-control", rows: "3" %>
+              </div>
+              <div class="form-group  text-right">
+                <%= post.submit "更新", class: 'btn btn-success' %>
+              </div>
+            <% end %>
           </div>
         </div>
             

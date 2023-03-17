@@ -13,8 +13,9 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path(@user), notice: "ユーザー情報を編集しました"
     else
+      flash.now[:alert] ="未入力箇所があります"
       render :show
     end    
   end
@@ -22,7 +23,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id]) 
     @user.destroy
-    flash[:notice] = 'ユーザーを削除しました。'
+    flash[:notice] = "ユーザーを削除しました"
     redirect_back(fallback_location: root_path)
   end
 

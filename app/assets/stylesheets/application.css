@@ -37,8 +37,18 @@ header {
 }
 
 footer {
+  width: 100%;
   background: lightcyan;
-  height: 45px;
+  margin: 0 auto;
+}
+
+.footer_logo-image {
+  width: 70px;
+  height: 70px;
+  background: url('logo.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; 
 }
 
 .logo-image {
@@ -78,6 +88,44 @@ footer {
   font-size: 30px;
 }
 
+.error_messages {
+  background-color: rgb(252, 221, 221);
+  border: 1px solid #8d8d8f;
+  border-radius: 1rem;
+  margin-bottom: 20px;
+  padding: 1%;
+}
+
+.flash_notice{
+  background-color: rgb(252, 221, 221);
+  border: 1px solid #8d8d8f;
+  padding: 5px;
+  margin: 0 auto;
+  font-size: 18px;
+  color: #0000ff;
+}
+
+.flash_alert{
+  background-color: rgb(142, 222, 248);
+  border: 1px solid #8d8d8f;
+  padding: 5px;
+  margin: 0 auto;
+  font-size: 18px;
+  color: #ff0000;
+}
+
+.user_signin,
+.user_login {
+  font-family: 'Kaushan', cursive, sans-serif;
+  color: #0000ff;
+}
+
+.signin_container,
+.login_container {
+  background-color: whitesmoke;
+  box-shadow: 0px 3px 6px 0px chartreuse;
+  padding: 10px; 
+}
 
 
 

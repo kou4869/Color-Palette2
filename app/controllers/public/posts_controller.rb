@@ -15,9 +15,10 @@ class Public::PostsController < ApplicationController
     end
     @post.user_id = current_user.id
     if @post.save
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "新しい配色を投稿しました"
     else
-      render :new
+      flash.now[:alert] = "必須項目を入力してください"
+      render :new 
     end
   end
 
@@ -33,25 +34,25 @@ class Public::PostsController < ApplicationController
   def index
     @user = current_user
 
-  # #タグ検索用の記述
-  if params[:tag_id].present?
-    tag = Tag.find(params[:tag_id])
-    @posts = tag.posts
-    @tag_name = tag.tag_name
-  else
-    @posts = Post.all
-  end
+    #タグ検索用の記述
+    if params[:tag_id].present?
+      tag = Tag.find(params[:tag_id])
+      @posts = tag.posts
+      @tag_name = tag.tag_name
+    else
+      @posts = Post.all
+    end
 
-  #並び替えとタグ検索を同時に行うための記述
-  @posts = @posts.where(tags: params[:tag]) if params[:tag].present?
-  case params[:sort]
-  when "latest"
-    @posts = @posts.order(created_at: :desc)
-  when "oldest"
-    @posts = @posts.order(created_at: :asc)
-  when "avarage_stay"
-    @posts = @posts.order(avarage_stay: :desc)
-  end
+    #並び替えとタグ検索を同時に行うための記述
+    @posts = @posts.where(tags: params[:tag]) if params[:tag].present?
+    case params[:sort]
+    when "latest"
+      @posts = @posts.order(created_at: :desc)
+    when "oldest"
+      @posts = @posts.order(created_at: :asc)
+    when "avarage_stay"
+      @posts = @posts.order(avarage_stay: :desc)
+    end
     
     @posts = @posts.page(params[:page]).per(8)
   end
@@ -63,8 +64,9 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "更新が完了しました！"
+      redirect_to post_path(@post), notice: "更新が完了しました"
     else
+      flash.now[:alert] = "必須項目を入力してください"
       render :edit
     end
   end
@@ -72,7 +74,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: "削除しました"
   end
 
   private

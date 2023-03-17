@@ -11,16 +11,14 @@ class User < ApplicationRecord
   # ↓ ActiveStorageでプロフィール画像を保存できるように設定
   has_one_attached :profile_image
 
+  validates :name,           presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :introduction,   presence: true, length: { maximum: 50}
+
+  
+
   # ↓ プロフィール画像の設定
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'sample-author1.png'
-  end
-
-
-
-  with_options presence: true do
-    validates :email
-    validates :name
   end
 
 

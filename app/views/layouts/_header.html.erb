@@ -3,8 +3,20 @@
   <nav class="navbar navbar-expand-lg navbar-light">
 
     <div class="navbar-brand">
-      <div class="logo-image"></div>
+      <%= link_to root_path do %>
+        <div class="logo-image"></div>
+      <% end %>
     </div>
+
+    <% if flash.any? %>
+      <div class="align-middle">
+        <p class="flash_notice"><b><%= notice %></b></p>
+      </div>
+    <% else %>
+      <div class="align-middle">
+        <p class="flash_alert"><b><%= alert %></b></p>
+      </div>
+    <% end %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

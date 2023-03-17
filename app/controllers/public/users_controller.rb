@@ -26,11 +26,6 @@ class Public::UsersController < ApplicationController
     #@posts = @posts.page(params[:page]).per(8)
   end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
-
-
   def like
     @user = User.find(params[:user_id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
@@ -38,6 +33,7 @@ class Public::UsersController < ApplicationController
   end
 
   def quit
+    @user = current_user
   end
 
   def edit
@@ -49,12 +45,13 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_my_page_path, notice: "プロフィールを更新しました"
     else
+      flash.now[:alert] = "必須項目を入力してください"
       render :edit
     end    
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = current_user
     @user.destroy
     redirect_to root_path
   end

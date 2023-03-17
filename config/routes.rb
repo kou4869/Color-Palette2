@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :tags, only: [:create, :index, :update, :destroy]
     resources :users, only: [:show, :index, :update, :destroy]
-    resources :posts, only: [:index, :show, :destroy] do
+    resources :posts, only: [:index, :show, :update, :destroy] do
       resources :comments, only: [:destroy]
     end
     get "comments" => "comments#index"  #管理側のコメント一覧ページ

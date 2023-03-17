@@ -47,13 +47,13 @@
 
           <div class="col-12 col-md-7">
             <div class="row pt-5">
-              <div class="col-5 col-md-5">
+              <div class="col-8 col-md-5 mb-3">
                 <% if @post.user == current_user %>
                   <span>
                     <%= link_to edit_post_path(@post),class: "btn btn-success btn-lg" do %>
                       <i class="fas fa-edit"></i> Eidt
                     <% end %>
-                    </span>
+                  </span>
                   <span class="pl-2">
                     <%= link_to post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-lg" do %>
                       <i class="fas fa-trash-alt"></i> Destroy 
@@ -61,8 +61,8 @@
                   </span>
                 <% end %>
               </div>
-              <div class="col-7 col-md-7">
-                <span class="favorite pl-5" id="favorite_buttons_<%= @post.id %>">
+              <div class="col-4 col-md-7">
+                <span class="favorite pl-3" id="favorite_buttons_<%= @post.id %>">
                   <%= render "public/favorites/favorite", post: @post %>
                 </span>
               </div>
@@ -108,7 +108,7 @@
             </div>
 
             <div class="row mt-4 ml-4">
-              <div class="post_introduction">
+              <div class="col post_introduction">
                 <p class="color-text"><b>配色紹介</b></p>
                 <%= @post.post_introduction %>
               </div>

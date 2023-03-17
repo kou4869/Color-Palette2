@@ -7,6 +7,11 @@
       </h4>
     </div>
 
+    <!--↓ 無限スクロール用のid-->
+    <%= link_to posts_path do %>
+      <span id="page_top"></span>
+    <% end %>
+
     <table class="table text-secondary">
       <thead class="table-active text-center">
         <tr>
@@ -21,10 +26,11 @@
       <% @users.each do |user| %>
         <tr class="light-text text-center">
           <td class="align-middle"><%= user.id %></td>
-          <td class="align-middle"><%= link_to user.name, admin_user_path(user) %></td>
+          <td class="align-middle"><%= link_to user.name, admin_user_path(user) %>さん</td>
           <td class="align-middle"><%= user.email %></td>
           <td class="align-middle"><%= user.created_at.strftime('%Y年/%m月/%d日') %></td>
           <td class="align-middle">
+            <%= link_to "編集", admin_user_path(user), class: "btn btn-success" %>
             <%= link_to "退会", admin_user_path(user), method: :delete, data: { confirm: '本当に退会処理を行いますか？' }, class: "btn btn-danger" %>
           </td>
         </tr>
@@ -34,3 +40,14 @@
     
   </div>
 </div>
+
+
+<script>
+  var jscrollOption = {
+    loadingHtml: '読み込み中・・・', //記事読み込み中の表示
+    autoTrigger: true, // 自動で読み込むか否か、trueで自動、falseでボタンクリックとなる。
+    padding: 20, // 指定したコンテンツの下かた何pxで読み込むかを指定(autoTrigger: trueの場合のみ)
+    contentSelector: '.jscroll' // 読み込む範囲の指定
+  };
+  $('.jscroll').jscroll(jscrollOption);
+</script>

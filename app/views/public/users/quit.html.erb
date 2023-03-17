@@ -1,0 +1,35 @@
+<div class="users_quit">
+  <div class ="container">
+    <div class="row quit_title mt-3 mb-5">
+      <h2 class="pl-5"><strong>退会手続き</strong></h2>
+    </div>
+
+    <div class="row quit-body">
+      <div class="col mt-3">
+        <h2>退会手続きを実行します。</h2>
+        <br>
+        <h5>手続きを行いますと投稿を行った配色、ブックマーク登録など<br>
+            全てのアカウント情報が削除され、<br>
+            お使いいただいておりますアカウントで<br>
+            再度ログインを行う事ができなくなります。<br>
+            <br>
+            本当に退会されますか？
+        </h5>
+        
+
+        <div class="text-center my-5">
+          <span class="quit_btn">
+            <%= link_to :back do %>
+              <button class="btn btn-primary">前のページへ戻る</button>
+            <% end %>
+          </span>
+          <span>
+            <%= link_to "はい、退会します", user_path(@user), method: :delete, data: { confirm: '本当に退会処理を行いますか？' }, class: "btn btn-danger" %>
+          </span>
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+</div>

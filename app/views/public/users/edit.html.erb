@@ -2,43 +2,49 @@
   <div class="container-fluid px-5">
 
     <div class="row">
-      <div class="col-md-5 offset-md-1 pb-4">
-        <h2><strong>User info</strong></h2>
+      <div class="col-12 col-md-2 mt-3 pr-5">
+        <h2>User info</h2>
+        <%= render 'public/users/public_sidebar', user: @user %>
       </div>
-    </div>
 
-    <%= form_with model: @user, url: user_information_path, method: :patch do |user| %>
-    <div class="row">
-      <div class="col-12 col-md-5 offset-0 offset-md-1">
-        <div class="row">
-          <div class="col-10">
-            <div class="form-group">
-              <%= user.label :name %>
-              <%= user.text_field :name, class: "form-control", placeholder: "ニックネームを入力してください" %>
+      <div class="col-12 col-md-10">
+        <%= form_with model: @user, url: user_information_path(@user), method: :patch do |user| %>
+          <div class="row edit_text">
+            <div class="col-12 col-md-5 mx-2">
+              <div class="form-group">
+                <b><%= user.label :name %></b>
+                <%= user.text_field :name, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <b><%= user.label :introduction %></b>
+                <%= user.text_area :introduction, class: "form-control", rows: "3", placeholder: "自己紹介を入力してください" %>
+              </div>
             </div>
-  
-            <div class="form-group">
-              <%= user.label :introduction %>
-              <%= user.text_area :introduction, class: "form-control",  placeholder: "自己紹介を入力してください" %>
+
+            <div class="col-12 col-md-6 mx-2">
+              <div class="form-group">
+                <b><%= user.label :image %></b>
+                <%= user.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
+              </div>
+
+              <div id="update_profile_image"></div>
+
+              <div class="form-group text-right pt-2 pr-3">
+                <%= user.submit class: 'btn btn-success' %>
+                <span class="pl-5">
+                  <%= link_to user_quit_path(@user), class: "btn btn-outline-dark" do %>
+                    退会手続き
+                  <% end %>
+                </span>
+              </div>
+
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
 
-      <div class="col-12 col-md-5 offset-0 offset-md-1">
-        <div class="form-group">
-          <%= user.label :image %>
-          <%= user.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
-        </div>
-
-        <div id="update_profile_image"></div>
-
-        <div class="form-group pt-2">
-          <%= user.submit class: 'btn btn-secondary' %>
-        </div>
-      </div>
-    </div>
-    <% end %>
+    </div>  
       
   </div>
 </div>

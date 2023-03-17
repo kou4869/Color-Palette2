@@ -1,6 +1,9 @@
 <div class="admin-sessions">
-  <div class="container admin-login p-3">
-    <h3 class="pb-3">管理用ログインページ</h3>
+  <div class="container admin-login mt-3">
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <h3 class="py-3">管理用ログインページ</h3>
 
     <div class="row">
       <div class="col-md-4">
@@ -22,7 +25,7 @@
             </div>
           <% end %>
 
-          <div class="actions">
+          <div class="actions pb-3">
             <%= f.submit "Log in" %>
           </div>
         <% end %>

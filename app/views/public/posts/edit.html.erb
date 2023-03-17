@@ -1,0 +1,167 @@
+<div class="posts-edit">
+  <div class="container-fluid px-5">
+    <div class="row">
+      <div class="col-12 col-md-2 pt-3">
+        <h2>User info</h2>
+        <%= render 'public/users/public_sidebar', user: current_user %>
+      </div>
+
+      <div class="col-12 col-md-10">
+        <div class="row pt-4">
+
+          <div class="col-12 col-md-5 mb-5">
+            <h2><strong>
+              【
+              <%= link_to user_my_page_path(@post.user.id) do %>
+                <%= @post.user.name %>さん
+              <% end %>
+              の色彩編集】
+            </strong></h2>
+
+            <div class="row pt-3">
+              <div class="col-12 col-md-5">
+      
+                <!--ひし形に設定のため1→2→4→3の順にidを付属-->
+                <div class="show_big_diamond">
+                  <div class="square" id="color1">
+                    <div class="text_box">
+                      <p class="text-color">color 1</p>
+                    </div>
+                  </div>
+                  <div class="square" id="color2">
+                    <div class="text_box">
+                      <p class="text-color">color 2</p>
+                    </div>
+                  </div>
+                  <div class="square" id="color4">
+                    <div class="text_box">
+                      <p class="text-color">color 4</p>
+                    </div>
+                  </div>
+                  <div class="square" id="color3">
+                    <div class="text_box">
+                      <p class="text-color">color 3</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="col-12 col-md-7 mt-5">
+            <%= form_with model: @post, url: post_path, method: :patch do |post| %>
+              <div class="row pt-5">
+                <div class="col-12 col-md-4">
+                  <div class="form-group">
+                    <b><%= post.label :"color 1" %></b>
+                    <%= post.color_field :color1, class: "form-control", id: "color_form1" %>
+                  </div>
+                  <div class="form-group">
+                    <b><%= post.label :"color 2" %></b>
+                    <%= post.color_field :color2, class: "form-control", id: "color_form2" %>
+                  </div>
+                  <div class="form-group">
+                    <b><%= post.label :"color 3" %></b>
+                    <%= post.color_field :color3, class: "form-control", id: "color_form3" %>
+                  </div>
+                  <div class="form-group">
+                    <b><%= post.label :"color 4" %></b>
+                    <%= post.color_field :color4, class: "form-control", id: "color_form4" %>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-8">
+                  <div class="form-group">
+                    <b><%= post.label :"配色の説明" %></b>
+                    <%= post.text_area :post_introduction, class: "form-control",  rows: "5" %>
+                  </div>
+
+                  <% if flash[:my_alert] %>
+                    <div class="alerts">
+                      <div class="alert alert-danger" role="alert"><%= flash[:my_alert] %></div>
+                    </div>
+                  <% end %>
+
+                  <div class="check_box my-3">
+                    <p class="tag_check">
+                      <span><b>【必須項目】</b></span><br>
+                      以下のタグの中から１～５個までタグを選んでください
+                    </p>
+                    <div class="check_item">
+                      <%= post.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |b| %>
+                        <%= b.label { b.check_box + b.text } %>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="text-right mb-5 pt-2">
+                    <%= post.submit class: 'btn btn-success' %>
+                  </div>
+                </div>
+
+              </div>
+            <% end %>
+          </div>
+
+        
+        </div>
+      </div>
+
+    </div>          
+  </div>
+</div>
+
+
+<script>
+  let color1 = document.getElementById('color1')
+  let color2 = document.getElementById('color2')
+  let color3 = document.getElementById('color3')
+  let color4 = document.getElementById('color4')
+  //ひし形の各divのidを取得
+
+  let colorForm1 = document.getElementById('color_form1')
+  let colorForm2 = document.getElementById('color_form2')
+  let colorForm3 = document.getElementById('color_form3')
+  let colorForm4 = document.getElementById('color_form4')
+  //カレーパレットの各idを取得
+
+  const init = () => {  // initに始めにあてたい色を定義（init 初期設定などによく使用する単語)
+
+      color1.style.backgroundColor = colorForm1.value;  //フォームの色を持ってくる
+      color2.style.backgroundColor = colorForm2.value;
+      color3.style.backgroundColor = colorForm3.value;
+      color4.style.backgroundColor = colorForm4.value;
+      colorForm1.addEventListener("input", applyColor1);  //各カラーパレットの色が選択された時、各applyColorアクションを実行
+      colorForm2.addEventListener("input", applyColor2);  //string型で指定されているカラムに対しては"input(インプット)"を使うことが多い。
+      colorForm3.addEventListener("input", applyColor3);
+      colorForm4.addEventListener("input", applyColor4);
+
+  }
+
+  const applyColor1 = () => {
+    color1.style.backgroundColor = colorForm1.value  // inputをいう動作を行った時、color_form1で選択された色を所得
+    //console.log(colorForm1.value)  //colorForm1のメソッドを取得する
+  }
+
+  const applyColor2 = () => {
+    color2.style.backgroundColor = colorForm2.value  // inputをいう動作を行った時、color_form2で選択された色を所得
+    //console.log(colorForm1.value)  //colorForm2のメソッドを取得する
+  }
+
+  const applyColor3 = () => {
+    color3.style.backgroundColor = colorForm3.value  // inputをいう動作を行った時、color_form3で選択された色を所得
+    //console.log(colorForm1.value)  //colorForm3のメソッドを取得する
+  }
+
+  const applyColor4 = () => {
+    color4.style.backgroundColor = colorForm4.value  // inputをいう動作を行った時、color_form4で選択された色を所得
+    //console.log(colorForm1.value)  //colorForm4のメソッドを取得する
+  }
+
+  $(init);
+
+</script>
+

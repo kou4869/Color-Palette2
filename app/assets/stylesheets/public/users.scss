@@ -8,3 +8,23 @@
   object-fit: cover;
 }
 // ↑ プレビュー画像の大きさ指定
+
+.quit_title {
+  border-bottom: solid 2px;
+  border-color: darkgray;
+}
+
+.quit-body {
+  text-align: center;
+  background-color: whitesmoke;
+  box-shadow: 0px 3px 6px 0px #9E9E9E;
+  padding: 10px; 
+}
+
+.quit_btn {
+  margin-right: 100px;
+}
+
+.edit_text {
+  padding-top: 120px;
+}

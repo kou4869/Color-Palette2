@@ -1,36 +1,36 @@
 <div class="posts-new">
-    <div class="container">
-      <h2 class="pt-4"><strong>【新規配色投稿】</strong></h2>
+  <div class="container">
+    <h2 class="pt-4"><strong>【新規配色投稿】</strong></h2>
 
-      <div class="row pt-3 pb-5">
-        <div class="col-12 col-md-5 offset-md-1">
+    <div class="row pt-3 pb-5">
+      <div class="col-12 col-md-5 offset-md-1">
 
         <!--ひし形に設定のため1→2→4→3の順にidを付属-->
-          <div class="big_diamond">
-            <div class="square" id="color1">
-              <div class="text_box">
-                <p class="text-color">color 1</p>
-              </div>
+        <div class="big_diamond">
+          <div class="square" id="color1">
+            <div class="text_box">
+              <p class="text-color">color 1</p>
             </div>
-            <div class="square" id="color2">
-              <div class="text_box">
-                <p class="text-color">color 2</p>
-              </div>
+          </div>
+          <div class="square" id="color2">
+            <div class="text_box">
+              <p class="text-color">color 2</p>
             </div>
-            <div class="square" id="color4">
-              <div class="text_box">
-                <p class="text-color">color 4</p>
-              </div>
+          </div>
+          <div class="square" id="color4">
+            <div class="text_box">
+              <p class="text-color">color 4</p>
             </div>
-            <div class="square" id="color3">
-              <div class="text_box">
-                <p class="text-color">color 3</p>
-              </div>
+          </div>
+          <div class="square" id="color3">
+            <div class="text_box">
+              <p class="text-color">color 3</p>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-12 col-md-6 mt-3">
+      <div class="col-12 col-md-6 mt-3">
         <%= form_with model: @post do |f| %>
           <div class="row">
             <div class="col-12 col-md-4">
@@ -73,7 +73,7 @@
             <div class="col-12 col-md-8">
               <div class="form-group">
                 <b><%= f.label :"配色の説明" %></b>
-                <%= f.text_area :post_introduction, class: "form-control",  rows: "5", placeholder: "(未記入も可能)配色のポイントや紹介などをご記入ください" %>
+                <%= f.text_area :post_introduction, class: "form-control", rows: "5", placeholder: "(未記入も可能)配色のポイントや紹介などをご記入ください" %>
               </div>
 
               <% if flash[:my_alert] %>
@@ -100,66 +100,65 @@
             </div>
 
         <% end %>
-        </div>
-
-
       </div>
 
     </div>
+
+  </div>
 </div>
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      //デフォルトで色を読み込んでおきたいので、"DOMContentLoaded"でHTMLを先に読み込んでいる状態を作っている
-      
-      let color1 = document.getElementById('color1')
-      let color2 = document.getElementById('color2')
-      let color3 = document.getElementById('color3')
-      let color4 = document.getElementById('color4')
-      //ひし形の各divのidを取得
+  document.addEventListener("DOMContentLoaded", function() {
+    //デフォルトで色を読み込んでおきたいので、"DOMContentLoaded"でHTMLを先に読み込んでいる状態を作っている
     
-      let colorForm1 = document.getElementById('color_form1')
-      let colorForm2 = document.getElementById('color_form2')
-      let colorForm3 = document.getElementById('color_form3')
-      let colorForm4 = document.getElementById('color_form4')
-      //カレーパレットの各idを取得
-    
-      const init = () => {  // initに始めにあてたい色を定義（init 初期設定などによく使用する単語)
-    
-          color1.style.backgroundColor = colorForm1.value;  //フォームの色を持ってくる
-          color2.style.backgroundColor = colorForm2.value;
-          color3.style.backgroundColor = colorForm3.value;
-          color4.style.backgroundColor = colorForm4.value;
-          colorForm1.addEventListener("input", applyColor1);  //各カラーパレットの色が選択された時、各applyColorアクションを実行
-          colorForm2.addEventListener("input", applyColor2);  //string型で指定されているカラムに対しては"input(インプット)"を使うことが多い。
-          colorForm3.addEventListener("input", applyColor3);
-          colorForm4.addEventListener("input", applyColor4);
-    
-      }
-    
-      const applyColor1 = () => {
-        color1.style.backgroundColor = colorForm1.value  // inputをいう動作を行った時、81行目でcolor_form1
-        //console.log(colorForm1.value)  //colorForm1のメソッドを取得する
-      }
-    
-      const applyColor2 = () => {
-        color2.style.backgroundColor = colorForm2.value  // inputをいう動作を行った時、81行目でcolor_form1
-        //console.log(colorForm1.value)  //colorForm1のメソッドを取得する
-      }
-    
-      const applyColor3 = () => {
-        color3.style.backgroundColor = colorForm3.value  // inputをいう動作を行った時、81行目でcolor_form1
-        //console.log(colorForm1.value)  //colorForm1のメソッドを取得する
-      }
-    
-      const applyColor4 = () => {
-        color4.style.backgroundColor = colorForm4.value  // inputをいう動作を行った時、81行目でcolor_form1
-        //console.log(colorForm1.value)  //colorForm1のメソッドを取得する
-      }
-    
-      $(init);
-    
-    })
+    let color1 = document.getElementById('color1')
+    let color2 = document.getElementById('color2')
+    let color3 = document.getElementById('color3')
+    let color4 = document.getElementById('color4')
+    //ひし形の各divのidを取得
+  
+    let colorForm1 = document.getElementById('color_form1')
+    let colorForm2 = document.getElementById('color_form2')
+    let colorForm3 = document.getElementById('color_form3')
+    let colorForm4 = document.getElementById('color_form4')
+    //カレーパレットの各idを取得
+  
+    const init = () => {  // initに始めにあてたい色を定義（init 初期設定などによく使用する単語)
+  
+        color1.style.backgroundColor = colorForm1.value;  //フォームの色を持ってくる
+        color2.style.backgroundColor = colorForm2.value;
+        color3.style.backgroundColor = colorForm3.value;
+        color4.style.backgroundColor = colorForm4.value;
+        colorForm1.addEventListener("input", applyColor1);  //各カラーパレットの色が選択された時、各applyColorアクションを実行
+        colorForm2.addEventListener("input", applyColor2);  //string型で指定されているカラムに対しては"input(インプット)"を使うことが多い。
+        colorForm3.addEventListener("input", applyColor3);
+        colorForm4.addEventListener("input", applyColor4);
+  
+    }
+  
+    const applyColor1 = () => {
+      color1.style.backgroundColor = colorForm1.value  // inputをいう動作を行った時、color_form1で選択された色を所得
+      //console.log(colorForm1.value)  //colorForm1のメソッドを取得する
+    }
+  
+    const applyColor2 = () => {
+      color2.style.backgroundColor = colorForm2.value  // inputをいう動作を行った時、color_form2で選択された色を所得
+      //console.log(colorForm2.value)  //colorForm2のメソッドを取得する
+    }
+  
+    const applyColor3 = () => {
+      color3.style.backgroundColor = colorForm3.value  // inputをいう動作を行った時、color_form3で選択された色を所得
+      //console.log(colorForm3.value)  //colorForm3のメソッドを取得する
+    }
+  
+    const applyColor4 = () => {
+      color4.style.backgroundColor = colorForm4.value  // inputをいう動作を行った時、color_form4で選択された色を所得
+      //console.log(colorForm4.value)  //colorForm4のメソッドを取得する
+    }
+  
+    $(init);
+  
+  })
 </script>
 
