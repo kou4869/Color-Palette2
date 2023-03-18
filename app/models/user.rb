@@ -12,8 +12,12 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   validates :name,           presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction,   presence: true, length: { maximum: 50}
+  validates :introduction,   length: { maximum: 50}
 
+
+  # admin側でソート機能を使用するためのscope
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
   
 
   # ↓ プロフィール画像の設定

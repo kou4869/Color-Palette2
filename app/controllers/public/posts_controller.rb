@@ -18,13 +18,13 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post), notice: "新しい配色を投稿しました"
     else
       flash.now[:alert] = "必須項目を入力してください"
-      render :new 
+      render :new
     end
   end
 
   def show
     @post = Post.find(params[:id])
-    @post_stay_avarage = @post.avarage_stay
+    @post_stay_avarage = @post.avarage_star
     @user = @post.user
     @comment = Comment.new
     @comment_reply = Comment.new
@@ -44,17 +44,16 @@ class Public::PostsController < ApplicationController
     end
 
     #並び替えとタグ検索を同時に行うための記述
-    @posts = @posts.where(tags: params[:tag]) if params[:tag].present?
     case params[:sort]
     when "latest"
       @posts = @posts.order(created_at: :desc)
     when "oldest"
       @posts = @posts.order(created_at: :asc)
-    when "avarage_stay"
-      @posts = @posts.order(avarage_stay: :desc)
+    when "avarage_star"
+      @posts = @posts.sort_by { |a| a.avarage_star }.reverse
     end
-    
-    @posts = @posts.page(params[:page]).per(8)
+
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
   end
 
   def edit

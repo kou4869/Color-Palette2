@@ -1,4 +1,4 @@
-<div class="card mb-2" style="width: 17rem;">
+<div class="card mb-2"  style="margin-left: 0; margin-right: 0;">
   <div class="card-body">
 
     <%= link_to admin_post_path(post) do %>
@@ -10,63 +10,53 @@
       </div>
     <% end %>
 
-    <table>
-      <tr class="index_text">
-        <% if post.comments.where(parent_id: nil).count.zero? %>
-        <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
-          <p class="pt-3"><b>レビューが<br>
-                ありません</b></p>
-        <% else %>
-          <p class="pt-3"><b>評価：</b>
-          <span id="admin_index_active_raty_<%= post.id %>"></span>
-        </p>
+    <div class="index_text">
+      <% if post.comments.where(parent_id: nil).count.zero? %>
+      <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
+        <p class="text-center pt-3"><b> レビューがありません </b></p>
+      <% else %>
+        <p class="text-center pt-3"><b>評価：</b>
+        <span id="admin_index_active_raty_<%= post.id %>"></span>
+      </p>
+      <% end %>
+    </div>
+    <div class="index_text">
+      <p>製作者 :
+        <%= link_to user_my_page_path(post.user.id) do %>
+          <%= post.user.name %>さん
         <% end %>
-      </tr>
-      <tr class="index_text">
-        <p>製作者 :
-          <%= link_to admin_user_path(post.user.id) do %>
-            <%= post.user.name %>さん
-          <% end %>
-        </p>
-      </tr>
-      <tr>
-        <div class="tag-item">
-        <% post.tags.each do |tag| %>
-          <%= link_to admin_posts_path(tag_id: tag.id), class: "btn btn-outline-info btn-sm" do %>
-            <%= tag.tag_name %>
-          <% end %>
+      </p>
+    </div>
+
+    <div class="tag-item">
+      <% post.tags.each do |tag| %>
+        <%= link_to posts_path(tag_id: tag.id), class: "btn btn-outline-info btn-sm" do %>
+          <%= tag.tag_name %>
         <% end %>
-        </div>
-      </tr>
-      <tr>
-        <td class="pt-2 pl-4">
-          <span class="favorite", style="color: #ff8c00">
-            <i class="fas fa-book-reader" aria-hidden="true"></i>
-            <%= post.favorites.count %>
-          </span>
-        </td>
-        <td class="pt-2 pl-3">
-          <span class="comments", style="color: #a9a9a9">
-            <i class="fas fa-comments"></i>
-            <%= post.comments.count %>
-          </span>
-        </td>
-        <td class="pt-2 pl-3">
-          <span>
-            <%= link_to admin_post_path(post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-sm" do %>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
-          </span>
-        </td>
-      </tr>
+      <% end %>
+    </div>
 
+    <div class="text-center mt-3">
+      <span class="favorite align-middle", style="color: #ff8c00">
+        <i class="fas fa-book-reader" aria-hidden="true"></i>
+        <%= post.favorites.count %>
+      </span>
 
-    </table>
+      <span class="comments align-middle pl-2", style="color: #a9a9a9">
+        <i class="fas fa-comments"></i>
+        <%= post.comments.count %>
+      </span>
+      
+      <span class="align-middle pl-2">
+        <%= link_to admin_post_path(post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-sm" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </span>
+    </div>
 
   </div>
 </div>
-
-
+ 
 
 
 
@@ -78,7 +68,7 @@ var adminindexOpt = {
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
     scoreName: "comment[star]",
-    score: "<%= post.avarage_stay %>",  //モデルで定義した『avarage_stay』を利用。
+    score: "<%= post.avarage_star %>",  //モデルで定義した『avarage_stay』を利用。
     readOnly: true
   };
   raty(adminindexRateElement,adminindexOpt);

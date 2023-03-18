@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    
+
     if params[:tag_id].present?
       tag = Tag.find(params[:tag_id])
       @posts = tag.posts
@@ -11,25 +11,44 @@ class Public::UsersController < ApplicationController
     else
       @posts = @user.posts
     end
-    
-      #並び替えとタグ検索を同時に行うための記述
-    @posts = @posts.where(tags: params[:tag]) if params[:tag].present?
+
+    #並び替えとタグ検索を同時に行うための記述
     case params[:sort]
     when "latest"
       @posts = @posts.order(created_at: :desc)
     when "oldest"
       @posts = @posts.order(created_at: :asc)
-    when "avarage_stay"
-      @posts = @posts.order(avarage_stay: :desc)
+    when "avarage_star"
+      @posts = @posts.order(avarage_star: :desc)
     end
-    
-    #@posts = @posts.page(params[:page]).per(8)
+
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
   end
 
   def like
     @user = User.find(params[:user_id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.where(favorites).page(params[:page]).per(4)
+    @favorites = @user.favorites
+    # ユーザーのブックマークの中のpost_idだけを抽出してる（中身が欲しいのでPostに渡してあげている）
+    @favorite_posts = Post.where(id: @favorites.pluck(:post_id))
+
+
+    if params[:tag_id].present?
+      tag = Tag.find(params[:tag_id])
+      @favorite_posts = Post.where(id: (@favorite_posts.ids & tag.posts.ids))
+      @tag_name = tag.tag_name
+    end
+
+    #並び替えとタグ検索を同時に行うための記述
+    case params[:sort]
+    when "latest"
+      @favorite_posts = @favorite_posts.order(created_at: :desc)
+    when "oldest"
+      @favorite_posts = @favorite_posts.order(created_at: :asc)
+    when "avarage_star"
+      @favorite_posts = @favorite_posts.order(avarage_star: :desc)
+    end
+
+    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(12)
   end
 
   def quit
@@ -47,7 +66,7 @@ class Public::UsersController < ApplicationController
     else
       flash.now[:alert] = "必須項目を入力してください"
       render :edit
-    end    
+    end
   end
 
   def destroy

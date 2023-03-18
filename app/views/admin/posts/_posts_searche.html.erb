@@ -1,7 +1,7 @@
-<%= form_with url: posts_path, method: :get do |form| %>
+<%= form_with url: admin_posts_path, method: :get do |form| %>
   <%= form.select :tag_id,
       options_from_collection_for_select(Tag.all, :id, :tag_name, params[:tag_id]),
-      prompt: 'タグを選択' 
+      prompt: 'タグを選択'
   %>
   <%= form.select :sort, options_for_select(
       { "新着順" => "latest", "古い順" => "oldest", "評価の高い順" => "avarage_star" }, params[:sort]),

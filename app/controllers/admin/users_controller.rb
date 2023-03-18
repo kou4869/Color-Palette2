@@ -3,11 +3,17 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = Kaminari.paginate_array(@user.posts).page(params[:page]).per(8)
   end
 
   def index
-    @users = User.page(params[:page]).per(8).order(created_at: "DESC")
+    if params[:latest]
+      @users = User.latest
+    elsif params[:old]
+      @users = User.old
+    else
+      @users = Kaminari.paginate_array(User.all).page(params[:page]).per(8)
+    end
   end
 
   def update
@@ -23,8 +29,8 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id]) 
     @user.destroy
-    flash[:notice] = "ユーザーを削除しました"
-    redirect_back(fallback_location: root_path)
+    flash.now[:notice] = "ユーザーを削除しました"
+    redirect_to admin_users_path
   end
 
 

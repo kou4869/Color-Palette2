@@ -12,17 +12,16 @@ class Admin::PostsController < ApplicationController
     end
 
     #並び替えとタグ検索を同時に行うための記述
-    @posts = @posts.where(tags: params[:tag]) if params[:tag].present?
     case params[:sort]
     when "latest"
       @posts = @posts.order(created_at: :desc)
     when "oldest"
       @posts = @posts.order(created_at: :asc)
-    when "avarage_stay"
-      @posts = @posts.order(avarage_stay: :desc)
+    when "avarage_star"
+      @posts = @posts.sort_by { |a| a.avarage_star }.reverse
     end
     
-    @posts = @posts.page(params[:page]).per(4)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
   end
 
   def show
@@ -33,7 +32,7 @@ class Admin::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to admin_post_path(@post), notice: "更新が完了しました！"
+      redirect_to admin_post_path(@post), notice: "更新が完了しました"
     else
       render :show
     end
@@ -42,7 +41,7 @@ class Admin::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to admin_posts_path
+    redirect_to admin_posts_path, notice: "投稿を削除しました"
   end
 
   private

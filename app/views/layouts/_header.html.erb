@@ -8,14 +8,16 @@
       <% end %>
     </div>
 
-    <% if flash.any? %>
+    <% if notice.present? %>
       <div class="align-middle">
         <p class="flash_notice"><b><%= notice %></b></p>
       </div>
-    <% else %>
+    <% elsif alert.present? %>
       <div class="align-middle">
         <p class="flash_alert"><b><%= alert %></b></p>
       </div>
+    <% else %>
+      <!--何も表示しない-->
     <% end %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
