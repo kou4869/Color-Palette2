@@ -45,7 +45,7 @@ footer {
 .footer_logo-image {
   width: 70px;
   height: 70px;
-  background: url('logo.png');
+  background-image: image-url("logo.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -54,7 +54,7 @@ footer {
 .logo-image {
   width: 100px;
   height: 100px;
-  background: url('logo.png');
+  background-image: image-url("logo.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; 
