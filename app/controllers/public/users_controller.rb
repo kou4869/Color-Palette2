@@ -22,7 +22,7 @@ class Public::UsersController < ApplicationController
       @posts = @posts.order(avarage_star: :desc)
     end
 
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 
   def like
@@ -64,7 +64,8 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_my_page_path, notice: "プロフィールを更新しました"
     else
-      flash.now[:alert] = "必須項目を入力してください"
+      flash[:alert] = "必須項目を入力してください"
+      flash[:error] = @user.errors.full_messages.join(", ")
       render :edit
     end
   end
@@ -72,7 +73,7 @@ class Public::UsersController < ApplicationController
   def destroy
     @user = current_user
     @user.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: "登録データを削除"
   end
 
 

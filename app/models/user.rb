@@ -11,8 +11,8 @@ class User < ApplicationRecord
   # ↓ ActiveStorageでプロフィール画像を保存できるように設定
   has_one_attached :profile_image
 
-  validates :name,           presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction,   length: { maximum: 50}
+  validates :name,           presence: true, length: { minimum: 2, maximum: 20, message: "は2文字以上、20文字以内で入力してください" }
+  validates :introduction,   length: { maximum: 50, message: "は50文字以内で入力してください"}
 
 
   # admin側でソート機能を使用するためのscope

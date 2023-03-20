@@ -8,7 +8,7 @@ class Admin::TagsController < ApplicationController
     elsif params[:old]
       @tags = Tag.old.page(params[:page])
     else
-      @tags = Kaminari.paginate_array(Tag.all).page(params[:page]).per(10)
+      @tags = Tag.all
     end
   end
 
@@ -18,7 +18,7 @@ class Admin::TagsController < ApplicationController
       redirect_to request.referer, notice: "タグを追加しました"
     else
       @tags = Tag.all
-      flash.now[:alert] = "必須項目を入力してください"
+      flash[:alert] = "必須項目を入力してください"
       render :index
     end
   end
@@ -26,14 +26,14 @@ class Admin::TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
     @tag.update(tag_params)
-    flash.now[:notice] = "変更を保存しました"
+    flash[:notice] = "変更を保存しました"
     redirect_back(fallback_location: root_path)
   end
   
   def destroy
     @tag = Tag.find(params[:id])
     @tag.destroy
-    flash.now[:notice] = "タグを削除しました"
+    flash[:notice] = "タグを削除しました"
     redirect_back(fallback_location: root_path)
   end
 

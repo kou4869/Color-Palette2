@@ -27,7 +27,7 @@
     <% @comments.each do |comment| %>
       <tr class="light-text text-center">
         <td class="align-middle">
-          <%= comment.created_at.strftime('%Y年/%m月/%d日 %H:%M:%S') %>
+          <%= comment.created_at.strftime("%Y年/%m月/%d日 %H:%M") %>
         </td>
         <td>
           <div class="comment_big_diamond">
@@ -42,8 +42,8 @@
         </td>
         <td class="align-middle">
           <%= link_to admin_user_path(comment.user_id) do %>
-            <%= comment.user_id %>/
-            <%= comment.user.name %>
+            id : <%= comment.user_id %> /
+            name : <%= comment.user.name %>
           <% end %>
         </td>
         <td class="align-middle">

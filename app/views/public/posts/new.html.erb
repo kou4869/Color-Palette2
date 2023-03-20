@@ -2,6 +2,18 @@
   <div class="container">
     <h2 class="pt-4"><strong>【新規配色投稿】</strong></h2>
 
+    <% if flash[:error] %>
+      <div class="alert alert-danger">
+        <% @post.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+        <% end %>
+      </div>
+    <% else %>
+      <!--何も表示しない-->
+    <% end %>
+
     <div class="row pt-3 pb-5">
       <div class="col-12 col-md-5 offset-md-1">
 

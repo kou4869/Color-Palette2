@@ -2,3 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.top {
+  height: 100%;
+  background-image: image-url("leaf.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-size: 100% 100%;
+}
+
+
+.double_line {
+  display: inline-block;
+  position: relative;
+  padding: 18px;
+  border: solid 4px #db7093;
+  font-size: 50px;
+  font-family: 'Kaushan', cursive, sans-serif;
+}
+
+.double_line::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: -14px;
+  right: -14px;
+  left: 6px;
+  border: solid 4px #ffc0cb;
+}
+
+.top-text {
+  font-family: "Hannari";
+}

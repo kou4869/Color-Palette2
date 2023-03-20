@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if (1..5).exclude?(@post.tags.length)
-      flash.now[:my_alert] = "タグは１～５個まで設定できます。"
+      flash[:my_alert] = "タグは１～５個まで設定できます。"
       render :new
       return
     end
@@ -17,7 +17,8 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post), notice: "新しい配色を投稿しました"
     else
-      flash.now[:alert] = "必須項目を入力してください"
+      flash[:alert] = "必須項目を入力してください"
+      flash.now[:error] = @post.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -53,7 +54,7 @@ class Public::PostsController < ApplicationController
       @posts = @posts.sort_by { |a| a.avarage_star }.reverse
     end
 
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 
   def edit
@@ -65,7 +66,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: "更新が完了しました"
     else
-      flash.now[:alert] = "必須項目を入力してください"
+      flash[:alert] = "必須項目を入力してください"
       render :edit
     end
   end
@@ -73,7 +74,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: "削除しました"
+    redirect_to posts_path, notice: "投稿を削除しました"
   end
 
   private

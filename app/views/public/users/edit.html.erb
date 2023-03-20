@@ -8,6 +8,19 @@
       </div>
 
       <div class="col-12 col-md-10">
+
+        <% if flash[:error] %>
+          <div class="alert alert-danger">
+            <% @user.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+            <% end %>
+          </div>
+        <% else %>
+          <!--何も表示しない-->
+        <% end %>
+
         <%= form_with model: @user, url: user_information_path(@user), method: :patch do |user| %>
           <div class="row edit_text">
             <div class="col-12 col-md-5 mx-2">
@@ -44,8 +57,8 @@
         <% end %>
       </div>
 
-    </div>  
-      
+    </div>
+
   </div>
 </div>
 
@@ -58,22 +71,22 @@
       blobImage.setAttribute('src', blob);
       imageElement.appendChild(blobImage);  // appendChildメソッドを使ってhtml.erbに追加したdiv要素の中にimg要素を入れる
     };
-  
+
   //   ↓ ('user_profile_image')はアプリケーションのデベロッパーツールで確認したid
     document.getElementById('user_profile_image').addEventListener('change', (e) =>{
   //   ↑ 投稿フォームのファイル選択ボックスに変化（change）が起こったときに行われる処理を記述
   //   ↑ アロー関数の「e」はgetElementByIdで取得した投稿フォームのファイル選択ボックスの中身になる
-        const imageContent = document.querySelector('img'); 
-        if (imageContent){ 
-          imageContent.remove(); 
-        } 
-  
+        const imageContent = document.querySelector('img');
+        if (imageContent){
+          imageContent.remove();
+        }
+
       const file = e.target.files[0];
   //     ↑ e.target.files[0]で取得したファイルの情報を定数fileに格納し、URL.createObjectURL(file)で取得した情報を文字列に変換し、定数blobに格納
       const blob = window.URL.createObjectURL(file);
       createImageHTML(blob);
     });
-    
+
   })
  </script>
 
