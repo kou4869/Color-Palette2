@@ -1,16 +1,16 @@
 <div class="posts-edit">
   <div class="container-fluid px-5">
     <div class="row">
-      <div class="col-12 col-md-2 pt-3">
-        <h2>User info</h2>
+      <div class="col-12 col-md-2 mt-3">
+        <h2 class="user_title">User info</h2>
         <%= render 'public/users/public_sidebar', user: current_user %>
       </div>
 
       <div class="col-12 col-md-10">
-        <div class="row pt-4">
+        <div class="row">
 
-          <div class="col-12 col-md-5 mb-5">
-            <h2><strong>
+          <div class="col-12 col-md-5  mt-3 mb-5">
+            <h2 class="font_kaushan"><strong>
               【
               <%= link_to user_my_page_path(@post.user.id) do %>
                 <%= @post.user.name %>さん
@@ -76,7 +76,7 @@
                 <div class="col-12 col-md-8">
                   <div class="form-group">
                     <b><%= post.label :"配色の説明" %></b>
-                    <%= post.text_area :post_introduction, class: "form-control",  rows: "5" %>
+                    <%= post.text_area :post_introduction, class: "form-control", rows: "5", placeholder: "配色のポイントや紹介などを300文字以内でご記入ください" %>
                   </div>
 
                   <% if flash[:my_alert] %>
@@ -130,14 +130,14 @@
 
   const init = () => {  // initに始めにあてたい色を定義（init 初期設定などによく使用する単語)
 
-      color1.style.backgroundColor = colorForm1.value;  //フォームの色を持ってくる
-      color2.style.backgroundColor = colorForm2.value;
-      color3.style.backgroundColor = colorForm3.value;
-      color4.style.backgroundColor = colorForm4.value;
-      colorForm1.addEventListener("input", applyColor1);  //各カラーパレットの色が選択された時、各applyColorアクションを実行
-      colorForm2.addEventListener("input", applyColor2);  //string型で指定されているカラムに対しては"input(インプット)"を使うことが多い。
-      colorForm3.addEventListener("input", applyColor3);
-      colorForm4.addEventListener("input", applyColor4);
+    color1.style.backgroundColor = colorForm1.value;  //フォームの色を持ってくる
+    color2.style.backgroundColor = colorForm2.value;
+    color3.style.backgroundColor = colorForm3.value;
+    color4.style.backgroundColor = colorForm4.value;
+    colorForm1.addEventListener("input", applyColor1);  //各カラーパレットの色が選択された時、各applyColorアクションを実行
+    colorForm2.addEventListener("input", applyColor2);  //string型で指定されているカラムに対しては"input(インプット)"を使うことが多い。
+    colorForm3.addEventListener("input", applyColor3);
+    colorForm4.addEventListener("input", applyColor4);
 
   }
 

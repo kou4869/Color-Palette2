@@ -1,13 +1,30 @@
 <div class="top">
   <div class="container-fluid px-5">
     <div class="row">
-      <div class="col-12 col-md-2 sidebar">
-         <%= render 'layouts/top_sidebar' %>
-      </div>
-
-      <div class="col-12 col-md-10 mt-3">
+      <div class="col-12 mt-3 mb-5">
         <div class="double_line">Color Palette</div>
-        <span class="top-text ml-5">素敵な彩をそえよう</span>
+        <p class="top-text mt-2 ml-5"><span>素敵な彩をそえよう</span></p>
+      </div>
+    </div>
+        
+    <div class"row">
+      <div class="col-12 col-md-4 ">
+        <div class="top_diamond1">
+          <%= link_to "新規登録", new_user_registration_path, class: "top_link" %>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="top_diamond2">
+          <%= link_to "ログイン", new_user_session_path, class: "top_link" %>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="top_diamond3">
+          <%= link_to users_guest_sign_in_path, method: :post, class: "top_link text-center" do %>
+            ゲスト<br>
+            ログイン
+          <% end %>
+        </div>
       </div>
     </div>
     

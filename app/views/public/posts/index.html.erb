@@ -2,16 +2,16 @@
   <div class ="container-fluid mt-3 px-5">
     <div class="row">
       <div class="col-12 col-md-2 user_info mb-3">
-        <h2>User info</h2>
+        <h2 class="user_title text-center">User info</h2>
         <%= render 'public/users/public_sidebar', user: @user %>
       </div>
 
       <div class="col-12 col-md-10">
         <div class="row index-text pl-3">
           <% if @tag_name.present? %>
-            <h2><b>【 <%= @tag_name %>の配色一覧 】</b></h2>
+            <h2 class="font_kaushan"><strong>【 <%= @tag_name %>の配色一覧 】</strong></h2>
           <% else %>
-            <h2><b>【 配色一覧 】</b></h2>
+            <h2 class="font_kaushan"><strong>【 配色一覧 】</strong></h2>
           <% end %>
         </div>
 

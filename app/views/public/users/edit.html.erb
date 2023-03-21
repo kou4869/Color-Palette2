@@ -3,11 +3,12 @@
 
     <div class="row">
       <div class="col-12 col-md-2 mt-3 pr-5">
-        <h2>User info</h2>
+        <h2 class="user_title text-center">User info</h2>
         <%= render 'public/users/public_sidebar', user: @user %>
       </div>
 
       <div class="col-12 col-md-10">
+        <h2 class="font_kaushan mt-3"><strong>【ユーザー情報編集】</strong></h2>
 
         <% if flash[:error] %>
           <div class="alert alert-danger">

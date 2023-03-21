@@ -31,6 +31,118 @@
   border: solid 4px #ffc0cb;
 }
 
-.top-text {
-  font-family: "Hannari";
+.top-text span {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'Zen Kurenaido', sans-serif;
+  color: #0000cd;
+  background:linear-gradient(transparent 60%, #ff6 60%);//マーカーのような下線
+}
+
+.top_link{
+  font-family: 'Zen Kurenaido', sans-serif;
+  font-weight: bold;
+  position: absolute;
+  color: #dc143c;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+}
+
+.top_diamond1,
+.top_diamond2,
+.top_diamond3 {
+  position: relative;
+  width: 180px;
+  height: 200px;
+}
+
+.top_diamond1::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-right: 90px solid transparent;
+  border-bottom: 100px solid #7fffd4;
+  border-left: 90px solid transparent;
+  position: absolute;
+  transition: all 1s;
+  z-index: 2;
+}
+
+.top_diamond1::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 100px solid #98fb98;
+  border-right: 90px solid transparent;
+  border-left: 90px solid transparent;
+  position: absolute;
+  top: 50%;
+  transition: all 1s;
+  z-index: 3;
+}
+
+.top_diamond2::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-right: 90px solid transparent;
+  border-bottom: 100px solid #87cefa;
+  border-left: 90px solid transparent;
+  position: absolute;
+  transition: all 1s;
+  z-index: 2;
+}
+
+.top_diamond2::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 100px solid #afeeee;
+  border-right: 90px solid transparent;
+  border-left: 90px solid transparent;
+  position: absolute;
+  top: 50%;
+  transition: all 1s;
+  z-index: 3;
+}
+
+.top_diamond3::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-right: 90px solid transparent;
+  border-bottom: 100px solid #ffb6c1;
+  border-left: 90px solid transparent;
+  position: absolute;
+  transition: all 1s;
+  z-index: 2;
+}
+
+.top_diamond3::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 100px solid #e9967a;
+  border-right: 90px solid transparent;
+  border-left: 90px solid transparent;
+  position: absolute;
+  top: 50%;
+  transition: all 1s;
+  z-index: 3;
+}
+
+.top_diamond1:hover::before,
+.top_diamond2:hover::before,
+.top_diamond3:hover::before {
+  transform: translateY(-20px);
+  opacity: 0.5;
+}
+
+.top_diamond1:hover::after,
+.top_diamond2:hover::after,
+.top_diamond3:hover::after {
+  transform: translateY(20px);
+  opacity: 0.5;
 }

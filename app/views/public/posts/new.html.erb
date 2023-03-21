@@ -1,6 +1,6 @@
 <div class="posts-new">
   <div class="container">
-    <h2 class="pt-4"><strong>【新規配色投稿】</strong></h2>
+    <h2 class="font_kaushan pt-4"><strong>【新規配色投稿】</strong></h2>
 
     <% if flash[:error] %>
       <div class="alert alert-danger">
@@ -85,7 +85,7 @@
             <div class="col-12 col-md-8">
               <div class="form-group">
                 <b><%= f.label :"配色の説明" %></b>
-                <%= f.text_area :post_introduction, class: "form-control", rows: "5", placeholder: "(未記入も可能)配色のポイントや紹介などをご記入ください" %>
+                <%= f.text_area :post_introduction, class: "form-control", rows: "5", placeholder: "(未記入も可能)配色のポイントや紹介などを300文字以内でご記入ください" %>
               </div>
 
               <% if flash[:my_alert] %>

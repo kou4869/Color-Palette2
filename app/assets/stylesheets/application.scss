@@ -57,7 +57,7 @@ footer {
   background-image: image-url("logo.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover; 
+  background-size: cover;
 }
 
 
@@ -153,8 +153,8 @@ footer {
 
 /*トップへ戻るボタンの設定（DMM WEBCAMP MEDIAから拝借）*/
 #page_top{
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   position: fixed;
   right: 10px;
   bottom: 10px;
@@ -285,3 +285,13 @@ footer {
   font-size: 25px;
 }
 /*ここまで*/
+
+/*『User info』の文字のフォント*/
+.user_title {
+  font-family: 'Kaushan', cursive, sans-serif;
+}
+
+/*各ページのタイトル文字のフォント*/
+.font_kaushan {
+  font-family: 'Zen Kurenaido', sans-serif;
+}

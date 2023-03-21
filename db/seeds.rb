@@ -17,7 +17,7 @@ User.create!(
     { name: 'nya-',
       email: 'nya@cat',
       password: 'nyacat',
-      introduction: '淡い色合いが好きです'
+      introduction: '淡い色合いが好きです'       #1
     },
     { name: 'オレオ',
       email: 'oreo@cat',
@@ -59,20 +59,20 @@ User.create!(
 
 Tag.create!(
   [
-    { tag_name: '暖色系' }, 
-    { tag_name: '寒色系' },
-    { tag_name: 'パステル' },
-    { tag_name: '彩' },
-    { tag_name: 'ダーク系' },
-    { tag_name: 'ライト系' },
-    { tag_name: 'きばつ' },
-    { tag_name: 'モノトーン'},
-    { tag_name: '赤系'},
-    { tag_name: '青系' },
-    { tag_name: '黄系' },
-    { tag_name: '緑系'},
-    { tag_name: '白系'},
-    { tag_name: '黒系'}
+    { tag_name: '暖色系' },   #1
+    { tag_name: '寒色系' },   #2
+    { tag_name: 'パステル' }, #3
+    { tag_name: '彩' },       #4
+    { tag_name: 'ダーク系' }, #5
+    { tag_name: 'ライト系' }, #6
+    { tag_name: 'きばつ' },   #7
+    { tag_name: 'モノトーン'},#8
+    { tag_name: '赤系'},      #9
+    { tag_name: '青系' },     #10
+    { tag_name: '黄系' },     #11
+    { tag_name: '緑系'},      #12
+    { tag_name: '白系'},      #13
+    { tag_name: '黒系'}       #14
   ]
 )
 
