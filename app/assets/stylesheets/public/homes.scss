@@ -4,21 +4,36 @@
 
 .top {
   height: 100%;
-  background-image: image-url("leaf.png");
+  padding-bottom: 8%;
+  background-image: image-url("leaf.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-size: 100% 100%;
 }
 
-
 .double_line {
   display: inline-block;
   position: relative;
   padding: 18px;
   border: solid 4px #db7093;
+  background-color: #f0fff0;
   font-size: 50px;
   font-family: 'Kaushan', cursive, sans-serif;
+  // ↓ 文字に対してのグラデーション
+  background: linear-gradient(45deg, #FA8BFF 16%, #2BD2FF 57%, #2BFF88 90%);
+  background: -webkit-linear-gradient(45deg, #FA8BFF 16%, #2BD2FF 57%, #2BFF88 90%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientEffect 2.5s infinite alternate;
+  // ここまで
+}
+
+// 左から右へ移動するよう定。（偶数回は左から右へ（逆方向）へ）
+@keyframes gradientEffect {
+  from {background-position: left}
+  to {background-position: right}
 }
 
 .double_line::before {
@@ -56,6 +71,7 @@
   position: relative;
   width: 180px;
   height: 200px;
+  margin: 0 auto;
 }
 
 .top_diamond1::before {

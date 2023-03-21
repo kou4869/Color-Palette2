@@ -17,7 +17,7 @@ User.create!(
     { name: 'nya-',
       email: 'nya@cat',
       password: 'nyacat',
-      introduction: '淡い色合いが好きです'       #1
+      introduction: '淡い色合いが好きです'
     },
     { name: 'オレオ',
       email: 'oreo@cat',
@@ -78,13 +78,13 @@ Tag.create!(
 
 Post.create!(
   [
-    { user_id: 7,
+    { user_id: User.find_by(name: 'teatea').id,
       color1: coral,
       color2: lightgoldenrodyellow,
       color3: tomato,
       color4: moccasin,
-      post_introduction: '赤系の色とクリーム色の組み合わせたオリジナルです',
-      tag_id: 1,
+      post_introduction: '赤系の色とクリーム色の組み合わせたオリジナルです'
+      #tag_id: 1,
     },
     { user_id: 2,
       color1: black,
@@ -169,8 +169,16 @@ Post.create!(
   ]
 )
 
+#post_introduction tag_ids
+introduction_tag_ids_hash = {
+  '赤系の色とクリーム色の組み合わせたオリジナルです' => ['暖色系','赤系','白系']
+}
 
 
-Post.all.each do |post|
-  post.tags << Tag.find(rand(1..4))
+introduction_tag_ids_hash.each do |introduction, tag_names|
+  post = Post.find_by(post_introduction: introduction)
+  tag_names.each do |tag_name|
+    post.post_tags.create(tag_id: Tag.find_by(tag_name: tag_name).id)
+  end
+  #post.tags << Tag.find(rand(1..4))
 end

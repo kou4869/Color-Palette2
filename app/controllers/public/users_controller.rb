@@ -73,7 +73,7 @@ class Public::UsersController < ApplicationController
   def destroy
     @user = current_user
     @user.destroy
-    redirect_to root_path, notice: "登録データを削除"
+    redirect_to root_path, notice: "登録データの削除が完了しました。ご利用いただきまして、誠にありがとうございました。"
   end
 
 
