@@ -2,10 +2,29 @@
   <div class="container-fluid px-5">
     <div class="row">
       <div class="col-12 col-md-12 mt-3">
+        
         <div class="row">
           <div class="col-12 col-md-4">
             <div class="double_line">Color Palette</div>
-            <p class="top-text mt-2 ml-5"><span>素敵な彩をそえよう</span></p>
+            <p class="top-text mt-2 mb-4 ml-5"><span>素敵な彩をそえよう</span></p>
+          </div>
+          <div class="col-12 col-md-4 offset-0 offset-md-4">
+            <p class="top_new_title">新着パターン</p>
+            <div class="row text-center">
+              <% @posts.first(3).each do |post| %>
+                <div class="col-4 col-md-4">
+                  <%= link_to(post) do %>
+                    <div class="top_new_diamond">
+                      <div class="top_new_square" style="background-color: <%= post.color1 %>"></div>
+                      <div class="top_new_square" style="background-color: <%= post.color2 %>"></div>
+                      <div class="top_new_square" style="background-color: <%= post.color4 %>"></div>
+                      <div class="top_new_square" style="background-color: <%= post.color3 %>"></div>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <p class="top_new_title text-center mt-2 mb-5">クリックするとその投稿の詳細を確認できます</p>
           </div>
         </div>
         
@@ -15,12 +34,12 @@
     <div class="row">
       <div class="col-12 col-md-6 offset-0 offset-md-3">
         <div class="row">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-4 mb-4">
             <div class="top_diamond1">
               <%= link_to "新規登録", new_user_registration_path, class: "top_link" %>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-4 mb-4">
             <div class="top_diamond2">
               <%= link_to "ログイン", new_user_session_path, class: "top_link" %>
             </div>

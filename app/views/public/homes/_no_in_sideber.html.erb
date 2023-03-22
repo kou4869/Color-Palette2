@@ -1,0 +1,23 @@
+<p class="loginber_text text-center">ログインしてオリジナルの<br>
+   配色を楽しもう</p>
+
+<div class="row">
+  <div class="col-4 col-md-12">
+    <div class="new_diamond1 mb-3">
+      <%= link_to "新規登録", new_user_registration_path, class: "new_link" %>
+    </div>
+  </div>
+  <div class="col-4 col-md-12">
+    <div class="new_diamond2 mb-3">
+      <%= link_to "ログイン", new_user_session_path, class: "new_link" %>
+    </div>
+  </div>
+  <div class="col-4 col-md-12">
+    <div class="new_diamond3 mb-4">
+      <%= link_to users_guest_sign_in_path, method: :post, class: "new_link text-center" do %>
+        ゲスト<br>
+        ログイン
+      <% end %>
+    </div>
+  </div>
+</div>

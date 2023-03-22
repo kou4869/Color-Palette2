@@ -3,13 +3,6 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 // newページ
-.posts-new {
-  background-image: image-url("post_new.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; 
-}
-
 .border-none {
   td {
     border-top: none !important;
@@ -37,13 +30,6 @@
     margin-top: 50px;
     margin-left: 20px;
   }
-}
-
-.square {
-  width: 48%;
-  height: 48%;
-  margin: 2px;
-  position: relative;
 }
 
 .text_box {
@@ -94,6 +80,9 @@
   padding-right: 2px;
 }
 
+.posts_index {
+  padding-bottom: 10px;
+}
 
 
 

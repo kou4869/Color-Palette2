@@ -18,9 +18,123 @@
   height: 46%;
   margin: 1px;
   position: relative;
+  border: 1px solid #dcdcdc;
 }
 
-.post_days {
-  font-size: 12px;
+
+
+// ログインしてない時のログインボタンの設定
+.new_diamond1,
+.new_diamond2,
+.new_diamond3 {
+  position: relative;
+  width: 135px;
+  height: 150px;
+  margin: 0 auto;
 }
 
+.new_diamond1::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-right: 68px solid transparent;
+  border-bottom: 75px solid #7fffd4;
+  border-left: 68px solid transparent;
+  position: absolute;
+  transition: all 1s;
+  z-index: 2;
+}
+
+.new_diamond1::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 75px solid #98fb98;
+  border-right: 68px solid transparent;
+  border-left: 68px solid transparent;
+  position: absolute;
+  top: 50%;
+  transition: all 1s;
+  z-index: 3;
+}
+
+.new_diamond2::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-right: 68px solid transparent;
+  border-bottom: 75px solid #87cefa;
+  border-left: 68px solid transparent;
+  position: absolute;
+  transition: all 1s;
+  z-index: 2;
+}
+
+.new_diamond2::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 75px solid #afeeee;
+  border-right: 68px solid transparent;
+  border-left: 68px solid transparent;
+  position: absolute;
+  top: 49%;
+  transition: all 1s;
+  z-index: 3;
+}
+
+.new_diamond3::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-right: 68px solid transparent;
+  border-bottom: 75px solid #ffb6c1;
+  border-left: 68px solid transparent;
+  position: absolute;
+  transition: all 1s;
+  z-index: 2;
+}
+
+.new_diamond3::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 75px solid #e9967a;
+  border-right: 68px solid transparent;
+  border-left: 68px solid transparent;
+  position: absolute;
+  top: 50%;
+  transition: all 1s;
+  z-index: 3;
+}
+
+.new_diamond1:hover::before,
+.new_diamond2:hover::before,
+.new_diamond3:hover::before {
+  transform: translateY(-20px);
+  opacity: 0.5;
+}
+
+.new_diamond1:hover::after,
+.new_diamond2:hover::after,
+.new_diamond3:hover::after {
+  transform: translateY(20px);
+  opacity: 0.5;
+}
+
+.new_link{
+  font-family: 'Zen Kurenaido', sans-serif;
+  font-weight: bold;
+  position: absolute;
+  color: #dc143c;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+}
+
+.loginber_text {
+  font-family: 'Zen Kurenaido', sans-serif;
+  font-weight: bold;
+  color: #0000cd;
+}

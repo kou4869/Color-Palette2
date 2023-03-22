@@ -3,6 +3,13 @@
     <h2 class="font_kaushan pt-4"><strong>【新規配色投稿】</strong></h2>
 
     <% if flash[:error] %>
+      <!--エラーが起こるとnewページへ遷移するが、URLが『/posts』になってしまうのでjavascriptを使用して9行目でURLを『/new』に変更する命令を出している-->
+      <script type="text/javascript">
+        $(document).ready(function() {
+          history.pushState('', '', location.href + '/new')
+        });
+      </script>
+      
       <div class="alert alert-danger">
         <% @post.errors.full_messages.each do |message| %>
           <li>
@@ -85,7 +92,7 @@
             <div class="col-12 col-md-8">
               <div class="form-group">
                 <b><%= f.label :"配色の説明" %></b>
-                <%= f.text_area :post_introduction, class: "form-control", rows: "5", placeholder: "(未記入も可能)配色のポイントや紹介などを300文字以内でご記入ください" %>
+                <%= f.text_area :post_introduction, class: "form-control", rows: "5", placeholder: "配色のポイントや紹介などを300文字以内でご入力ください" %>
               </div>
 
               <% if flash[:my_alert] %>

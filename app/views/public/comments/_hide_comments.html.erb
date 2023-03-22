@@ -1,12 +1,14 @@
 <div class="card mb-3">
 
   <div class="card-body">
-    <%= link_to user_my_page_path(comment.user.id) do %>
-      <%= image_tag comment.user.get_profile_image, width: 72 %>
-    <% end %>
+    <% if user_signed_in? %>
+      <%= link_to user_my_page_path(comment.user.id) do %>
+        <%= image_tag comment.user.get_profile_image, width: 72 %>
+      <% end %>
       <%= link_to user_my_page_path(comment.user.id), class: "pl-1" do %>
         <%= comment.user.name %>さん
       <% end %>
+    <% end %>
     <div class="card-text mt-4">
       <div id="show_raty_<%= comment.id %>"></div>
       <%= simple_format(comment.comment) %>
@@ -32,11 +34,13 @@
       </div>
     <% end %>
 
-    <%= form_with model: comment_reply, url: post_comments_path(comment.post_id), method: :post, local: true do |f| %>
-      <%= f.hidden_field :parent_id, value: comment.id %>
-      <b><%= f.label :comment, 'Reply' %></b>
-      <%= f.text_area :comment, rows: 2, class: 'form-control' %>
-      <%= f.submit 'Comment Reply', class: 'mt-3 btn btn-sm btn-primary' %>
+    <% if user_signed_in? %>
+      <%= form_with model: comment_reply, url: post_comments_path(comment.post_id), method: :post, local: true do |f| %>
+        <%= f.hidden_field :parent_id, value: comment.id %>
+        <b><%= f.label :comment, 'Reply' %></b>
+        <%= f.text_area :comment, rows: 2, class: 'form-control' %>
+        <%= f.submit 'Comment Reply', class: 'mt-3 btn btn-sm btn-primary' %>
+      <% end %>
     <% end %>
   </div>
 

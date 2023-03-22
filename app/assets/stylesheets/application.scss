@@ -16,7 +16,7 @@
 
 
 
- * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -29,11 +29,21 @@ body {
 }
 
 main {
-  flex: 1;
+  height: 100%;
+  background-image: image-url("leaf.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-size: 100% 100%;
 }
 
 header {
   background: lightyellow;
+}
+
+.header_link {
+  font-family: 'Zen Kurenaido', sans-serif;
+  font-weight: bold;
 }
 
 footer {
@@ -111,7 +121,7 @@ footer {
   color: #0000ff;
 }
 
-.flash_alert{
+.flash_alert {
   background-color: rgb(142, 222, 248);
   border: 1px solid #8d8d8f;
   padding: 5px;
@@ -123,6 +133,11 @@ footer {
 .public-registrations {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.public-sessions {
+  padding-top: 10px;
+  padding-bottom: 100px;
 }
 
 .user_signin,
@@ -139,11 +154,14 @@ footer {
 }
 
 
+.admin-sessions {
+  padding-bottom: 190px;
+}
 
 .admin-login {
   background-color: whitesmoke;
   box-shadow: 0px 3px 6px 0px #9E9E9E;
-  padding: 10px;
+  padding: 20px;
 }
 
 
@@ -236,6 +254,7 @@ footer {
   height: 48%;
   margin: 1px;
   position: relative;
+  border: 1px solid #dcdcdc;
 }
 /*ここまで*/
 
@@ -259,6 +278,21 @@ footer {
     transform: rotate(45deg);
     margin-left: 100px;
   }
+}
+
+ /*postのnew,showページ(共通)*/
+.square {
+  width: 48%;
+  height: 48%;
+  margin: 2px;
+  position: relative;
+  border: 1px solid #dcdcdc;
+}
+ /*ここまで*/
+
+.ball-item {
+  background-color: #ffffff;
+  border: 1px solid #000000;
 }
 
 .color-ball {
@@ -290,6 +324,12 @@ footer {
   font-size: 25px;
 }
 /*ここまで*/
+
+/*postのindexページ(共通)*/
+.post_days {
+  font-size: 12px;
+}
+
 
 /*『User info』の文字のフォント*/
 .user_title {

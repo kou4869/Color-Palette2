@@ -47,6 +47,7 @@ class Public::UsersController < ApplicationController
     when "avarage_star"
       @favorite_posts = @favorite_posts.order(avarage_star: :desc)
     end
+    
 
     @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(12)
   end

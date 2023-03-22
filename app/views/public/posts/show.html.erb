@@ -1,144 +1,151 @@
 <div class="posts-show">
   <div class="container-fluid px-5">
-    <div class="row">
-      <div class="col-12 col-md-2 mt-3">
-        <h2 class="user_title text-center">User info</h2>
-        <%= render 'public/users/public_sidebar', user: current_user %>
-      </div>
-
-      <div class="col-12 col-md-10">
-        <div class="row mt-3">
-
-          <div class="col-12 col-md-5 mb-5">
-            <h2 class="font_kaushan"><strong>
-              【
-              <%= link_to user_my_page_path(@post.user.id) do %>
-                <%= @post.user.name %>さん
-              <% end %>
-              の色彩詳細】
-            </strong></h2>
-
-            <div class="row pt-3">
-              <div class="show_big_diamond">
-                <div class="square" style="background-color: <%= @post.color1 %>">
-                  <div class="text_box">
-                    <p class="text-color">color 1</p>
+    
+    <% if user_signed_in? %>
+      <div class="row">
+        <div class="col-12 col-md-2 mt-3">
+          <h2 class="user_title text-center">User info</h2>
+          <%= render 'public/users/public_sidebar', user: current_user %>
+        </div>
+  
+        <div class="col-12 col-md-10">
+          <div class="row mt-3">
+  
+            <div class="col-12 col-md-5 mb-5">
+              <h2 class="font_kaushan"><strong>
+                【
+                <%= link_to user_my_page_path(@post.user.id) do %>
+                  <%= @post.user.name %>さん
+                <% end %>
+                の色彩詳細】
+              </strong></h2>
+  
+              <div class="row pt-3">
+                <div class="show_big_diamond">
+                  <div class="square" style="background-color: <%= @post.color1 %>">
+                    <div class="text_box">
+                      <p class="text-color">color 1</p>
+                    </div>
                   </div>
-                </div>
-                <div class="square" style="background-color: <%= @post.color2 %>">
-                  <div class="text_box">
-                    <p class="text-color">color 2</p>
+                  <div class="square" style="background-color: <%= @post.color2 %>">
+                    <div class="text_box">
+                      <p class="text-color">color 2</p>
+                    </div>
                   </div>
-                </div>
-                <div class="square" style="background-color: <%= @post.color4 %>">
-                  <div class="text_box">
-                    <p class="text-color">color 4</p>
+                  <div class="square" style="background-color: <%= @post.color4 %>">
+                    <div class="text_box">
+                      <p class="text-color">color 4</p>
+                    </div>
                   </div>
-                </div>
-                <div class="square" style="background-color: <%= @post.color3 %>">
-                  <div class="text_box">
-                    <p class="text-color">color 3</p>
+                  <div class="square" style="background-color: <%= @post.color3 %>">
+                    <div class="text_box">
+                      <p class="text-color">color 3</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            
-          </div>
-
-          <div class="col-12 col-md-7">
-            <div class="row pt-5">
-              <div class="col-8 col-md-5 mb-3">
-                <% if @post.user == current_user %>
-                  <span>
-                    <%= link_to edit_post_path(@post),class: "btn btn-success btn-lg" do %>
-                      <i class="fas fa-edit"></i> Eidt
-                    <% end %>
+  
+            <div class="col-12 col-md-7">
+              <div class="row pt-5">
+                <div class="col-8 col-md-5 mb-3">
+                  <% if @post.user == current_user %>
+                    <span>
+                      <%= link_to edit_post_path(@post),class: "btn btn-success btn-lg" do %>
+                        <i class="fas fa-edit"></i> Eidt
+                      <% end %>
+                    </span>
+                    <span class="pl-2">
+                      <%= link_to post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-lg" do %>
+                        <i class="fas fa-trash-alt"></i> Destroy 
+                      <% end %>
+                    </span>
+                  <% end %>
+                </div>
+                <div class="col-4 col-md-7">
+                  <span class="favorite pl-3" id="favorite_buttons_<%= @post.id %>">
+                    <%= render "public/favorites/favorite", post: @post %>
                   </span>
-                  <span class="pl-2">
-                    <%= link_to post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-lg" do %>
-                      <i class="fas fa-trash-alt"></i> Destroy 
-                    <% end %>
-                  </span>
+                </div>
+              </div>
+  
+              <div class="row mt-3">
+                <table class="table ball-item">
+                  <thead class="border-none">
+                    <tr>
+                      <td>
+                        <div class="color-ball" style="background-color: <%= @post.color1 %>"></div>
+                      </td>
+                      <td>
+                        <div class="color-ball" style="background-color: <%= @post.color2 %>"></div>
+                      </td>
+                      <td>
+                        <div class="color-ball" style="background-color: <%= @post.color3 %>"></div>
+                      </td>
+                      <td>
+                        <div class="color-ball" style="background-color: <%= @post.color4 %>"></div>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="color-code"><%= @post.color1 %></td>
+                      <td class="color-code"><%= @post.color2 %></td>
+                      <td class="color-code"><%= @post.color3 %></td>
+                      <td class="color-code"><%= @post.color4 %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+  
+              <div class="row">
+                <div class="tag-item">
+                <% @post.tags.each do |tag| %>
+                  <%= link_to posts_path(tag_id: tag.id), class: "btn btn-outline-info" do %>
+                    <%= tag.tag_name %>
+                  <% end %>
+                <% end %>
+                </div>
+              </div>
+  
+              <div class="row mt-4 ml-4">
+                <div class="col post_introduction">
+                  <p class="color-text"><b>配色紹介</b></p>
+                  <%= @post.post_introduction %>
+                </div>
+              </div>
+              
+              <div class="row mt-4 ml-4">
+                <% if @post.comments.where(parent_id: nil).count.zero? %>
+                <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
+                  <p class="active_text"><b>レビューがまだありません</b></p>
+                <% else %>
+                  <p class="active_text"><b>レビュー平均：</b> 
+                    <span id="active_raty"></span>
+                  </p>
                 <% end %>
               </div>
-              <div class="col-4 col-md-7">
-                <span class="favorite pl-3" id="favorite_buttons_<%= @post.id %>">
-                  <%= render "public/favorites/favorite", post: @post %>
-                </span>
-              </div>
             </div>
-
-            <div class="row mt-3">
-              <table class="table">
-                <thead class="border-none">
-                  <tr>
-                    <td>
-                      <div class="color-ball" style="background-color: <%= @post.color1 %>"></div>
-                    </td>
-                    <td>
-                      <div class="color-ball" style="background-color: <%= @post.color2 %>"></div>
-                    </td>
-                    <td>
-                      <div class="color-ball" style="background-color: <%= @post.color3 %>"></div>
-                    </td>
-                    <td>
-                      <div class="color-ball" style="background-color: <%= @post.color4 %>"></div>
-                    </td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="color-code"><%= @post.color1 %></td>
-                    <td class="color-code"><%= @post.color2 %></td>
-                    <td class="color-code"><%= @post.color3 %></td>
-                    <td class="color-code"><%= @post.color4 %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="row">
-              <div class="tag-item">
-              <% @post.tags.each do |tag| %>
-                <%= link_to posts_path(tag_id: tag.id), class: "btn btn-outline-info" do %>
-                  <%= tag.tag_name %>
-                <% end %>
-              <% end %>
-              </div>
-            </div>
-
-            <div class="row mt-4 ml-4">
-              <div class="col post_introduction">
-                <p class="color-text"><b>配色紹介</b></p>
-                <%= @post.post_introduction %>
-              </div>
-            </div>
-            
-            <div class="row mt-4 ml-4">
-              <% if @post.comments.where(parent_id: nil).count.zero? %>
-              <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
-                <p class="active_text"><b>レビューがまだありません</b></p>
-              <% else %>
-                <p class="active_text"><b>レビュー平均：</b> 
-                  <span id="active_raty"></span>
-                </p>
-              <% end %>
-            </div>
+  
           </div>
-
         </div>
       </div>
-    </div>
-
-    <div class="row mt-5">
-      <div class="offset-0 offset-md-2 col-12 col-md-10">
-        <%= render partial: 'public/comments/comment',locals: {post: @post, comments: @comments, comment_reply: @comment_reply} %>
-        <% if user_signed_in? && !Comment.where(post_id: @post.id, user_id: current_user.id, parent_id: nil).exists? %>
-          <%= render 'public/comments/form', post: @post, comment: @comment %>
-        <% end %>
+  
+      <div class="row mt-5">
+        <div class="col-12 col-md-10 offset-0 offset-md-2">
+          <%= render partial: 'public/comments/comment',locals: {post: @post, comments: @comments, comment_reply: @comment_reply} %>
+          <% if user_signed_in? && !Comment.where(post_id: @post.id, user_id: current_user.id, parent_id: nil).exists? %>
+            <%= render 'public/comments/form', post: @post, comment: @comment %>
+          <% end %>
+        </div>
       </div>
-    </div>
+      
+    <% else %>
 
+      <%= render partial: 'public/posts/no_sign_in_show', locals: { post: @post, comments: @comments, comment_reply: @comment_reply} %>
+
+    <% end %>
+    
   </div>
 </div>
 

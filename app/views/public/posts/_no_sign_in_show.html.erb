@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-12 col-md-2">
+    <%= render 'public/homes/no_in_sideber' %>
+  </div>
+
+  <div class="col-12 col-md-10">
+    <div class="row mt-3">
+      <div class="col-12 col-md-5 mb-5">
+        <h2 class="font_kaushan"><strong>【色彩詳細】</strong></h2>
+    
+        <div class="row pt-3">
+          <div class="show_big_diamond">
+            <div class="square" style="background-color: <%= post.color1 %>">
+              <div class="text_box">
+                <p class="text-color">color 1</p>
+              </div>
+            </div>
+            <div class="square" style="background-color: <%= post.color2 %>">
+              <div class="text_box">
+                <p class="text-color">color 2</p>
+              </div>
+            </div>
+            <div class="square" style="background-color: <%= post.color4 %>">
+              <div class="text_box">
+                <p class="text-color">color 4</p>
+              </div>
+            </div>
+            <div class="square" style="background-color: <%= post.color3 %>">
+              <div class="text_box">
+                <p class="text-color">color 3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    
+      <div class="col-12 col-md-7">
+        <div class="row mt-3">
+          <table class="table ball-item">
+            <thead class="border-none">
+              <tr>
+                <td>
+                  <div class="color-ball" style="background-color: <%= post.color1 %>"></div>
+                </td>
+                <td>
+                  <div class="color-ball" style="background-color: <%= post.color2 %>"></div>
+                </td>
+                <td>
+                  <div class="color-ball" style="background-color: <%= post.color3 %>"></div>
+                </td>
+                <td>
+                  <div class="color-ball" style="background-color: <%= post.color4 %>"></div>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="color-code"><%= post.color1 %></td>
+                <td class="color-code"><%= post.color2 %></td>
+                <td class="color-code"><%= post.color3 %></td>
+                <td class="color-code"><%= post.color4 %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <div class="row">
+          <div class="tag-item">
+          <% post.tags.each do |tag| %>
+            <%= link_to posts_path(tag_id: tag.id), class: "btn btn-outline-info" do %>
+              <%= tag.tag_name %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+    
+        <div class="row mt-4 ml-4">
+          <div class="col post_introduction">
+            <p class="color-text"><b>配色紹介</b></p>
+            <%= post.post_introduction %>
+          </div>
+        </div>
+        
+        <div class="row mt-4 ml-4">
+          <% if post.comments.where(parent_id: nil).count.zero? %>
+          <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
+            <p class="active_text"><b>レビューがまだありません</b></p>
+          <% else %>
+            <p class="active_text"><b>レビュー平均：</b> 
+              <span id="active_raty"></span>
+            </p>
+          <% end %>
+        </div>
+        
+        <div class="row mt-5">
+          <div class="col-12 col-md-12">
+            <%= render partial: 'public/comments/comment',locals: {post: post, comments: comments, comment_reply: comment_reply} %>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>

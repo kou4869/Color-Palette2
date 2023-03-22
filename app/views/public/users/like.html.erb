@@ -1,4 +1,4 @@
-<div class="posts_index">
+<div class="users_like">
   <div class ="container-fluid mt-3 px-5">
     <div class="row">
       <div class="col-12 col-md-2 user_info mb-3">
@@ -24,15 +24,21 @@
           <% end %>
         </div>
 
-        <div class="index_list">
-          <div class="card-deck mt-3">
-            <% @favorite_posts.each do |favorite_post| %>
-              <div class="col-12 col-md-3">
-                <%= render 'public/posts/index', post: favorite_post %>
-              </div>
-            <% end %>
+        <% if @favorite_posts.any? %>
+          <div class="index_list">
+            <div class="card-deck mt-3">
+              <% @favorite_posts.each do |favorite_post| %>
+                <div class="col-12 col-md-3">
+                  <%= render 'public/posts/index', post: favorite_post %>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% else %>
+          <p class="users_text ml-4">
+            ブックマーク登録がありません。
+          </p>
+        <% end %>
         
         <%= paginate @favorite_posts %>
         

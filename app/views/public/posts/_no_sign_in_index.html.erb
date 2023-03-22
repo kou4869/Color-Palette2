@@ -1,0 +1,44 @@
+<div class="col-12 col-md-2">
+  <%= render 'public/homes/no_in_sideber' %>
+</div>
+
+<div class="col-12 col-md-10">
+  <div class="row index-text pl-3">
+    <% if tag_name.present? %>
+      <h2 class="font_kaushan"><strong>【 <%= tag_name %>の配色一覧 】</strong></h2>
+    <% else %>
+      <h2 class="font_kaushan"><strong>【 配色一覧 】</strong></h2>
+    <% end %>
+  </div>
+  
+  <!--↓ トップに戻る用のid-->
+  <%= link_to posts_path do %>
+    <span id="page_top"></span>
+  <% end %>
+
+  <div claas="row">
+    <div class="searche pl-2">
+      <%= render 'public/posts/posts_searche', posts: posts %>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <!--↓ トップに戻る用のid-->
+    <%= link_to posts_path do %>
+      <span id="page_top"></span>
+    <% end %>
+
+    <div class="index_list">
+      <div class="card-deck">
+        <% posts.each do |post| %>
+          <div class="col-12 col-md-3">
+            <%= render 'public/posts/index', post: post %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    
+    <%= paginate posts %>
+    
+  </div>
+</div>

@@ -1,8 +1,8 @@
 <div class="text-center pt-3">
   <%= image_tag user.get_profile_image, width: 120 %>
 </div>
-<%if user_id = current_user.id %>
-  <div class="text-center py-1">
+<% if user.id == current_user.id %>
+  <div class="text-center py-2">
     <%= link_to user_information_edit_path(user), class: "btn btn-outline-success btn-sm", data: {turbolinks: false} do %>
       プロフィール<br>編集
     <% end %>
@@ -22,7 +22,6 @@
       <%= user.introduction_was %>
     </td>
   </tr>
-  <%if user_id = current_user.id %>
   <tr>
     <td class="text-center">
       <%= link_to user_like_path(user) do %>
@@ -41,5 +40,4 @@
       <% end %>
     </td>
   </tr>
-  <% end %>
 </table>

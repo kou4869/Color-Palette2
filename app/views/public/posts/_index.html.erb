@@ -20,13 +20,15 @@
       </p>
       <% end %>
     </div>
-    <div class="index_text">
-      <p>製作者 :
-        <%= link_to user_my_page_path(post.user.id) do %>
-          <%= post.user.name %>さん
-        <% end %>
-      </p>
-    </div>
+    <% if user_signed_in? %>
+      <div class="index_text">
+        <p>製作者 :
+          <%= link_to user_my_page_path(post.user.id) do %>
+            <%= post.user.name %>さん
+          <% end %>
+        </p>
+      </div>
+    <% end %>
 
     <div class="tag-item">
     <% post.tags.each do |tag| %>
@@ -37,9 +39,11 @@
     </div>
 
     <div class="text-center mt-3">
-      <span class="favorite align-middle" id="favorite_buttons_<%= post.id %>">
-        <%= render "public/favorites/favorite", post: post %>
-      </span>
+      <% if user_signed_in? %>
+        <span class="favorite align-middle" id="favorite_buttons_<%= post.id %>">
+          <%= render "public/favorites/favorite", post: post %>
+        </span>
+      <% end %>
 
       <% if post.user == current_user %>
         <span class="align-middle pl-2">
@@ -53,6 +57,9 @@
           <% end %>
         </span>
       <% end %>
+      <p class="post_days text-center pt-2">
+        公開日 : <%= post.created_at.strftime("%Y年/%m月/%d日") %>
+      </p>
     </div>
 
   </div>
