@@ -20,15 +20,14 @@
       </p>
       <% end %>
     </div>
-    <% if user_signed_in? %>
-      <div class="index_text">
-        <p>製作者 :
-          <%= link_to user_my_page_path(post.user.id) do %>
-            <%= post.user.name %>さん
-          <% end %>
-        </p>
-      </div>
-    <% end %>
+    
+    <div class="index_text">
+      <p>製作者 :
+        <%= link_to user_my_page_path(post.user.id) do %>
+          <%= post.user.name %>さん
+        <% end %>
+      </p>
+    </div>
 
     <div class="tag-item">
     <% post.tags.each do |tag| %>

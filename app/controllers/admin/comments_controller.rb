@@ -2,19 +2,22 @@ class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
+    @comments = Comment.all
+    @comments = @comments.order(created_at: :desc)
+    
     if params[:latest]
-      @comments = Comment.latest.page(params[:page])
+      @comments = Kaminari.paginate_array(@comments.latest).page(params[:page]).per(8)
     elsif params[:old]
-      @comments = Comment.old.page(params[:page])
+      @comments = Kaminari.paginate_array(@comments.old).page(params[:page]).per(8)
     else
-      @comments = Kaminari.paginate_array(Comment.all).page(params[:page]).per(6)
+      @comments = Kaminari.paginate_array(@comments).page(params[:page]).per(8)
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    flash.now[:notice] = "コメントを削除しました"
+    flash[:notice] = "コメントを削除しました"
     redirect_back(fallback_location: root_path)
   end
 

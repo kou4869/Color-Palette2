@@ -22,19 +22,22 @@
     box-sizing: border-box;
 }
 
+.whole {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   flex-flow: column;
-  min-height: 100vh;
 }
 
 main {
-  height: 100%;
   background-image: image-url("leaf.jpg");
-  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-size: 100% 100%;
 }
 
 header {
@@ -50,6 +53,9 @@ footer {
   width: 100%;
   background: lightcyan;
   margin: 0 auto;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
 }
 
 .footer_logo-image {
@@ -184,7 +190,7 @@ footer {
   background: #e25407;
   opacity: 0.6;
   border-radius: 50%;
-  z-index: 1;
+  z-index: 20;
 }
 
 /* Font Awesome */

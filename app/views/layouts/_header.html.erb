@@ -1,4 +1,4 @@
-<header class="sticky-top border-bottom px-5 mb-1">
+<header class="sticky-top border-bottom px-5">
 
   <nav class="navbar navbar-expand-lg navbar-light">
 
@@ -28,67 +28,68 @@
       <ul class="navbar-nav ml-auto navbar-inline">
 
         <% if user_signed_in? %>
-        <li class="header_link">
-          <%= link_to user_my_page_path(current_user.id), class: 'nav-link text-dark' do %>
-            <i class="fab fa-pagelines"></i> マイページ
-          <% end %>
-        <li class="header_link">
-          <%= link_to posts_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-palette"></i> 配色一覧
-          <% end %>
-        <li>
-        <li class="header_link">
-          <%= link_to new_post_path, class: 'nav-link text-dark', data: {"turbolinks"=>false} do %>
-            <i class="fas fa-paint-brush"></i> 新規配色登録
-          <% end %>
-        <li>
-        <li class="header_link">
-          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
-            <i class="fas fa-sign-out-alt"></i> ログアウト
-          <% end %>
-        </li>
+          <li class="header_link">
+            <%= link_to user_my_page_path(current_user.id), class: 'nav-link text-dark' do %>
+              <i class="fab fa-pagelines"></i> マイページ
+            <% end %>
+          <li class="header_link">
+            <%= link_to posts_path, class: 'nav-link text-dark' do %>
+              <i class="fas fa-palette"></i> 配色一覧
+            <% end %>
+          <li>
+          <li class="header_link">
+            <%= link_to new_post_path, class: 'nav-link text-dark', data: {"turbolinks"=>false} do %>
+              <i class="fas fa-paint-brush"></i> 新規配色登録
+            <% end %>
+          <li>
+          <li class="header_link">
+            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト
+            <% end %>
+          </li>
 
         <% elsif admin_signed_in? %>
 
-        <li class="header_link">
-          <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-users"></i> ユーザー一覧
-          <% end %>
-        </li>
-        <li class="header_link">
-          <%= link_to admin_posts_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-palette"></i> 投稿一覧
-          <% end %>
-        </li>
-        <li class="header_link">
-          <%= link_to admin_comments_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-comments"></i> コメント一覧
-          <% end %>
-        </li>
-          <%= link_to admin_tags_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-tags"></i> タグ管理
-          <% end %>
-        </li>
-        <li class="header_link">
-          <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
-            <i class="fas fa-sign-out-alt"></i> ログアウト
-          <% end %>
-        </li>
+          <li class="header_link">
+            <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
+              <i class="fas fa-users"></i> ユーザー一覧
+            <% end %>
+          </li>
+          <li class="header_link">
+            <%= link_to admin_posts_path, class: 'nav-link text-dark' do %>
+              <i class="fas fa-palette"></i> 投稿一覧
+            <% end %>
+          </li>
+          <li class="header_link">
+            <%= link_to admin_comments_path, class: 'nav-link text-dark' do %>
+              <i class="fas fa-comments"></i> コメント一覧
+            <% end %>
+          </li>
+          <li  class="header_link">
+            <%= link_to admin_tags_path, class: 'nav-link text-dark' do %>
+              <i class="fas fa-tags"></i> タグ管理
+            <% end %>
+          </li>
+          <li class="header_link">
+            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト
+            <% end %>
+          </li>
 
         <% else %>
         
-        <li class="header_link">
-          <%= link_to posts_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-palette"></i> 配色一覧
-          <% end %>
-        <li class="ml-3">
-        <div class="icon">
-          <i class="fas fa-icons fa-lg icon1"></i>
-          <i class="fas fa-stroopwafel icon2"></i>
-          <i class="fas fa-star fa-xs  icon3"></i>
-          <i class="fab fa-galactic-republic icon4"></i>
-          <i class="fas fa-umbrella fa-2x icon4"></i>
-        </div>
+          <li class="header_link">
+            <%= link_to posts_path, class: 'nav-link text-dark' do %>
+              <i class="fas fa-palette"></i> 配色一覧
+            <% end %>
+          <li class="ml-3">
+          <div class="icon">
+            <i class="fas fa-icons fa-lg icon1"></i>
+            <i class="fas fa-stroopwafel icon2"></i>
+            <i class="fas fa-star fa-xs  icon3"></i>
+            <i class="fab fa-galactic-republic icon4"></i>
+            <i class="fas fa-umbrella fa-2x icon4"></i>
+          </div>
 
         <% end %>
       </ul>

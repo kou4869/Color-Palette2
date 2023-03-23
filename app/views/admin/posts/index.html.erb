@@ -1,26 +1,24 @@
-<div class= "admin_posts_index">
-  <div class ="container mt-3">
-    
+<div class= "admin_posts_index pb-2">
+  <div class ="container">
+
     <div class="row index-text pl-3">
       <% if @tag_name.present? %>
         <h3><b><%= @tag_name %>の配色一覧</b></h3>
       <% else %>
-        <h3><b>配色一覧</b></h3>
+        <h3 class="pt-3"><b>配色一覧</b></h3>
       <% end %>
     </div>
-    
+
     <div claas="row">
       <div class="searche pl-2">
         <%= render 'admin/posts/posts_searche', posts: @posts %>
       </div>
     </div>
-    
+
     <!--↓ トップに戻る用のid-->
-    <%= link_to admin_posts_path do %>
-      <span id="page_top"></span>
-    <% end %>
-    
-    <div class="index_list mt-2">
+    <a href="#" id="page_top"></a>
+
+    <div class="index_list my-2">
       <div class="card-deck">
         <% @posts.each do |post| %>
           <div class="col-12 col-md-3">
@@ -29,8 +27,8 @@
         <% end %>
       </div>
     </div>
-    
+
     <%= paginate @posts %>
-    
+
   </div>
 </div>

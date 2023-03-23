@@ -2,13 +2,15 @@ class Admin::TagsController < ApplicationController
 
   def index
     @tag = Tag.new
+    @tags = Tag.all
+    @tags = @tags.order(created_at: :desc)
     
     if params[:latest]
-      @tags = Tag.latest.page(params[:page])
+      @tags = Kaminari.paginate_array(@tags.latest).page(params[:page]).per(8)
     elsif params[:old]
-      @tags = Tag.old.page(params[:page])
+      @tags = Kaminari.paginate_array(@tags.old).page(params[:page]).per(8)
     else
-      @tags = Tag.all
+      @tags = Kaminari.paginate_array(@tags).page(params[:page]).per(8)
     end
   end
 

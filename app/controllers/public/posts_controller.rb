@@ -53,7 +53,8 @@ class Public::PostsController < ApplicationController
     when "avarage_star"
       @posts = @posts.sort_by { |a| a.avarage_star }.reverse
     end
-
+    
+    @posts = @posts.order(created_at: :desc)
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 

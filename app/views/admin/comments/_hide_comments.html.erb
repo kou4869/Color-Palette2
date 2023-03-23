@@ -26,16 +26,17 @@
             <% end %>
           </small>
           <small class="pl-3">
-            <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+            <%= reply.created_at.strftime('%Y/%m/%d %H:%M') %>
           </small>
         </div>
 
         <div class="card-footer text-right">
           <small class="text-black-50">
-            <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+            <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
           </small>
-          <%= link_to '削除する', post_comment_path(comment.post_id, comment.id),
+          <%= link_to '削除する', admin_post_comment_path(comment.post_id, reply.id),
                                   method: :delete,
+                                  data: { confirm: '本当に削除しますか？' },
                                   remote: true,
                                   class: 'btn btn-sm btn-outline-secondary ml-2'
           %>
@@ -49,8 +50,9 @@
     <small class="text-black-50">
       <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
     </small>
-    <%= link_to '削除する', post_comment_path(comment.post_id, comment.id),
+    <%= link_to '削除する', admin_post_comment_path(comment.post_id, comment.id),
                             method: :delete,
+                            data: { confirm: '本当に削除しますか？' },
                             remote: true,
                             class: 'btn btn-sm btn-outline-secondary ml-2'
     %>

@@ -1,21 +1,19 @@
-<div class="admin_user_index">
+<div class="admin_users_index pb-2">
   <div class="container">
   
     <div class="row">
       <h4 class="my-3"><b>ユーザー一覧</b>
         <span class="pl-3">
-          <%= link_to '新着順', admin_users_path(latest: "true") %>
-          |<%= link_to '古い順', admin_users_path(old: "true") %>
+          <%= link_to "新規順", admin_users_path(latest: "true") %>
+          | <%= link_to "古い順", admin_users_path(old: "true") %>
         </span>
       </h4>
     </div>
 
     <!--↓ トップに戻る用のid-->
-    <%= link_to posts_path do %>
-      <span id="page_top"></span>
-    <% end %>
+    <a href="#" id="page_top"></a>
 
-    <table class="table text-secondary">
+    <table class="table text-secondary mb">
       <thead class="table-active text-center">
         <tr>
           <th>ユーザーid</th>
@@ -33,13 +31,15 @@
             <td class="align-middle"><%= user.email %></td>
             <td class="align-middle"><%= user.created_at.strftime('%Y年/%m月/%d日') %></td>
             <td class="align-middle">
-              <%= link_to "編集", admin_user_path(user), class: "btn btn-success" %>
-              <%= link_to "退会", admin_user_path(user), method: :delete, data: { confirm: '本当に退会処理を行いますか？' }, class: "btn btn-danger" %>
+              <%= link_to "編集", admin_user_path(user), class: "btn btn-success mb-1" %>
+              <%= link_to "退会", admin_user_path(user), method: :delete, data: { confirm: '本当に退会処理を行いますか？' }, class: "btn btn-danger mb-1" %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+    
+    <%= paginate @users %>
     
   </div>
 </div>

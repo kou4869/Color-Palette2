@@ -21,6 +21,7 @@ class Admin::PostsController < ApplicationController
       @posts = @posts.sort_by { |a| a.avarage_star }.reverse
     end
     
+    @posts = @posts.order(created_at: :desc)
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
   end
 
@@ -34,6 +35,7 @@ class Admin::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to admin_post_path(@post), notice: "更新が完了しました"
     else
+      
       render :show
     end
   end
