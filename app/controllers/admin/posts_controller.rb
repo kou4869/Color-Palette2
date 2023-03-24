@@ -10,6 +10,9 @@ class Admin::PostsController < ApplicationController
     else
       @posts = Post.all
     end
+    
+    # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
+    params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
 
     #並び替えとタグ検索を同時に行うための記述
     case params[:sort]
@@ -21,8 +24,7 @@ class Admin::PostsController < ApplicationController
       @posts = @posts.sort_by { |a| a.avarage_star }.reverse
     end
     
-    @posts = @posts.order(created_at: :desc)
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(12)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 
   def show

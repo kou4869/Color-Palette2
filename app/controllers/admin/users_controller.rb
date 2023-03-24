@@ -10,14 +10,13 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.all
-    @users = @users.order(created_at: :desc)
     
     if params[:latest]
-      @users = Kaminari.paginate_array(@users.latest).page(params[:page]).per(8)
+      @users = Kaminari.paginate_array(@users.latest).page(params[:page]).per(12)
     elsif params[:old]
-      @users = Kaminari.paginate_array(@users.old).page(params[:page]).per(8)
+      @users = Kaminari.paginate_array(@users.old).page(params[:page]).per(12)
     else
-      @users = Kaminari.paginate_array(@users).page(params[:page]).per(8)
+      @users = Kaminari.paginate_array(@users.latest).page(params[:page]).per(12)
     end
   end
 

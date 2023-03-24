@@ -11,6 +11,9 @@ class Public::UsersController < ApplicationController
     else
       @posts = @user.posts
     end
+    
+    # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
+    params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
 
     #並び替えとタグ検索を同時に行うための記述
     case params[:sort]
@@ -22,7 +25,7 @@ class Public::UsersController < ApplicationController
       @posts = @posts.order(avarage_star: :desc)
     end
 
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(2)
   end
 
   def like

@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
   # repliesは返信されたコメント
   has_many   :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
 
-  validates :comment, presence:true, length: { maximum: 300 }
+  validates :comment, length: { maximum: 300 }
 
   # postの詳細ページで子コメントのみの表示をしないためのscope
   scope :children, -> { where.not(parent_id: nil) }

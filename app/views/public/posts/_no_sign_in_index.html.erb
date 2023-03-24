@@ -12,9 +12,7 @@
   </div>
   
   <!--↓ トップに戻る用のid-->
-  <%= link_to posts_path do %>
-    <span id="page_top"></span>
-  <% end %>
+  <a href="#" id="page_top"></a>
 
   <div claas="row">
     <div class="searche pl-2">
@@ -24,11 +22,9 @@
 
   <div class="mt-3">
     <!--↓ トップに戻る用のid-->
-    <%= link_to posts_path do %>
-      <span id="page_top"></span>
-    <% end %>
+    <a href="#" id="page_top"></a>
 
-    <div class="index_list">
+    <div class="index_list mb-2">
       <div class="card-deck">
         <% posts.each do |post| %>
           <div class="col-12 col-md-3">
