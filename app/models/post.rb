@@ -12,6 +12,7 @@ class Post < ApplicationRecord
   # 投稿された4色の色がすでに同じパターンで投稿されていた場合、投稿ができないようにする
   validates :color1, uniqueness: { scope: [:color2, :color3, :color4], message: "この配色はすでに登録が存在します" }
 
+  # エラーのメッセージで『color1』と表示させないようにしている
   HUMANIZED_ATTRIBUTES = {
     :color1 => "" # don't include column name in error
   }

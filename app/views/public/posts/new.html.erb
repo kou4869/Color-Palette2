@@ -1,6 +1,6 @@
-<div class="posts-new">
+<div class="posts-new py-3">
   <div class="container">
-    <h2 class="font_kaushan pt-4"><strong>【新規配色投稿】</strong></h2>
+    <h2 class="font_kaushan mt-2"><strong>【新規配色投稿】</strong></h2>
 
     <% if flash[:error] %>
       <!--エラーが起こるとnewページへ遷移するが、URLが『/posts』になってしまうのでjavascriptを使用して9行目でURLを『/new』に変更する命令を出している-->
@@ -22,10 +22,10 @@
     <% end %>
 
     <div class="row pt-3 pb-5">
-      <div class="col-12 col-md-5 offset-md-1">
+      <div class="col-12 col-md-5 offset-0 offset-md-1 pb-5">
 
         <!--ひし形に設定のため1→2→4→3の順にidを付属-->
-        <div class="big_diamond">
+        <div class="big_diamond ">
           <div class="square" id="color1">
             <div class="text_box">
               <p class="text-color">color 1</p>
@@ -49,9 +49,15 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-6 mt-3">
+      <div class="col-12 col-md-6">
+        <p class="form_text text-center">
+          下記の『Colorバー』を押下いただきますと色が選択できます。<br>
+          選択された色は左記のひし形に反映され、<br>
+          配色のバランスを確認することが可能です。
+        </p>
+
         <%= form_with model: @post do |f| %>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-12 col-md-4">
 
               <div class="form-group">
@@ -92,7 +98,7 @@
             <div class="col-12 col-md-8">
               <div class="form-group">
                 <b><%= f.label :"配色の説明" %></b>
-                <%= f.text_area :post_introduction, class: "form-control", rows: "5", placeholder: "配色のポイントや紹介などを300文字以内でご入力ください" %>
+                <%= f.text_area :post_introduction, class: "form-control", rows: "5", placeholder: "配色のポイントや紹介などを300文字以内でご記入ください" %>
               </div>
 
               <% if flash[:my_alert] %>
@@ -113,15 +119,19 @@
                 </div>
               </div>
 
-              <div class="post_btn mb-5 pt-2">
+              <div class="post_btn text-right mb-5 pt-2">
                 <%= f.submit "新規投稿", class: 'btn btn-primary' %>
               </div>
             </div>
 
+          </div>
         <% end %>
-      </div>
-
+        
+      </div>  
     </div>
+    
+    <!--↓ トップに戻る用のid-->
+    <a href="#" id="page_top"></a>
 
   </div>
 </div>

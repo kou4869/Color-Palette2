@@ -33,9 +33,6 @@
       <div class="col-12 col-md-9">
         <h3><b>【 配色一覧 】</b></h3>
 
-        <!--↓ トップに戻る用のid-->
-        <a href="#" id="page_top"></a>
-
         <div class="index_list mt-3 mb-2">
           <div class="card-deck">
             <% @posts.each do |post| %>
@@ -49,6 +46,9 @@
         <%= paginate @posts %>
 
       </div>
+      
+      <!--↓ トップに戻る用のid-->
+      <a href="#" id="page_top"></a>
 
     </div>
   </div>

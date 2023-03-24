@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.edit_name {
+    font-family: 'Kaushan', cursive, sans-serif;
+    color: #0000cd;
+}
+
+.edit_text {
+  padding-top: 20px;
+}
+
+
 .edit-img {
   within: 200px;
   height: 200px;
@@ -29,10 +39,6 @@
   margin-right: 100px;
 }
 
-.edit_text {
-  padding-top: 80px;
-}
-
 .users_like {
   padding-bottom: 35px;
 }
@@ -43,3 +49,4 @@
   font-family: 'Zen Kurenaido', sans-serif;
   font-weight: bold;
 }
+

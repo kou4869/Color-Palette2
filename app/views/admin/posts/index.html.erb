@@ -15,9 +15,6 @@
       </div>
     </div>
 
-    <!--↓ トップに戻る用のid-->
-    <a href="#" id="page_top"></a>
-
     <div class="index_list my-2">
       <div class="card-deck">
         <% @posts.each do |post| %>
@@ -29,6 +26,9 @@
     </div>
 
     <%= paginate @posts %>
+    
+    <!--↓ トップに戻る用のid-->
+    <a href="#" id="page_top"></a>
 
   </div>
 </div>

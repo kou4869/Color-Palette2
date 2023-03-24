@@ -98,7 +98,6 @@ Post.create!(
       color3: '#7fffd4',
       color4: '#fff8dc',
       post_introduction: '淡い系統の色でまとめました'
-      tag_id: 3,
     },
     { user_id: User.find_by(name: '小鉄').id,
       color1: '#00bfff',
@@ -156,6 +155,13 @@ Post.create!(
       color4: '#98fb98',
       post_introduction: '若葉をイメージ'
     },
+    { user_id: User.find_by(name: '鈴').id,
+      color1: '#ff4500',
+      color2: '#ffd700',
+      color3: '#2e8b57',
+      color4: '#00bfff',
+      post_introduction: '『Color Palette』のロゴの色！'
+    },
   ]
 )
 
@@ -170,7 +176,8 @@ introduction_tag_ids_hash = {
   'パステル系の色の組み合わせ' => [ 'パステル', '彩', '緑系' ],
   '黄色系統でまとめました' => [ '暖色系', 'ライト系', '黄系' ],
   'あやしい雰囲気の組み合わせ' => [ 'ダーク系', 'きばつ' ],
-  '若葉をイメージ' => [ '緑系' ]
+  '若葉をイメージ' => [ '緑系' ],
+  '『Color Palette』のロゴの色！' => [ '暖色系', '赤系', '緑系' ]
 }
 
 

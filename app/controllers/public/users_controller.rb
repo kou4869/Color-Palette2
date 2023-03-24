@@ -25,7 +25,7 @@ class Public::UsersController < ApplicationController
       @posts = @posts.order(avarage_star: :desc)
     end
 
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(2)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 
   def like
@@ -40,6 +40,9 @@ class Public::UsersController < ApplicationController
       @favorite_posts = Post.where(id: (@favorite_posts.ids & tag.posts.ids))
       @tag_name = tag.tag_name
     end
+    
+    # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
+    params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
 
     #並び替えとタグ検索を同時に行うための記述
     case params[:sort]
@@ -52,7 +55,7 @@ class Public::UsersController < ApplicationController
     end
     
 
-    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(12)
+    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(8)
   end
 
   def quit
