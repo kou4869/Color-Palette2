@@ -1,6 +1,12 @@
 <h5><b> コメント一覧(<%= comments.count %>件)</b></h5>
 <hr>
-<%#= render 'layouts/flash_messages' %>
+
+<% if flash[:error] %>
+  <div class="alert alert-danger">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
 <% comments.first(2).each do |comment| %>
   <%= render partial: 'public/comments/hide_comments', locals: {comment: comment, comment_reply: comment_reply} %>
 <% end %>

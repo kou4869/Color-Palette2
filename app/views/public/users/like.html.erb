@@ -1,7 +1,7 @@
 <div class="users_like pt-3">
   <div class ="container-fluid px-5">
     <div class="row">
-      <div class="col-12 col-md-2 user_info mb-3">
+      <div class="col-12 col-md-2 user_info mt-5">
         <h2 class="user_title text-center">User info</h2>
         <%= render 'public/users/public_sidebar', user: @user %>
       </div>
@@ -16,27 +16,21 @@
             <%= render 'public/users/users_like_searche', posts: @favorite_posts, user: @user %>
           </div>
         </div>
-        
+
         <div class="index_list my-2">
-          <% if @favorite_posts.any? %>
-            <div class="card-deck mt-3">
-              <% @favorite_posts.each do |favorite_post| %>
-                <div class="col-12 col-md-3">
-                  <%= render 'public/posts/index', post: favorite_post %>
-                </div>
-              <% end %>
-            </div>
-          <% else %>
-            <p class="users_text ml-4">
-              ブックマーク登録がありません。
-            </p>
-          <% end %>
+          <div class="card-deck mt-3">
+            <% @favorite_posts.each do |favorite_post| %>
+              <div class="col-12 col-md-3">
+                <%= render 'public/posts/index', post: favorite_post %>
+              </div>
+            <% end %>
+          </div>
         </div>
-        
+
         <%= paginate @favorite_posts %>
-        
+
       </div>
-      
+
       <!--↓ トップに戻る用のid-->
       <a href="#" id="page_top"></a>
 

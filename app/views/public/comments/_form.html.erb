@@ -1,9 +1,15 @@
 
 <%= form_with model: [post, comment], local: true do |f| %>
   <div class="form-group">
-    <b><%= f.label "コメントを投稿する" %></b>
+    <p class="comment_text pl-3"><b>
+      作品に関するコメントは各作品１回までです。<br>
+      コメントに対しての返信は何回でも可能です。
+    </b></p>
     <div class="mb-2 ml-2" id="comment_raty"></div>
-    <%= f.text_area :comment, size: '3x3', autocomplete: 'off', placeholder: "コメントを入力してください", class: 'form-control' %>
+    <%= f.text_area :comment, size: "3x3", autocomplete: "off",
+                              placeholder: "星評価を行い、コメントを150文字以内で入力してください。※星評価のみの投稿も可能です。",
+                              class: "form-control"
+    %>
   </div>
   <div class="text-right mb-2">
     <%= f.submit "コメントする", class: 'btn btn-warning text-white' %>

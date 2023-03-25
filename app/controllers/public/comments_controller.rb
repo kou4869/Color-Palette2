@@ -5,8 +5,14 @@ class  Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
-    @comment.save
-    redirect_back(fallback_location: root_path, notice: "コメントを送信しました")
+    if @comment.save
+      redirect_back(fallback_location: root_path, notice: "コメントを送信しました")
+    else
+      @comments = @post.comments.where(parent_id: nil).order(created_at: :desc) # コメント一覧表示で使用する全コメントデータ新着順で表示
+      # byebug
+      flash[:error] = "コメント・返信は150文字以内でご入力してください"
+      render 'public/posts/show'
+    end
   end
 
   def destroy

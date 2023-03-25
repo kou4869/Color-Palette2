@@ -3,7 +3,7 @@ class Admin::CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
-    
+
     if params[:latest]
       @comments = Kaminari.paginate_array(@comments.latest).page(params[:page]).per(8)
     elsif params[:old]

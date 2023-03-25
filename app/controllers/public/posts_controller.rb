@@ -43,10 +43,10 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.all
     end
-    
+
     # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
     params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
-    
+
     #並び替えとタグ検索を同時に行うための記述
     case params[:sort]
     when "latest"
@@ -77,7 +77,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: "投稿を削除しました"
+    redirect_back(fallback_location: root_path, notice: "投稿を削除しました")
   end
 
   private

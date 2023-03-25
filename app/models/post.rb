@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
 
   validates :color1, :color2, :color3, :color4,   presence: true
-  validates :post_introduction,                   length: { maximum: 300, message: "は300文字以内で入力してください"}
+  validates :post_introduction,                   length: { maximum: 300, message: "は300文字以内で入力してください" }
   # 投稿された4色の色がすでに同じパターンで投稿されていた場合、投稿ができないようにする
   validates :color1, uniqueness: { scope: [:color2, :color3, :color4], message: "この配色はすでに登録が存在します" }
 

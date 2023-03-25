@@ -4,11 +4,11 @@
       <h4 class="my-3"><b>コメント一覧</b>
         <span class="pl-3">
           <%= link_to '新着順', admin_comments_path(latest: "true") %>
-            |<%= link_to '古い順', admin_comments_path(old: "true") %>
+          | <%= link_to '古い順', admin_comments_path(old: "true") %>
         </span>
       </h4>
     </div>
-  
+
     <table class="table table-hover pb-2">
       <thead class="table-active text-center">
         <tr>
@@ -20,40 +20,39 @@
         </tr>
       </thead>
       <tdoby>
-      <% @comments.each do |comment| %>
-        <tr class="light-text text-center">
-          <td class="align-middle">
-            <%= comment.created_at.strftime("%Y年/%m月/%d日 %H:%M") %>
-          </td>
-          <td>
-            <div class="comment_big_diamond">
-              <div class="comment_square" style="background-color: <%= comment.post.color1 %>"></div>
-              <div class="comment_square" style="background-color: <%= comment.post.color2 %>"></div>
-              <div class="comment_square" style="background-color: <%= comment.post.color4 %>"></div>
-              <div class="comment_square" style="background-color: <%= comment.post.color3 %>"></div>
-            </div>
-          </td>
-          <td class="align-middle">
-            <%= link_to comment.comment, admin_post_path(comment.post_id) %>
-          </td>
-          <td class="align-middle">
-            <%= link_to admin_user_path(comment.user_id) do %>
-              id : <%= comment.user_id %> /
-              name : <%= comment.user.name %>
-            <% end %>
-          </td>
-          <td class="align-middle">
-            <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
-          </td>
-        </tr>
-      <% end %>
+        <% @comments.each do |comment| %>
+          <tr class="light-text text-center">
+            <td class="align-middle">
+              <%= comment.created_at.strftime("%Y年/%m月/%d日 %H:%M") %>
+            </td>
+            <td>
+              <div class="comment_big_diamond">
+                <div class="comment_square" style="background-color: <%= comment.post.color1 %>"></div>
+                <div class="comment_square" style="background-color: <%= comment.post.color2 %>"></div>
+                <div class="comment_square" style="background-color: <%= comment.post.color4 %>"></div>
+                <div class="comment_square" style="background-color: <%= comment.post.color3 %>"></div>
+              </div>
+            </td>
+            <td class="align-middle">
+              <%= link_to comment.comment, admin_post_path(comment.post_id) %>
+            </td>
+            <td class="align-middle">
+              <%= link_to admin_user_path(comment.user_id) do %>
+                id : <%= comment.user_id %> /
+                name : <%= comment.user.name %>
+              <% end %>
+            </td>
+            <td class="align-middle">
+              <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
       </tdoby>
     </table>
-  
+
     <%= paginate @comments %>
-    
+
     <!--↓ トップに戻る用のid-->
-    <a href="#" id="page_top"></a>
-  
+  <a href="#" id="page_top"></a>
   </div>
 </div>

@@ -1,16 +1,16 @@
 <div class="posts-edit">
   <div class="container-fluid px-5">
     <div class="row">
-      <div class="col-12 col-md-2 mt-3">
-        <h2 class="user_title">User info</h2>
+      <div class="col-12 col-md-2 mt-5">
+        <h2 class="user_title text-center">User info</h2>
         <%= render 'public/users/public_sidebar', user: current_user %>
       </div>
 
       <div class="col-12 col-md-10">
         <div class="row">
 
-          <div class="col-12 col-md-5  mt-3 mb-5">
-            <h2 class="font_kaushan"><strong>
+          <div class="col-12 col-md-5 mt-3 mb-5">
+            <h2 class="font_kaushan text-center"><strong>
               【
               <%= link_to user_my_page_path(@post.user.id) do %>
                 <%= @post.user.name %>さん
@@ -18,7 +18,7 @@
               の色彩編集】
             </strong></h2>
 
-            <div class="row pt-3">
+            <div class="row pt-4">
               <div class="col-12 col-md-5">
       
                 <!--ひし形に設定のため1→2→4→3の順にidを付属-->

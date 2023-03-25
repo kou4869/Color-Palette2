@@ -38,10 +38,11 @@ main {
   background-image: image-url("leaf.jpg");
   background-position: center;
   background-size: cover;
+  min-height: 73vh;
 }
 
 header {
-  background: lightyellow;
+  background: #ffffe0;
 }
 
 .header_link {
@@ -51,7 +52,7 @@ header {
 
 footer {
   width: 100%;
-  background: lightcyan;
+  background: #e0ffff;
   margin: 0 auto;
   position: fixed;
   bottom: 0;

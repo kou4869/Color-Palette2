@@ -6,10 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create!(
-  email: 'color@admin',
-  password: 'coloradmin'
-)
+if (Admin.where(email: 'color@admin').count == 0)
+  Admin.create!(
+    email: 'color@admin',
+    password: 'coloradmin'
+  )
+end
 
 
 User.create!(
