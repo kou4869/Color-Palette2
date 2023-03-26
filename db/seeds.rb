@@ -36,7 +36,7 @@ User.create!(
       password: 'kotetucat',
       introduction: '青系統の配色が気になる'
     },
-    { name: '梅',
+    { name: 'うめ',
       email: 'ume@cat',
       password: 'umecat',
       introduction: '白に合う色を色々見てる'
@@ -46,7 +46,7 @@ User.create!(
       password: 'windcat',
       introduction: '見る専門です'
     },
-    { name: '鈴',
+    { name: 'リン',
       email: 'rin@cat',
       password: 'rindcat',
       introduction: '投稿用アカウント'
@@ -129,14 +129,14 @@ Post.create!(
       color4: '#7fffd4',
       post_introduction: 'パステル系の色の組み合わせ'
     },
-    { user_id: User.find_by(name: '鈴').id,
+    { user_id: User.find_by(name: 'リン').id,
       color1: '#ffff00',
       color2: '#ffe4b5',
       color3: '#fffacd',
       color4: '#f0e68c',
       post_introduction: '黄色系統でまとめました'
     },
-    { user_id: User.find_by(name: '鈴').id,
+    { user_id: User.find_by(name: 'リン').id,
       color1: '#f8f8ff',
       color2: '#fffaf0',
       color3: '#e6e6fa',
@@ -157,7 +157,7 @@ Post.create!(
       color4: '#98fb98',
       post_introduction: '若葉をイメージ'
     },
-    { user_id: User.find_by(name: '鈴').id,
+    { user_id: User.find_by(name: 'うめ').id,
       color1: '#ff4500',
       color2: '#ffd700',
       color3: '#2e8b57',
