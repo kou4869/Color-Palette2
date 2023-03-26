@@ -31,8 +31,12 @@
                 <% end %>
               </div>
             </div>
+          <% elsif @tag_name.present? && @posts.empty? %>
+            <p class="users_text mt-3 ml-4">
+              『 <%= @tag_name %> 』が登録された配色はありません。
+            </p>
           <% else %>
-            <p class="users_text ml-4">
+            <p class="users_text mt-3 ml-4">
               配色の登録がありません。
             </p>
           <% end %>

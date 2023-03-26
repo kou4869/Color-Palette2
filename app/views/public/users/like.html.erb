@@ -17,15 +17,21 @@
           </div>
         </div>
 
-        <div class="index_list my-2">
-          <div class="card-deck mt-3">
-            <% @favorite_posts.each do |favorite_post| %>
-              <div class="col-12 col-md-3">
-                <%= render 'public/posts/index', post: favorite_post %>
-              </div>
-            <% end %>
+        <% if @favorite_posts.any? %>
+          <div class="index_list mb-2">
+            <div class="card-deck mt-3">
+              <% @favorite_posts.each do |favorite_post| %>
+                <div class="col-12 col-md-3">
+                  <%= render 'public/posts/index', post: favorite_post %>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% else @tag_name.present? && @favorite_posts.empty? %>
+          <p class="users_text mt-3 ml-4">
+            ブックマークに『 <%= @tag_name %> 』が登録された配色はありません。
+          </p>
+        <% end %>
 
         <%= paginate @favorite_posts %>
 
