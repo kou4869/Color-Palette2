@@ -19,7 +19,7 @@
   <tr>
     <td>
       <b>introduction</b><br>
-      <%= user.introduction_was %>
+      <%=safe_join(user.introduction_was.split("\n"),tag(:br))%>
     </td>
   </tr>
   <% if @user.favorites.any? %>

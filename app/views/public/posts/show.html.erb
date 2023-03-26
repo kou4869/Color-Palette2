@@ -105,7 +105,9 @@
               <div class="col-12 col-md-12 post_introduction">
                 <p class="color-text pt-2 pl-2"><b>配色紹介</b></p>
                 <hr>
-                <p class="align-middle pl-2"><%= @post.post_introduction %></p>
+                <p class="align-middle pl-2">
+                  <%=safe_join(@post.post_introduction.split("\n"),tag(:br))%>
+                </p>
               </div>
             </div>
 
