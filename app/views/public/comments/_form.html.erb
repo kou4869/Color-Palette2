@@ -1,13 +1,17 @@
-
 <%= form_with model: [post, comment], local: true do |f| %>
   <div class="form-group">
     <p class="comment_text pl-3"><b>
       作品に関するコメントは各作品１回までです。<br>
-      コメントに対しての返信は何回でも可能です。
+      コメントに対しての返信は何回でも行うことができます。<br>
+      評価やコメントをやり直したい場合は<br>    
+      お手数ですが一度コメントを削除いただき、<br>
+      再度投稿をお願いいたします。
     </b></p>
+    <hr>
     <div class="mb-2 ml-2" id="comment_raty"></div>
     <%= f.text_area :comment, size: "3x3", autocomplete: "off",
-                              placeholder: "星評価を行い、コメントを150文字以内で入力してください。※星評価のみの投稿も可能です。",
+                              placeholder: "評価を行い、コメントを150文字以内で入力してください。
+※星評価のみの投稿も可能です。",
                               class: "form-control"
     %>
   </div>
