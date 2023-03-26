@@ -27,13 +27,19 @@
           <div class="mt-3">
   
             <div class="index_list mb-2">
-              <div class="card-deck">
-                <% @posts.each do |post| %>
-                  <div class="col-12 col-md-3">
-                    <%= render 'public/posts/index', post: post %>
-                  </div>
-                <% end %>
-              </div>
+              <% if @posts.any? %>
+                <div class="card-deck">
+                  <% @posts.each do |post| %>
+                    <div class="col-12 col-md-3">
+                      <%= render 'public/posts/index', post: post %>
+                    </div>
+                  <% end %>
+                </div>
+              <% else @tag_name.present? && @posts.empty? %>
+                <p class="users_text mt-3 ml-4">
+                  『 <%= @tag_name %> 』が登録された配色はありません。
+                </p>
+              <% end %>
             </div>
             
             <%= paginate @posts %>

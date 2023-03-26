@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-12 col-md-4 offset-0 offset-md-1">
+      <div class="col-12 col-md-4 offset-0 offset-md-1 mb-3">
         <h4 class="mb-5"><strong>タグ一覧・追加・編集</strong></h4>
         <tadle class="table table-borderless">
           <%= form_with model: [:admin, @tag] do |tag| %>
@@ -20,12 +20,12 @@
       </div>
 
       <div class="col-12 col-md-6">
-        
+
         <span class="pl-3">
           <%= link_to '新着順', admin_tags_path(latest: "true") %>
           |<%= link_to '古い順', admin_tags_path(old: "true") %>
         </span>
-        
+
         <table class="table text-secondary">
           <thead>
             <tr class="text-center">
@@ -39,10 +39,10 @@
               <tr>
                 <%= form_with model: [:admin, tag], method: :patch do |t| %>
                   <td class="text-center align-middle"><%= t.text_field :tag_name, required:true %></td>
-                  <td align="center"><%= PostTag.where(tag_id: tag.id).count %></td>
+                  <td class="text-center align-middle"><%= PostTag.where(tag_id: tag.id).count %></td>
                   <td>
                     <%= t.submit "変更を保存", class: 'btn btn-success' %>
-                    <%= link_to "削除", admin_tag_path(tag), method: :delete, class: "btn btn-danger" %>
+                    <%= link_to "削除", admin_tag_path(tag), method: :delete, data: { confirm: '本当に削除ますか？' }, class: "btn btn-danger" %>
                   </td>
                 <% end %>
               </tr>
@@ -53,7 +53,7 @@
         <%= paginate @tags %>
 
       </div>
-      
+
       <!--↓ トップに戻る用のid-->
       <a href="#" id="page_top"></a>
 
