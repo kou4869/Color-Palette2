@@ -28,7 +28,7 @@
       </p>
     </div>
 
-    <div class="tag-item">
+    <div class="tag-item text-center">
       <% post.tags.each do |tag| %>
         <%= link_to admin_posts_path(tag_id: tag.id), class: "btn btn-outline-info btn-sm" do %>
           <%= tag.tag_name %>
@@ -46,21 +46,21 @@
         <i class="fas fa-comments"></i>
         <%= post.comments.count %>
       </span>
-      
+
       <span class="align-middle pl-2">
         <%= link_to admin_post_path(post.id), method: :delete, data: { confirm: '本当に削除ますか？' }, class: "btn btn-outline-danger btn-sm" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </span>
     </div>
-    
+
     <p class="post_days text-center pt-2">
       公開日 : <%= post.created_at.strftime("%Y年/%m月/%d日") %>
     </p>
 
   </div>
 </div>
- 
+
 
 
 
