@@ -3,7 +3,7 @@
     <div class="row">
 
       <div class="col-12 col-md-3">
-        <h3><b>【<%= @user.name %>さんの詳細】</b></h3>
+        <h3 class="text-center"><b>【<%= @user.name %>さんの詳細】</b></h3>
         <div class="text-center pt-3">
           <%= image_tag @user.get_profile_image, width: 200 %>
         </div>
@@ -34,19 +34,25 @@
         <h3><b>【 配色一覧 】</b></h3>
 
         <div class="index_list mt-3 mb-2">
-          <div class="card-deck">
-            <% @posts.each do |post| %>
-              <div class="col-12 col-md-3">
-                <%= render 'admin/users/user_post', post: post %>
-              </div>
-            <% end %>
-          </div>
+          <% if @posts.any? %>
+            <div class="card-deck">
+              <% @posts.each do |post| %>
+                <div class="col-12 col-md-3">
+                  <%= render 'admin/users/user_post', post: post %>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="users_text mt-3 ml-4">
+              配色の登録がありません。
+            </p>
+          <% end %>
         </div>
 
         <%= paginate @posts %>
 
       </div>
-      
+
       <!--↓ トップに戻る用のid-->
       <a href="#" id="page_top"></a>
 
