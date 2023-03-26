@@ -106,7 +106,7 @@
                 <p class="color-text pt-2 pl-2"><b>配色紹介</b></p>
                 <hr>
                 <p class="align-middle pl-2">
-                  <%=safe_join(@post.post_introduction.split("\n"),tag(:br))%>
+                  <%= safe_join(@post.post_introduction.split("\n"),tag(:br)) %>
                 </p>
               </div>
             </div>
