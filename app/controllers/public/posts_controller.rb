@@ -8,8 +8,8 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if (1..5).exclude?(@post.tags.length)
-      flash[:my_alert] = "タグは１～５個まで設定できます。"
+    if (1..4).exclude?(@post.tags.length)
+      flash[:my_alert] = "タグは１～４個まで設定できます。"
       render :new
       return
     end

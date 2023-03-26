@@ -3,13 +3,12 @@ class Public::UsersController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
+    @posts = @user.posts
 
     if params[:tag_id].present?
       tag = Tag.find(params[:tag_id])
-      @posts = tag.posts
+      @posts = @posts.where(id: tag.posts.ids)
       @tag_name = tag.tag_name
-    else
-      @posts = @user.posts
     end
 
     # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定

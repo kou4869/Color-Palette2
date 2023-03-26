@@ -31,7 +31,7 @@
       </div>
     <% end %>
 
-    <div class="tag-item">
+    <div class="tag-item text-center">
       <% post.tags.each do |tag| %>
         <%= link_to posts_path(tag_id: tag.id), class: "btn btn-outline-info btn-sm" do %>
           <%= tag.tag_name %>
