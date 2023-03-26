@@ -8,6 +8,7 @@ class  Public::CommentsController < ApplicationController
     if @comment.save
       redirect_back(fallback_location: root_path, notice: "コメントを送信しました")
     else
+      @user = current_user
       @comments = @post.comments.where(parent_id: nil).order(created_at: :desc) # コメント一覧表示で使用する全コメントデータ新着順で表示
       # byebug
       flash[:error] = "コメント・返信は150文字以内でご入力してください"
