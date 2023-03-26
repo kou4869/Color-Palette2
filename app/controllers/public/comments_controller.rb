@@ -6,7 +6,7 @@ class  Public::CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to post_path(@post), notice: "コメントを送信しました"
+      redirect_to post_path(@post), notice: "評価を投稿しました"
     else
       @user = current_user
       @comments = @post.comments.where(parent_id: nil).order(created_at: :desc) # コメント一覧表示で使用する全コメントデータ新着順で表示
@@ -19,7 +19,7 @@ class  Public::CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_back(fallback_location: root_path, notice: "コメントを削除しました")
+    redirect_back(fallback_location: root_path, notice: "評価を削除しました")
   end
 
   private
