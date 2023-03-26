@@ -1,4 +1,4 @@
-<div class="text-center pt-3">
+<div class="text-center pt-2">
   <%= image_tag user.get_profile_image, width: 120 %>
 </div>
 <% if user.id == current_user.id %>
@@ -13,16 +13,16 @@
   <tr>
     <td>
       <b>name</b><br>
-      <%= user.name_was %>
+      <%= user.name %>
       </td>
   </tr>
   <tr>
     <td>
       <b>introduction</b><br>
-      <%= safe_join(user.introduction_was.split("\n"),tag(:br)) %>
+      <%= safe_join(user.introduction.split("\n"),tag(:br)) %>
     </td>
   </tr>
-  <% if @user.favorites.any? %>
+  <% if user.favorites.any? %>
     <tr>
       <td class="text-center">
         <%= link_to user_like_path(user) do %>
@@ -33,7 +33,7 @@
       </td>
     </tr>
   <% end %>
-  <% if @user.posts.any? %>
+  <% if user.posts.any? %>
     <tr>
       <td class="text-center">
         <%= link_to user_my_page_path(user) do %>
