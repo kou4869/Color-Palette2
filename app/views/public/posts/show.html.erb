@@ -102,9 +102,10 @@
           </div>
 
             <div class="row mt-4">
-              <div class="col post_introduction">
-                <p class="color-text"><b>配色紹介</b></p>
-                <%= @post.post_introduction %>
+              <div class="col-12 col-md-12 post_introduction">
+                <p class="color-text pt-2 pl-2"><b>配色紹介</b></p>
+                <hr>
+                <p class="align-middle pl-2"><%= @post.post_introduction %></p>
               </div>
             </div>
 
@@ -130,16 +131,16 @@
             <% end %>
           </div>
         </div>
-  
+
       <% else %>
-  
+
         <%= render partial: 'public/posts/no_sign_in_show', locals: { post: @post, comments: @comments, comment_reply: @comment_reply} %>
-  
+
       <% end %>
-  
+
       <!--↓ トップに戻る用のid-->
       <a href="#" id="page_top"></a>
-  
+
     </div>
   </div>
 </div>

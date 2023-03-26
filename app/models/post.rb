@@ -8,13 +8,14 @@ class Post < ApplicationRecord
 
 
   validates :color1, :color2, :color3, :color4,   presence: true
-  validates :post_introduction,                   length: { maximum: 300, message: "は300文字以内で入力してください" }
+  validates :post_introduction,                   length: { maximum: 300, message: "配色の説明は300文字以内で入力してください" }
   # 投稿された4色の色がすでに同じパターンで投稿されていた場合、投稿ができないようにする
   validates :color1, uniqueness: { scope: [:color2, :color3, :color4], message: "この配色はすでに登録が存在します" }
 
-  # エラーのメッセージで『color1』と表示させないようにしている
+  # エラーのメッセージで『color1』と『post_introduction』表示させないようにしている
   HUMANIZED_ATTRIBUTES = {
-    :color1 => "" # don't include column name in error
+    :color1 => "",
+    :post_introduction => ""#
   }
 
   def self.human_attribute_name(attr, options={})
