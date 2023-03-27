@@ -3,7 +3,7 @@
     <p class="comment_text pl-3"><b>
       作品に関するコメントは各作品１回までです。<br>
       コメントに対しての返信は何回でも行うことができます。<br>
-      評価やコメントをやり直したい場合は<br>    
+      評価やコメントをやり直したい場合は<br>
       お手数ですが一度コメントを削除いただき、<br>
       再度投稿をお願いいたします。
     </b></p>
@@ -22,8 +22,9 @@
 
 
 <script>
-var elem = document.getElementById('comment_raty');
-var opt = {  
+var elem = document.getElementById('comment_raty');  //このビューで表示する星は新規で評価を行うための物のみなので、idの指定は無し
+elem.innerHTML = '';
+var opt = {
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
@@ -31,3 +32,6 @@ var opt = {
   };
   raty(elem,opt);
 </script>
+
+<!--scriptの2行目　ブラウザの←や→を行ったときに星が再度読み込まれ、記憶されている星にプラスする形で表示されてしまうため、一度表示を削除して再度処理を実行して
+いる-->

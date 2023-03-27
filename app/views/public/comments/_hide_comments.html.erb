@@ -76,6 +76,7 @@
 <script>
 var showRateElement = document.getElementById('show_raty_<%= comment.id %>');
 //show_raty_<%#= comment.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためcomment.idを指定する
+showRateElement.innerHTML = '';
 var showOpt = {
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",

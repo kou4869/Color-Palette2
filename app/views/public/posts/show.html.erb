@@ -63,33 +63,33 @@
             </div>
 
             <div class="row mt-3">
-            <table class="table ball-item">
-              <thead class="border-none">
-                <tr>
-                  <td>
-                    <div class="color-ball" style="background-color: <%= @post.color1 %>"></div>
-                  </td>
-                  <td>
-                    <div class="color-ball" style="background-color: <%= @post.color2 %>"></div>
-                  </td>
-                  <td>
-                    <div class="color-ball" style="background-color: <%= @post.color3 %>"></div>
-                  </td>
-                  <td>
-                    <div class="color-ball" style="background-color: <%= @post.color4 %>"></div>
-                  </td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="color-code"><%= @post.color1 %></td>
-                  <td class="color-code"><%= @post.color2 %></td>
-                  <td class="color-code"><%= @post.color3 %></td>
-                  <td class="color-code"><%= @post.color4 %></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              <table class="table ball-item">
+                <thead class="border-none">
+                  <tr>
+                    <td>
+                      <div class="color-ball" style="background-color: <%= @post.color1 %>"></div>
+                    </td>
+                    <td>
+                      <div class="color-ball" style="background-color: <%= @post.color2 %>"></div>
+                    </td>
+                    <td>
+                      <div class="color-ball" style="background-color: <%= @post.color3 %>"></div>
+                    </td>
+                    <td>
+                      <div class="color-ball" style="background-color: <%= @post.color4 %>"></div>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="color-code"><%= @post.color1 %></td>
+                    <td class="color-code"><%= @post.color2 %></td>
+                    <td class="color-code"><%= @post.color3 %></td>
+                    <td class="color-code"><%= @post.color4 %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="row">
             <div class="tag-item">
@@ -149,6 +149,7 @@
 
 <script>
 var showRateElement = document.getElementById('active_raty');  //このビュー(部分テンプレートは除外)で表示する星は平均点のみなので、idの指定は無し
+showRateElement.innerHTML = '';
 var showOpt = {
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
@@ -156,6 +157,9 @@ var showOpt = {
     scoreName: "comment[star]",
     score: "<%= @post.avarage_star %>",  //モデルで定義した『avarage_stay』を利用。
     readOnly: true
-  };
-  raty(showRateElement,showOpt);
+};
+raty(showRateElement,showOpt);
 </script>
+
+<!--scriptの2行目　ブラウザの←や→を行ったときに星が再度読み込まれ、記憶されている星にプラスする形で表示されてしまうため、一度表示を削除して再度処理を実行して
+いる-->
