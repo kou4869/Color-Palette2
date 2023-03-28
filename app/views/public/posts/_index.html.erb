@@ -45,6 +45,10 @@
           <%= render "public/favorites/favorite", post: post %>
         </span>
       <% end %>
+      <span class="comments align-middle pl-2", style="color: #fa8072">
+        <i class="fas fa-comments"></i>
+        <%= post.comments.count %>
+      </span>
 
       <% if post.user == current_user %>
         <span class="align-middle pl-2">
