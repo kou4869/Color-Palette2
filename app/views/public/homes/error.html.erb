@@ -2,8 +2,31 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-8 offset-0 offset-md-2 mt-3">
-        <h2 class="text-center">お探しのページは存在しません</h2>
-        <p class="mt-5">以下の項目より目的のページへお進みください</p>
+        
+        <h2 class="error_text text-center">お探しのページは存在しません</h2>
+        <p class="font_kaushan text-center mt-4">以下の項目より目的のページへお進みください</p>
+        
+        <div class="row mt-5">
+          <div class="col-12 col-md-4 offset-0 offset-md-2 mb-5">
+            <div class="error_diamond1">
+              <%= link_to root_path, class: "error_link" do %>
+                トップ<br>
+                ページ
+              <% end %>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 mb-5">
+            <div class="error_diamond2">
+              <%= link_to :back, class: "error_link" do %>
+                <p class="text-center pt-3">
+                  前ページへ
+                  戻る
+                </p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
