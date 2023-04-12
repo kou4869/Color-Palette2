@@ -10,7 +10,7 @@ class Admin::PostsController < ApplicationController
     else
       @posts = Post.all
     end
-    
+
     # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
     params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
 
@@ -23,13 +23,14 @@ class Admin::PostsController < ApplicationController
     when "avarage_star"
       @posts = @posts.sort_by { |a| a.avarage_star }.reverse
     end
-    
+
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @comments = @post.comments.where(parent_id: nil).order(created_at: :desc) # コメント一覧表示で使用する全コメントデータ新着順で表示
   end
 
   def update
@@ -37,7 +38,7 @@ class Admin::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to admin_post_path(@post), notice: "更新が完了しました"
     else
-      
+
       render :show
     end
   end

@@ -80,7 +80,7 @@
             </tbody>
           </table>
         </div>
-        
+
         <div class="row">
           <div class="tag-item">
           <% @post.tags.each do |tag| %>
@@ -105,27 +105,27 @@
             <% end %>
           </div>
         </div>
-            
+
         <div class="row mt-4 ml-4">
           <% if @post.comments.where(parent_id: nil).count.zero? %>
           <!-- ↑ モデルで使用した『comments.where(parent_id: nil).count.zero?』で『parent_id: nil』だった時(Postに対するコメントだった時)という条件を設けている-->
             <p class="active_text"><b>レビューがありません</b></p>
           <% else %>
-            <p class="active_text"><b>レビュー平均：</b> 
+            <p class="active_text"><b>レビュー平均：</b>
               <span id="admin_active_raty"></span>
             </p>
           <% end %>
         </div>
-        
+
         <div class="row mt-5">
           <div class="col-12 col-md-12">
             <%= render partial: 'admin/comments/comment',locals: { post: @post, comments: @comments, comment_reply: @comment_reply } %>
           </div>
         </div>
-        
+
       </div>
     </div>
-    
+
     <!--↓ トップに戻る用のid-->
     <a href="#" id="page_top"></a>
 

@@ -34,7 +34,11 @@
               </div>
             </td>
             <td class="align-middle">
-              <%= link_to comment.comment, admin_post_path(comment.post_id) %>
+              <% if comment.comment.present? %>
+                <%= link_to comment.comment, admin_post_path(comment.post_id) %>
+              <% else %>
+                <span>星レビューのみの投稿です</span>
+              <% end %>
             </td>
             <td class="align-middle">
               <%= link_to admin_user_path(comment.user_id) do %>
