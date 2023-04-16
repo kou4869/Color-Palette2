@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     get "no_page" => "homes#error"
-    get "explanation" => "homes#explanation"
     resources :users, only: [:destroy] do
       get "my_page" => "users#index"
       get "information/edit" => "users#edit"

@@ -45,10 +45,12 @@
           <%= render "public/favorites/favorite", post: post %>
         </span>
       <% end %>
-      <span class="comments align-middle pl-2", style="color: #fa8072">
-        <i class="fas fa-comments"></i>
-        <%= post.comments.count %>
-      </span>
+      <%= link_to post_path(post.id, anchor: 'comment'), :style => "text-decoration: none" do %>
+        <span class="comments align-middle pl-2", style="color: #fa8072">
+          <i class="fas fa-comments"></i>
+          <%= post.comments.count %>
+        </span>
+      <% end %>
 
       <% if post.user == current_user %>
         <span class="align-middle pl-2">

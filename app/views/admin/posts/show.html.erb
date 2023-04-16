@@ -119,7 +119,9 @@
 
         <div class="row mt-5">
           <div class="col-12 col-md-12">
-            <%= render partial: 'admin/comments/comment',locals: { post: @post, comments: @comments, comment_reply: @comment_reply } %>
+            <div id="admin_comment">
+              <%= render partial: 'admin/comments/comment',locals: { post: @post, comments: @comments, comment_reply: @comment_reply } %>
+            </div>
           </div>
         </div>
 

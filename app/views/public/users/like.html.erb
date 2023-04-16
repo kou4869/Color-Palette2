@@ -27,9 +27,14 @@
               <% end %>
             </div>
           </div>
-        <% else @tag_name.present? && @favorite_posts.empty? %>
+        <% elsif @tag_name.present? && @favorite_posts.empty? %>
           <p class="users_text mt-3 ml-4">
             ブックマークに『 <%= @tag_name %> 』が登録された配色はありません。
+          </p>
+        <% else %>
+          <p class="users_text mt-3 ml-4">
+            ブックマークに登録した配色はありません。<br>
+            配色一覧よりお気に入りの配色を見つけブックマーク登録しましょう。
           </p>
         <% end %>
 
