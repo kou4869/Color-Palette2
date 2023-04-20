@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :is_matching_login_user, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -47,7 +48,7 @@ class Public::PostsController < ApplicationController
     # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
     params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
 
-    #並び替えとタグ検索を同時に行うための記述
+    # 並び替えとタグ検索を同時に行うための記述
     case params[:sort]
     when "latest"
       @posts = @posts.order(created_at: :desc)
@@ -57,17 +58,32 @@ class Public::PostsController < ApplicationController
       @posts = @posts.sort_by { |a| a.avarage_star }.reverse
     end
 
+    # @posts = @posts.index(params[:sort], params[:page], 8)
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 
   def edit
     @user = current_user
     @post = Post.find(params[:id])
+    if (1..4).exclude?(@post.tags.length)
+      flash[:my_alert] = "タグは１～４個まで設定できます。"
+      render :edit
+      return
+    end
   end
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
+    new_tags = post_params[:tag_ids].reject(&:blank?)
+
+    if new_tags.empty? || new_tags.length > 4
+      flash[:my_alert] = "タグは１～４個まで設定できます。"
+      render :edit
+      return
+    end
+
+    @post.tag_ids = new_tags
+    if @post.update(post_params.except(:tag_ids))
       redirect_to post_path(@post), notice: "更新が完了しました"
     else
       flash[:alert] = "必須項目を入力してください"
@@ -87,5 +103,11 @@ class Public::PostsController < ApplicationController
     params.require(:post).permit(:color1, :color2, :color3, :color4, :post_introduction, {tag_ids: []})
   end
 
+  def is_matching_login_user
+    user = Post.find(params[:id]).user  #ポストを投稿したユーザーの情報
+    unless user.id == current_user.id
+      redirect_to post_path(params[:id])
+    end
+  end
 
 end

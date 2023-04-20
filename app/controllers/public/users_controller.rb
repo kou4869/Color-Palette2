@@ -90,7 +90,7 @@ class Public::UsersController < ApplicationController
   end
   
   def ensure_guest_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     if @user.name == "guestuser"
       redirect_to posts_path , notice: "ゲストユーザーはプロフィールを編集できません。"
     end

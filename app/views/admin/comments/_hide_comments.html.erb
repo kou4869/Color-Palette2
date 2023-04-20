@@ -65,15 +65,17 @@
 var adminshowRateElement = document.getElementById('admin_show_raty_<%= comment.id %>');
 //admin_show_raty_<%#= comment.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためcomment.idを指定する
 adminshowRateElement.innerHTML = '';
-var adminshowOpt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: "comment[star]",
-    score: "<%= comment.star %>",
-    readOnly: true
-};
-raty(adminshowRateElement,adminshowOpt);
+if adminshowRateElement != null) {
+  var adminshowOpt = {
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: "comment[star]",
+      score: "<%= comment.star %>",
+      readOnly: true
+  };
+  raty(adminshowRateElement,adminshowOpt);
+}
 </script>
 
 <!--scriptの2行目　ブラウザの←や→を行ったときに星が再度読み込まれ、記憶されている星にプラスする形で表示されてしまうため、一度表示を削除して再度処理を実行して

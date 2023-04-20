@@ -6,7 +6,6 @@ class Post < ApplicationRecord
   has_many :comments,       dependent: :destroy
   has_many :favorites,      dependent: :destroy
 
-
   validates :color1, :color2, :color3, :color4,   presence: true
   validates :post_introduction,                   length: { maximum: 300, message: "配色の説明は300文字以内で入力してください" }
   # 投稿された4色の色がすでに同じパターンで投稿されていた場合、投稿ができないようにする
@@ -26,6 +25,21 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+
+  # def index(sort, page, per)
+  #   sort = sort.blank? ? "latest" : sort
+  #       #並び替えとタグ検索を同時に行うための記述
+  #   case sort
+  #   when "latest"
+  #     results = self.order(created_at: :desc)
+  #   when "oldest"
+  #     results = self.order(created_at: :asc)
+  #   when "avarage_star"
+  #     results = self.sort_by { |a| a.avarage_star }.reverse
+  #   end
+  #   results = Kaminari.paginate_array(results).page(page).per(per)
+  #   return results
+  # end
 
   #raty.jsを使用した総合評価のための定義
   def avarage_star

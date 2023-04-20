@@ -77,13 +77,15 @@
 var showRateElement = document.getElementById('show_raty_<%= comment.id %>');
 //show_raty_<%#= comment.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためcomment.idを指定する
 showRateElement.innerHTML = '';
-var showOpt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: "comment[star]",
-    score: "<%= comment.star %>",
-    readOnly: true
+if showRateElement != null) {
+  var showOpt = {
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: "comment[star]",
+      score: "<%= comment.star %>",
+      readOnly: true
   };
   raty(showRateElement,showOpt);
+}
 </script>

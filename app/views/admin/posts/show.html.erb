@@ -137,15 +137,17 @@
 <script>
 var adminshowRateElement = document.getElementById('admin_active_raty');  //このビュー(部分テンプレートは除外)で表示する星は平均点のみなので、idの指定は無し
 adminshowRateElement.innerHTML = '';
-var adminshowOpt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: "comment[star]",
-    score: "<%= @post.avarage_star %>",  //モデルで定義した『avarage_stay』を利用。
-    readOnly: true
-};
-raty(adminshowRateElement,adminshowOpt);
+if adminshowRateElement != null) {
+  var adminshowOpt = {
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: "comment[star]",
+      score: "<%= @post.avarage_star %>",  //モデルで定義した『avarage_stay』を利用。
+      readOnly: true
+  };
+  raty(adminshowRateElement,adminshowOpt);
+}
 </script>
 
 <!--scriptの2行目　ブラウザの←や→を行ったときに星が再度読み込まれ、記憶されている星にプラスする形で表示されてしまうため、一度表示を削除して再度処理を実行して
