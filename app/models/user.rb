@@ -18,7 +18,7 @@ class User < ApplicationRecord
   # admin側でソート機能を使用するためのscope
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
-  
+
 
   # ↓ プロフィール画像の設定
   def get_profile_image
@@ -32,5 +32,23 @@ class User < ApplicationRecord
       user.name = "guestuser"
     end
   end
+
+  def Post.user_posts(sort, page, per)
+    sort = sort.blank? ? "latest" : sort
+     #並び替えとタグ検索を同時に行うための記述
+    case sort
+    when "latest"
+      results = Post.order(created_at: :desc)
+    when "oldest"
+      results = Post.order(created_at: :asc)
+    when "avarage_star"
+      results = Post.sort_by { |a| a.avarage_star }.reverse
+    end
+    results = Kaminari.paginate_array(results).page(page).per(per)
+    return results
+  end
+
+
+
 
 end

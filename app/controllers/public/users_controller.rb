@@ -13,19 +13,20 @@ class Public::UsersController < ApplicationController
     end
 
     # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
-    params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
+    # params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
 
     #並び替えとタグ検索を同時に行うための記述
-    case params[:sort]
-    when "latest"
-      @posts = @posts.order(created_at: :desc)
-    when "oldest"
-      @posts = @posts.order(created_at: :asc)
-    when "avarage_star"
-      @posts = @posts.order(avarage_star: :desc)
-    end
+    # case params[:sort]
+    # when "latest"
+    #   @posts = @posts.order(created_at: :desc)
+    # when "oldest"
+    #   @posts = @posts.order(created_at: :asc)
+    # when "avarage_star"
+    #   @posts = @posts.order(avarage_star: :desc)
+    # end
 
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+    @posts = @posts.user_posts(params[:sort], params[:page], 8)
+    # @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 
   def like
@@ -42,19 +43,20 @@ class Public::UsersController < ApplicationController
     end
 
     # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
-    params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
+    # params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
 
     #並び替えとタグ検索を同時に行うための記述
-    case params[:sort]
-    when "latest"
-      @favorite_posts = @favorite_posts.order(created_at: :desc)
-    when "oldest"
-      @favorite_posts = @favorite_posts.order(created_at: :asc)
-    when "avarage_star"
-      @favorite_posts = @favorite_posts.order(avarage_star: :desc)
-    end
+    # case params[:sort]
+    # when "latest"
+    #   @favorite_posts = @favorite_posts.order(created_at: :desc)
+    # when "oldest"
+    #   @favorite_posts = @favorite_posts.order(created_at: :asc)
+    # when "avarage_star"
+    #   @favorite_posts = @favorite_posts.order(avarage_star: :desc)
+    # end
 
-    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(8)
+    @favorite_posts = @favorite_posts.user_posts(params[:sort], params[:page], 8)
+    # @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(8)
   end
 
   def quit
@@ -88,13 +90,13 @@ class Public::UsersController < ApplicationController
   def user_params
       params.require(:user).permit(:name, :introduction, :profile_image)
   end
-  
+
   def ensure_guest_user
     @user = User.find(params[:user_id])
     if @user.name == "guestuser"
       redirect_to posts_path , notice: "ゲストユーザーはプロフィールを編集できません。"
     end
-  end  
+  end
 
 
 end

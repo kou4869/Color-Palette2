@@ -80,8 +80,8 @@
 <script>
 var indexRateElement = document.getElementById('index_active_raty_<%= post.id %>');
 //index_active_raty_<%#= post.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためpost.idを指定する
-indexRateElement.innerHTML = '';
-if indexRateElement != null) {
+if (indexRateElement != null) {
+  indexRateElement.innerHTML = '';
   var indexOpt = {
       starOn: "<%= asset_path('star-on.png') %>",
       starOff: "<%= asset_path('star-off.png') %>",
