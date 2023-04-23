@@ -26,18 +26,17 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  def self.sort_posts(sort, page, per)
+  def self.sort_posts(sort, posts)
     sort = sort.blank? ? "latest" : sort
      #並び替えとタグ検索を同時に行うための記述
     case sort
     when "latest"
-      results = self.order(created_at: :desc)
+      results = posts.order(created_at: :desc)
     when "oldest"
-      results = self.order(created_at: :asc)
+      results = posts.order(created_at: :asc)
     when "avarage_star"
-      results = self.sort_by { |a| a.avarage_star }.reverse
+      results = posts.sort_by { |a| a.avarage_star }.reverse
     end
-    results = Kaminari.paginate_array(results).page(page).per(per)
     return results
   end
 
@@ -50,9 +49,9 @@ class Post < ApplicationRecord
     total_review_count / total_count  #18行目の星の数の合計 ÷ 16行目の投稿の個数を行い、星の平均値を出している
   end
 
-  #投稿の並び替え
-  scope :latest, -> {order(created_at: :desc)}
-  scope :old, -> {order(create_at: :asc)}
+  # #投稿の並び替え
+  # scope :latest, -> {order(created_at: :desc)}
+  # scope :old, -> {order(create_at: :asc)}
 
 
 end

@@ -60,8 +60,8 @@
 <script>
 var adminindexRateElement = document.getElementById('admin_index_active_raty_<%= post.id %>');
 //adminindex_active_raty_<%#= post.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためpost.idを指定する
-adminindexRateElement.innerHTML = '';
-if adminindexRateElement != null) {
+if (adminindexRateElement != null) {
+  adminindexRateElement.innerHTML = '';
   var adminindexOpt = {
       starOn: "<%= asset_path('star-on.png') %>",
       starOff: "<%= asset_path('star-off.png') %>",

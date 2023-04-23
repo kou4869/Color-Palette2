@@ -64,7 +64,7 @@
 <script>
 var adminshowRateElement = document.getElementById('admin_show_raty_<%= comment.id %>');
 //admin_show_raty_<%#= comment.id %>としないと星が1つコメントに対してどんどん足されるような方式になってしまうためcomment.idを指定する
-if adminshowRateElement != null) {
+if (adminshowRateElement != null) {
   adminshowRateElement.innerHTML = '';
   var adminshowOpt = {
       starOn: "<%= asset_path('star-on.png') %>",

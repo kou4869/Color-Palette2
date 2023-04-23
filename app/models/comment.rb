@@ -13,7 +13,7 @@ class Comment < ApplicationRecord
   scope :children, -> { where.not(parent_id: nil) }
   scope :parents, -> { where(parent_id: nil) }
 
-  # admin側でソート機能を使用するためのscope
+  # admin側 コメント一覧ででソート機能を使用するためのscope
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
 

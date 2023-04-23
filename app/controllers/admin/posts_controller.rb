@@ -2,13 +2,13 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
+    @posts = Post.all
+
   #タグ検索用の記述
     if params[:tag_id].present?
       tag = Tag.find(params[:tag_id])
       @posts = tag.posts
       @tag_name = tag.tag_name
-    else
-      @posts = Post.all
     end
 
     # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
@@ -24,8 +24,8 @@ class Admin::PostsController < ApplicationController
     #   @posts = @posts.sort_by { |a| a.avarage_star }.reverse
     # end
 
-    @posts = @posts.index(params[:sort], params[:page], 8)
-    # @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+    @posts = Post.sort_posts(params[:sort], @posts)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 
   def show

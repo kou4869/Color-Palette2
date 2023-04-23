@@ -25,8 +25,8 @@ class Public::UsersController < ApplicationController
     #   @posts = @posts.order(avarage_star: :desc)
     # end
 
-    @posts = @posts.user_posts(params[:sort], params[:page], 8)
-    # @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+    @posts = @posts.user_posts(params[:sort], @posts)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
 
   def like
@@ -55,8 +55,8 @@ class Public::UsersController < ApplicationController
     #   @favorite_posts = @favorite_posts.order(avarage_star: :desc)
     # end
 
-    @favorite_posts = @favorite_posts.user_posts(params[:sort], params[:page], 8)
-    # @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(8)
+    @favorite_posts = @favorite_posts.user_posts(params[:sort], @favorite_posts)
+    @favorite_posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(8)
   end
 
   def quit
