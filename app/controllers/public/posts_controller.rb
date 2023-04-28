@@ -44,19 +44,6 @@ class Public::PostsController < ApplicationController
       @tag_name = tag.tag_name
     end
 
-    # params[:sort]が空である場合、(パラメータが渡されていない場合)params[:sort]にはデフォルト値として"latest"を設定
-    # params[:sort] = params[:sort].blank? ? "latest" : params[:sort]
-
-    # 並び替えとタグ検索を同時に行うための記述
-    # case params[:sort]
-    # when "latest"
-    #   @posts = @posts.order(created_at: :desc)
-    # when "oldest"
-    #   @posts = @posts.order(created_at: :asc)
-    # when "avarage_star"
-    #   @posts = @posts.sort_by { |a| a.avarage_star }.reverse
-    # end
-
     @posts = Post.sort_posts(params[:sort], @posts)
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end

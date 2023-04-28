@@ -49,9 +49,5 @@ class Post < ApplicationRecord
     total_review_count / total_count  #18行目の星の数の合計 ÷ 16行目の投稿の個数を行い、星の平均値を出している
   end
 
-  # #投稿の並び替え
-  # scope :latest, -> {order(created_at: :desc)}
-  # scope :old, -> {order(create_at: :asc)}
-
 
 end
