@@ -1,16 +1,16 @@
 class Admin::TagsController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @tag = Tag.new
     @tags = Tag.all
-    @tags = @tags.order(created_at: :desc)
-    
+
     if params[:latest]
       @tags = Kaminari.paginate_array(@tags.latest).page(params[:page]).per(8)
     elsif params[:old]
       @tags = Kaminari.paginate_array(@tags.old).page(params[:page]).per(8)
     else
-      @tags = Kaminari.paginate_array(@tags).page(params[:page]).per(8)
+      @tags = Kaminari.paginate_array(@tags.latest).page(params[:page]).per(8)
     end
   end
 
@@ -31,7 +31,7 @@ class Admin::TagsController < ApplicationController
     flash[:notice] = "変更を保存しました"
     redirect_back(fallback_location: root_path)
   end
-  
+
   def destroy
     @tag = Tag.find(params[:id])
     @tag.destroy

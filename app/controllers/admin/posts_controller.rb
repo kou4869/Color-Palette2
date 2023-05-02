@@ -11,8 +11,6 @@ class Admin::PostsController < ApplicationController
       @tag_name = tag.tag_name
     end
 
-
-
     @posts = Post.sort_posts(params[:sort], @posts)
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
   end
