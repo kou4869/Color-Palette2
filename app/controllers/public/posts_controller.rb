@@ -1,14 +1,16 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def new
     @post = Post.new
-    @tag = Tag.all
+    @tags = Tag.all
+    @tag = Tag.new
   end
 
   def create
     @post = Post.new(post_params)
+    @tags = Tag.all
     if (1..4).exclude?(@post.tags.length)
       flash[:my_alert] = "タグは１～４個まで設定できます。"
       render :new

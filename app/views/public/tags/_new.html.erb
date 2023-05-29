@@ -1,0 +1,10 @@
+<%= form_with model: tag, url: tags_path, local: true do |tag| %>
+  <tr>
+    <p class="tag_check">
+      該当のタグがなかった場合、追加ができます<br>
+      <%= tag.text_field :tag_name, required: true, :placeholder => "タグ名" %>
+      <%= tag.submit "タグ登録" %>
+    </p>
+  </tr>
+<% end %>
+
